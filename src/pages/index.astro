@@ -1,0 +1,704 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import CryptoTracker from '../components/CryptoTracker.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Krasimir Kralev | Portfolio">
+  <Navbar />
+
+  <!-- ====== LAYER 1: SPACE ====== -->
+  <Hero />
+
+  <!-- Transition: Space → Sky -->
+  <div class="layer-space-to-sky"></div>
+
+  <!-- ====== LAYER 2: SKY ====== -->
+  <div class="layer-sky">
+    <!-- Sun: persistent background at top of sky -->
+    <div class="sky-sun" aria-hidden="true">
+      <div class="sun-rays"></div>
+      <div class="sun-halo"></div>
+      <div class="sun-glow"></div>
+      <div class="sun-core"></div>
+    </div>
+
+    <!-- Upper clouds - drift behind About -->
+    <div class="clouds-layer clouds-back" aria-hidden="true">
+      <svg class="cloud-svg cloud-a1" viewBox="0 0 520 180" fill="none">
+        <ellipse cx="260" cy="120" rx="220" ry="55" fill="rgba(255,255,255,0.4)" />
+        <ellipse cx="180" cy="90" rx="130" ry="65" fill="rgba(255,255,255,0.45)" />
+        <ellipse cx="330" cy="80" rx="140" ry="70" fill="rgba(255,255,255,0.42)" />
+        <ellipse cx="250" cy="65" rx="110" ry="55" fill="rgba(255,255,255,0.5)" />
+        <ellipse cx="400" cy="100" rx="90" ry="48" fill="rgba(255,255,255,0.35)" />
+        <ellipse cx="120" cy="105" rx="85" ry="42" fill="rgba(255,255,255,0.35)" />
+        <ellipse cx="260" cy="55" rx="80" ry="42" fill="rgba(255,255,255,0.48)" />
+      </svg>
+      <svg class="cloud-svg cloud-a2" viewBox="0 0 440 160" fill="none">
+        <ellipse cx="220" cy="105" rx="185" ry="50" fill="rgba(255,255,255,0.38)" />
+        <ellipse cx="155" cy="78" rx="110" ry="60" fill="rgba(255,255,255,0.44)" />
+        <ellipse cx="285" cy="72" rx="120" ry="62" fill="rgba(255,255,255,0.4)" />
+        <ellipse cx="215" cy="58" rx="90" ry="50" fill="rgba(255,255,255,0.5)" />
+        <ellipse cx="360" cy="88" rx="70" ry="40" fill="rgba(255,255,255,0.32)" />
+        <ellipse cx="80" cy="92" rx="68" ry="38" fill="rgba(255,255,255,0.34)" />
+      </svg>
+      <svg class="cloud-svg cloud-a3" viewBox="0 0 380 140" fill="none">
+        <ellipse cx="190" cy="95" rx="160" ry="42" fill="rgba(255,255,255,0.36)" />
+        <ellipse cx="130" cy="70" rx="95" ry="52" fill="rgba(255,255,255,0.42)" />
+        <ellipse cx="250" cy="65" rx="100" ry="55" fill="rgba(255,255,255,0.4)" />
+        <ellipse cx="190" cy="52" rx="75" ry="42" fill="rgba(255,255,255,0.48)" />
+        <ellipse cx="310" cy="80" rx="60" ry="35" fill="rgba(255,255,255,0.3)" />
+      </svg>
+    </div>
+
+    <About />
+
+    <!-- Lower clouds - drift between About and Skills -->
+    <div class="clouds-layer clouds-front" aria-hidden="true">
+      <svg class="cloud-svg cloud-b1" viewBox="0 0 480 160" fill="none">
+        <ellipse cx="240" cy="110" rx="200" ry="48" fill="rgba(255,255,255,0.5)" />
+        <ellipse cx="165" cy="82" rx="115" ry="60" fill="rgba(255,255,255,0.55)" />
+        <ellipse cx="310" cy="75" rx="125" ry="62" fill="rgba(255,255,255,0.52)" />
+        <ellipse cx="235" cy="60" rx="95" ry="50" fill="rgba(255,255,255,0.6)" />
+        <ellipse cx="380" cy="92" rx="80" ry="42" fill="rgba(255,255,255,0.42)" />
+        <ellipse cx="100" cy="96" rx="75" ry="40" fill="rgba(255,255,255,0.4)" />
+        <ellipse cx="240" cy="48" rx="70" ry="38" fill="rgba(255,255,255,0.55)" />
+      </svg>
+      <svg class="cloud-svg cloud-b2" viewBox="0 0 400 140" fill="none">
+        <ellipse cx="200" cy="95" rx="170" ry="42" fill="rgba(255,255,255,0.48)" />
+        <ellipse cx="140" cy="68" rx="100" ry="55" fill="rgba(255,255,255,0.54)" />
+        <ellipse cx="260" cy="62" rx="108" ry="56" fill="rgba(255,255,255,0.5)" />
+        <ellipse cx="195" cy="50" rx="82" ry="45" fill="rgba(255,255,255,0.58)" />
+        <ellipse cx="335" cy="82" rx="58" ry="35" fill="rgba(255,255,255,0.38)" />
+        <ellipse cx="65" cy="85" rx="55" ry="32" fill="rgba(255,255,255,0.36)" />
+      </svg>
+      <svg class="cloud-svg cloud-b3" viewBox="0 0 360 130" fill="none">
+        <ellipse cx="180" cy="88" rx="150" ry="40" fill="rgba(255,255,255,0.45)" />
+        <ellipse cx="125" cy="62" rx="88" ry="48" fill="rgba(255,255,255,0.52)" />
+        <ellipse cx="235" cy="58" rx="94" ry="50" fill="rgba(255,255,255,0.48)" />
+        <ellipse cx="180" cy="45" rx="68" ry="38" fill="rgba(255,255,255,0.56)" />
+        <ellipse cx="295" cy="72" rx="55" ry="32" fill="rgba(255,255,255,0.36)" />
+      </svg>
+      <svg class="cloud-svg cloud-b4" viewBox="0 0 300 120" fill="none">
+        <ellipse cx="150" cy="80" rx="125" ry="36" fill="rgba(255,255,255,0.46)" />
+        <ellipse cx="105" cy="58" rx="78" ry="44" fill="rgba(255,255,255,0.52)" />
+        <ellipse cx="200" cy="52" rx="82" ry="46" fill="rgba(255,255,255,0.48)" />
+        <ellipse cx="150" cy="42" rx="60" ry="35" fill="rgba(255,255,255,0.55)" />
+        <ellipse cx="245" cy="68" rx="48" ry="28" fill="rgba(255,255,255,0.38)" />
+      </svg>
+    </div>
+
+    <Skills />
+  </div>
+
+  <!-- Transition: Sky → Forest -->
+  <div class="layer-sky-to-forest" aria-hidden="true">
+    <!-- Distant mountains -->
+    <svg class="mountains-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,280 Q180,160 360,220 T720,180 T1080,230 T1440,200 L1440,320 L0,320 Z" fill="rgba(60,90,70,0.25)" />
+      <path d="M0,300 Q240,200 480,260 T960,220 T1440,270 L1440,320 L0,320 Z" fill="rgba(45,75,55,0.35)" />
+      <path d="M0,310 Q300,250 600,290 T1200,265 T1440,300 L1440,320 L0,320 Z" fill="rgba(35,60,42,0.5)" />
+    </svg>
+    <!-- Tree silhouettes -->
+    <svg class="trees-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <polygon points="80,200 110,80 140,200" fill="rgba(30,55,38,0.6)" />
+      <polygon points="95,120 110,60 125,120" fill="rgba(30,55,38,0.6)" />
+      <polygon points="200,200 240,60 280,200" fill="rgba(25,50,35,0.7)" />
+      <polygon points="220,100 240,30 260,100" fill="rgba(25,50,35,0.7)" />
+      <polygon points="380,200 410,90 440,200" fill="rgba(35,60,42,0.5)" />
+      <polygon points="395,130 410,70 425,130" fill="rgba(35,60,42,0.5)" />
+      <polygon points="550,200 585,70 620,200" fill="rgba(28,52,36,0.65)" />
+      <polygon points="565,110 585,40 605,110" fill="rgba(28,52,36,0.65)" />
+      <polygon points="720,200 755,85 790,200" fill="rgba(30,55,38,0.6)" />
+      <polygon points="735,125 755,65 775,125" fill="rgba(30,55,38,0.6)" />
+      <polygon points="880,200 915,60 950,200" fill="rgba(25,48,34,0.7)" />
+      <polygon points="895,100 915,30 935,100" fill="rgba(25,48,34,0.7)" />
+      <polygon points="1050,200 1080,80 1110,200" fill="rgba(32,58,40,0.55)" />
+      <polygon points="1065,120 1080,55 1095,120" fill="rgba(32,58,40,0.55)" />
+      <polygon points="1220,200 1255,70 1290,200" fill="rgba(28,52,36,0.65)" />
+      <polygon points="1235,110 1255,40 1275,110" fill="rgba(28,52,36,0.65)" />
+      <polygon points="1370,200 1400,90 1430,200" fill="rgba(30,55,38,0.6)" />
+      <polygon points="1385,130 1400,70 1415,130" fill="rgba(30,55,38,0.6)" />
+    </svg>
+  </div>
+
+  <!-- ====== LAYER 3: FOREST ====== -->
+  <div class="layer-forest">
+    <Projects />
+    <CryptoTracker />
+  </div>
+
+  <!-- Transition: Forest → Underground -->
+  <div class="layer-forest-to-underground" aria-hidden="true">
+    <!-- Rock layer -->
+    <svg class="rock-layer-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <!-- Back rock ridge -->
+      <path d="M0,140 Q80,100 160,120 Q240,90 340,110 Q420,80 520,105 Q600,75 700,100 Q780,70 880,95 Q960,65 1060,90 Q1140,70 1240,100 Q1320,80 1440,110 L1440,200 L0,200 Z" fill="#5a4a38" />
+      <!-- Mid rock ridge -->
+      <path d="M0,160 Q100,125 200,145 Q300,110 420,135 Q520,105 640,130 Q740,100 860,125 Q960,95 1080,120 Q1180,100 1300,130 Q1380,115 1440,135 L1440,200 L0,200 Z" fill="#4a3c2c" />
+      <!-- Front rock ridge -->
+      <path d="M0,175 Q120,150 240,165 Q360,140 480,158 Q600,135 720,155 Q840,130 960,152 Q1080,138 1200,160 Q1320,145 1440,162 L1440,200 L0,200 Z" fill="#3c3022" />
+    </svg>
+  </div>
+
+  <!-- ====== LAYER 4: UNDERGROUND ====== -->
+  <div class="layer-underground">
+    <Contact />
+    <Footer />
+  </div>
+
+  <script>
+    // ---- Scroll Reveal ----
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    if (revealEls.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove('opacity-0', 'translate-y-5');
+              entry.target.classList.add('opacity-100', 'translate-y-0');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      revealEls.forEach((el) => {
+        el.classList.add('opacity-0', 'translate-y-5', 'transition-all', 'duration-700', 'ease-out');
+        observer.observe(el);
+      });
+    }
+
+    // ---- Scroll Progress Bar ----
+    (function () {
+      const bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = progress + '%';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    })();
+
+    // ---- Konami Code Easter Egg ----
+    (function () {
+      const sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let idx = 0;
+
+      function spawnConfetti() {
+        const colors = ['#c8973e', '#d4a84e', '#f7931a', '#627eea', '#fff'];
+        for (let i = 0; i < 80; i++) {
+          const el = document.createElement('div');
+          el.style.cssText = `
+            position: fixed;
+            top: -10px;
+            left: ${Math.random() * 100}vw;
+            width: ${4 + Math.random() * 6}px;
+            height: ${4 + Math.random() * 6}px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+            z-index: 99999;
+            pointer-events: none;
+            animation: confetti-fall ${1.5 + Math.random() * 2}s ease-out forwards;
+          `;
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 4000);
+        }
+      }
+
+      // Add confetti keyframes (only once)
+      if (!document.getElementById('confetti-style')) {
+        const style = document.createElement('style');
+        style.id = 'confetti-style';
+        style.textContent = `
+          @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === sequence[idx]) {
+          idx++;
+          if (idx === sequence.length) {
+            idx = 0;
+            spawnConfetti();
+          }
+        } else {
+          idx = 0;
+        }
+      });
+    })();
+  </script>
+</BaseLayout>
+
+<style>
+  /* ===== TRANSITION: SPACE → SKY ===== */
+  .layer-space-to-sky {
+    height: 250px;
+    background: linear-gradient(
+      to bottom,
+      #0c0c1d 0%,
+      #111535 12%,
+      #1a2555 25%,
+      #2a3a78 40%,
+      #3d5a9e 55%,
+      #5a85bf 70%,
+      #7aabda 85%,
+      #a4cfe8 100%
+    );
+  }
+
+  :global(.dark) .layer-space-to-sky {
+    background: linear-gradient(
+      to bottom,
+      #0c0c1d 0%,
+      #0e1028 12%,
+      #111535 25%,
+      #161d48 40%,
+      #1c2758 55%,
+      #243268 70%,
+      #2d3f7a 85%,
+      #364d8c 100%
+    );
+  }
+
+  /* ===== SKY LAYER ===== */
+  .layer-sky {
+    position: relative;
+    overflow: hidden;
+    --color-primary: 30 30 50;
+    --color-primary-secondary: 50 50 75;
+    --color-primary-tertiary: 80 80 110;
+    --color-surface: 255 255 255;
+    --color-surface-subtle: 240 248 255;
+    background: linear-gradient(
+      to bottom,
+      #a4cfe8 0%,
+      #b4d8ee 50%,
+      #c4e1f4 100%
+    );
+  }
+
+  :global(.dark) .layer-sky {
+    --color-primary: 230 230 240;
+    --color-primary-secondary: 170 175 200;
+    --color-primary-tertiary: 130 135 165;
+    --color-surface: 40 50 100;
+    --color-surface-subtle: 17 17 132;
+    background: linear-gradient(to bottom, #364d8c 0%, #6688cc 50%, #7096D1 100%);
+  }
+
+  /* ===== SUN — persistent at top of sky ===== */
+  .sky-sun {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sun-core {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 248, 220, 1) 0%,
+      rgba(255, 235, 160, 0.9) 20%,
+      rgba(255, 215, 100, 0.65) 40%,
+      rgba(255, 195, 70, 0.3) 65%,
+      transparent 100%
+    );
+    filter: blur(3px);
+    animation: sun-pulse 6s ease-in-out infinite;
+    z-index: 4;
+  }
+
+  .sun-glow {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 235, 140, 0.75) 0%,
+      rgba(255, 215, 90, 0.5) 12%,
+      rgba(255, 200, 65, 0.3) 25%,
+      rgba(255, 180, 50, 0.15) 42%,
+      rgba(255, 160, 40, 0.06) 60%,
+      transparent 80%
+    );
+    filter: blur(12px);
+    animation: sun-pulse 6s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  .sun-halo {
+    position: absolute;
+    top: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1100px;
+    height: 1100px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 230, 120, 0.3) 0%,
+      rgba(255, 210, 90, 0.18) 15%,
+      rgba(255, 195, 70, 0.08) 30%,
+      rgba(255, 180, 60, 0.03) 45%,
+      transparent 60%
+    );
+    filter: blur(25px);
+    animation: sun-halo-pulse 8s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  .sun-rays {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background:
+      conic-gradient(
+        from 0deg,
+        transparent 0deg, rgba(255, 230, 140, 0.08) 8deg, transparent 16deg,
+        transparent 30deg, rgba(255, 220, 120, 0.06) 38deg, transparent 46deg,
+        transparent 60deg, rgba(255, 230, 140, 0.08) 68deg, transparent 76deg,
+        transparent 90deg, rgba(255, 220, 120, 0.06) 98deg, transparent 106deg,
+        transparent 120deg, rgba(255, 230, 140, 0.08) 128deg, transparent 136deg,
+        transparent 150deg, rgba(255, 220, 120, 0.06) 158deg, transparent 166deg,
+        transparent 180deg, rgba(255, 230, 140, 0.08) 188deg, transparent 196deg,
+        transparent 210deg, rgba(255, 220, 120, 0.06) 218deg, transparent 226deg,
+        transparent 240deg, rgba(255, 230, 140, 0.08) 248deg, transparent 256deg,
+        transparent 270deg, rgba(255, 220, 120, 0.06) 278deg, transparent 286deg,
+        transparent 300deg, rgba(255, 230, 140, 0.08) 308deg, transparent 316deg,
+        transparent 330deg, rgba(255, 220, 120, 0.06) 338deg, transparent 346deg,
+        transparent 360deg
+      );
+    filter: blur(18px);
+    animation: sun-rays-spin 120s linear infinite;
+    z-index: 1;
+  }
+
+  /* Dark mode sun */
+  :global(.dark) .sun-core {
+    width: 110px;
+    height: 110px;
+    top: 30px;
+    background: radial-gradient(
+      circle,
+      rgba(210, 225, 255, 0.8) 0%,
+      rgba(185, 205, 250, 0.55) 25%,
+      rgba(155, 180, 240, 0.25) 50%,
+      transparent 100%
+    );
+    filter: blur(5px);
+  }
+
+  :global(.dark) .sun-glow {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(
+      circle,
+      rgba(180, 210, 255, 0.45) 0%,
+      rgba(160, 195, 248, 0.28) 15%,
+      rgba(140, 175, 235, 0.14) 30%,
+      rgba(120, 155, 220, 0.05) 50%,
+      transparent 70%
+    );
+    filter: blur(18px);
+  }
+
+  :global(.dark) .sun-halo {
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(
+      circle,
+      rgba(150, 185, 245, 0.18) 0%,
+      rgba(135, 170, 230, 0.1) 18%,
+      rgba(115, 150, 215, 0.04) 35%,
+      transparent 55%
+    );
+    filter: blur(30px);
+  }
+
+  :global(.dark) .sun-rays {
+    width: 600px;
+    height: 600px;
+    background:
+      conic-gradient(
+        from 0deg,
+        transparent 0deg, rgba(160, 195, 245, 0.05) 8deg, transparent 16deg,
+        transparent 30deg, rgba(150, 185, 235, 0.04) 38deg, transparent 46deg,
+        transparent 60deg, rgba(160, 195, 245, 0.05) 68deg, transparent 76deg,
+        transparent 90deg, rgba(150, 185, 235, 0.04) 98deg, transparent 106deg,
+        transparent 120deg, rgba(160, 195, 245, 0.05) 128deg, transparent 136deg,
+        transparent 150deg, rgba(150, 185, 235, 0.04) 158deg, transparent 166deg,
+        transparent 180deg, rgba(160, 195, 245, 0.05) 188deg, transparent 196deg,
+        transparent 210deg, rgba(150, 185, 235, 0.04) 218deg, transparent 226deg,
+        transparent 240deg, rgba(160, 195, 245, 0.05) 248deg, transparent 256deg,
+        transparent 270deg, rgba(150, 185, 235, 0.04) 278deg, transparent 286deg,
+        transparent 300deg, rgba(160, 195, 245, 0.05) 308deg, transparent 316deg,
+        transparent 330deg, rgba(150, 185, 235, 0.04) 338deg, transparent 346deg,
+        transparent 360deg
+      );
+    filter: blur(22px);
+  }
+
+  @keyframes sun-pulse {
+    0%, 100% { opacity: 0.88; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+  }
+
+  @keyframes sun-halo-pulse {
+    0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.03); }
+  }
+
+  @keyframes sun-rays-spin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+  }
+
+  /* ===== CLOUD LAYERS ===== */
+  .clouds-layer {
+    position: relative;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .clouds-back {
+    height: 120px;
+    z-index: 1;
+  }
+
+  .clouds-front {
+    height: 140px;
+    z-index: 3;
+  }
+
+  .cloud-svg {
+    position: absolute;
+    filter: blur(1.5px);
+    animation: drift-cloud linear infinite;
+  }
+
+  :global(.dark) .cloud-svg {
+    filter: blur(2.5px);
+    opacity: 0.2;
+  }
+
+  /* Back clouds (behind About) — larger, slower, more translucent */
+  .cloud-a1 { top: 10%; left: -35%; width: 380px; height: auto; animation-duration: 80s; opacity: 0.7; }
+  .cloud-a2 { top: 40%; left: -30%; width: 320px; height: auto; animation-duration: 95s; animation-delay: -35s; opacity: 0.6; }
+  .cloud-a3 { top: 60%; left: -25%; width: 280px; height: auto; animation-duration: 70s; animation-delay: -55s; opacity: 0.65; }
+
+  /* Front clouds (between About & Skills) — sharper, closer, brighter */
+  .cloud-b1 { top: 5%; left: -32%; width: 350px; height: auto; animation-duration: 65s; }
+  .cloud-b2 { top: 35%; left: -28%; width: 300px; height: auto; animation-duration: 80s; animation-delay: -20s; }
+  .cloud-b3 { top: 55%; left: -24%; width: 260px; height: auto; animation-duration: 72s; animation-delay: -45s; }
+  .cloud-b4 { top: 75%; left: -20%; width: 220px; height: auto; animation-duration: 58s; animation-delay: -30s; }
+
+  @keyframes drift-cloud {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 450px)); }
+  }
+
+  /* ===== TRANSITION: SKY → FOREST ===== */
+  .layer-sky-to-forest {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      #c4e1f4 0%,
+      #b0d4e0 8%,
+      #90c0c8 18%,
+      #70aab0 28%,
+      #509a8a 40%,
+      #3d8a6a 52%,
+      #2e7a52 65%,
+      #246a42 78%,
+      #1e5530 100%
+    );
+  }
+
+  .layer-sky-to-forest .mountains-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+  }
+
+  .layer-sky-to-forest .trees-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+  }
+
+  :global(.dark) .layer-sky-to-forest {
+    background: linear-gradient(
+      to bottom,
+      #7096D1 0%,
+      #6088c0 8%,
+      #5078aa 18%,
+      #406890 28%,
+      #355a78 40%,
+      #2a4e60 52%,
+      #204548 65%,
+      #183c38 78%,
+      #0e3018 100%
+    );
+  }
+
+  /* ===== FOREST LAYER ===== */
+  .layer-forest {
+    --color-primary: 230 240 230;
+    --color-primary-secondary: 180 200 180;
+    --color-primary-tertiary: 140 165 140;
+    --color-surface: 25 60 35;
+    --color-surface-subtle: 30 70 40;
+    --color-accent: 200 180 80;
+    background: linear-gradient(
+      to bottom,
+      #1e5530 0%,
+      #2a6238 30%,
+      #347040 60%,
+      #3a7a45 100%
+    );
+  }
+
+  :global(.dark) .layer-forest {
+    --color-primary: 220 230 220;
+    --color-primary-secondary: 160 180 160;
+    --color-primary-tertiary: 120 145 120;
+    --color-surface: 15 40 22;
+    --color-surface-subtle: 20 48 28;
+    background: linear-gradient(
+      to bottom,
+      #0e3018 0%,
+      #12341c 30%,
+      #163820 60%,
+      #1a3c24 100%
+    );
+  }
+
+  /* ===== TRANSITION: FOREST → UNDERGROUND ===== */
+  .layer-forest-to-underground {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      #3a7a45 0%,
+      #4a7a3e 8%,
+      #5a7035 18%,
+      #5e6530 28%,
+      #605828 38%,
+      #5e4e24 48%,
+      #5a4422 58%,
+      #563c20 68%,
+      #50361e 78%,
+      #4a301c 88%,
+      #3c3022 100%
+    );
+  }
+
+  :global(.dark) .layer-forest-to-underground {
+    background: linear-gradient(
+      to bottom,
+      #1a3c24 0%,
+      #1c3420 8%,
+      #1e2c1c 18%,
+      #202618 28%,
+      #222016 38%,
+      #221c14 48%,
+      #221a12 58%,
+      #201810 68%,
+      #1e160e 78%,
+      #1c140c 88%,
+      #1a120a 100%
+    );
+  }
+
+  .rock-layer-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+  }
+
+  :global(.dark) .rock-layer-svg path:nth-child(1) { fill: #2a2218; }
+  :global(.dark) .rock-layer-svg path:nth-child(2) { fill: #221a12; }
+  :global(.dark) .rock-layer-svg path:nth-child(3) { fill: #1a120a; }
+
+  /* ===== UNDERGROUND LAYER ===== */
+  .layer-underground {
+    position: relative;
+    --color-primary: 255 248 235;
+    --color-primary-secondary: 225 205 175;
+    --color-primary-tertiary: 195 175 145;
+    --color-surface: 60 48 34;
+    --color-surface-subtle: 72 58 42;
+    --color-accent: 200 151 62;
+    background: linear-gradient(
+      to bottom,
+      #3c3022 0%,
+      #3e3224 10%,
+      #3c3022 30%,
+      #3a2e20 50%,
+      #382c1e 70%,
+      #362a1c 90%,
+      #34281a 100%
+    );
+  }
+
+  :global(.dark) .layer-underground {
+    --color-primary: 245 235 218;
+    --color-primary-secondary: 205 185 155;
+    --color-primary-tertiary: 170 150 125;
+    --color-surface: 28 20 14;
+    --color-surface-subtle: 38 28 20;
+    background: linear-gradient(
+      to bottom,
+      #1a120a 0%,
+      #1c140c 10%,
+      #1a120a 30%,
+      #181008 50%,
+      #160e08 70%,
+      #140c06 90%,
+      #120a04 100%
+    );
+  }
+</style>

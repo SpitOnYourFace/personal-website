@@ -1,0 +1,515 @@
+---
+---
+
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-[#0c0c1d]">
+  <!-- Accessible autobiography text (sr-only) -->
+  <div class="sr-only" role="region" aria-label="About Krasimir Kralev">
+    <p data-lang="en">My name is Krasimir Kralev. I'm a QA specialist at ResultsCX, studying Computer Science at Plovdiv University. I play guitar in Slathe and build web applications with JavaScript, Node.js, Astro and Tailwind CSS. I'm passionate about Web3 and the Internet Computer Protocol.</p>
+    <p data-lang="bg">Казвам се Красимир Кралев. Специалист по качеството в ResultsCX, уча Информатика в Пловдивски университет. Свиря на китара в Slathe и изграждам уеб приложения с JavaScript, Node.js, Astro и Tailwind CSS. Увлечен съм от Web3 и Internet Computer Protocol.</p>
+  </div>
+
+  <!-- Autobiography text layer (revealed by spotlight) -->
+  <div class="code-layer absolute inset-0 select-none pointer-events-none z-0" aria-hidden="true">
+    <pre class="code-block code-block-1" data-lang="en">{`My name is Krasimir Kralev.
+Curiosity drives everything I do.
+I love solving problems and
+helping people along the way.
+
+I study Computer Science, but
+it doesn't stop at university —
+I code in my free time because
+it burns inside me. A true calling.`}</pre>
+    <pre class="code-block code-block-1" data-lang="bg">{`Казвам се Красимир Кралев.
+Любопитството движи всичко,
+което правя. Обичам да решавам
+проблеми и да помагам на хората.
+
+Уча Информатика, но не спира
+до университета — програмирам
+в свободното си време, защото
+гори в мен. Истинско призвание.`}</pre>
+
+    <pre class="code-block code-block-2" data-lang="en">{`At ResultsCX I'm a Quality Assurance
+& Development Specialist on the
+Sky UK project.
+
+I'm not a programmer at work —
+I ensure data security, prevent
+breaches, and help my team grow.
+Quality and people come first.`}</pre>
+    <pre class="code-block code-block-2" data-lang="bg">{`В ResultsCX съм специалист по
+Качество и развитие по проекта
+Sky UK.
+
+На работа не програмирам —
+осигурявам сигурност на данните,
+предотвратявам пробиви и помагам
+на екипа ми да расте.`}</pre>
+
+    <pre class="code-block code-block-3" data-lang="en">{`I study Informatics at the
+University of Plovdiv
+"Paisii Hilendarski" — one of
+the oldest universities in Bulgaria.
+
+Every lecture fuels my curiosity.
+Every algorithm sharpens my mind.
+The classroom opened the door,
+but passion keeps me walking.`}</pre>
+    <pre class="code-block code-block-3" data-lang="bg">{`Уча Информатика в Пловдивски
+университет „Паисий Хилендарски"
+— един от най-старите
+университети в България.
+
+Всяка лекция подхранва
+любопитството ми. Всеки алгоритъм
+ми изостря ума. Университетът
+отвори вратата, но страстта
+ме движи напред.`}</pre>
+
+    <pre class="code-block code-block-4" data-lang="en">{`But code isn't my only language.
+I play guitar in Slathe — a band
+born from the same fire that
+drives my programming.
+
+Music and code share a rhythm.
+Both demand precision, creativity,
+and the courage to break rules.`}</pre>
+    <pre class="code-block code-block-4" data-lang="bg">{`Но кодът не е единственият
+ми език. Свиря на китара в
+Slathe — група, родена от
+същия огън, който движи
+програмирането ми.
+
+Музиката и кодът споделят
+ритъм. И двете изискват
+прецизност и креативност.`}</pre>
+
+    <pre class="code-block code-block-5" data-lang="en">{`JavaScript is my weapon of choice.
+Node.js, Astro, Tailwind CSS —
+I build things that live and
+breathe on the internet.
+
+From booking systems to band
+websites, every project teaches
+me something new.`}</pre>
+    <pre class="code-block code-block-5" data-lang="bg">{`JavaScript е моето оръжие.
+Node.js, Astro, Tailwind CSS —
+изграждам неща, които живеят
+и дишат в интернет.
+
+От системи за резервации до
+сайтове за групи — всеки
+проект ме учи на нещо ново.`}</pre>
+
+    <pre class="code-block code-block-6" data-lang="en">{`The future excites me.
+Web3 and the Internet Computer
+Protocol (ICP) are calling.
+
+I want to build decentralized
+apps that change how we think
+about the web.
+
+This is just the beginning.`}</pre>
+    <pre class="code-block code-block-6" data-lang="bg">{`Бъдещето ме вълнува.
+Web3 и Internet Computer
+Protocol (ICP) ме зоват.
+
+Искам да създавам децентрализирани
+приложения, които да променят
+мисленето ни за мрежата.
+
+Това е само началото.`}</pre>
+  </div>
+
+  <!-- Spotlight overlay -->
+  <div id="spotlight-overlay" class="absolute inset-0 z-[1] pointer-events-none"></div>
+
+  <!-- Particle canvas -->
+  <canvas id="particles" class="absolute inset-0 w-full h-full z-[2]" aria-hidden="true"></canvas>
+
+  <!-- Content -->
+  <div id="main-content" class="relative z-10 max-w-2xl mx-auto px-6 pt-20">
+    <p
+      id="hero-subtitle"
+      class="font-mono text-xs uppercase tracking-[3px] text-[#c8973e]/60 mb-4 opacity-0 translate-y-2 transition-all duration-700"
+    >
+      <span id="hero-role"></span>
+    </p>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5 min-h-[1.3em] font-mono">
+      <span id="typed-text"></span><span class="text-[#c8973e] animate-blink">|</span>
+    </h1>
+    <p class="text-lg text-white/50 mb-10 max-w-md">
+      <span data-lang="en">I write code that speaks for itself.</span>
+      <span data-lang="bg">Пиша код, който говори сам за себе си.</span>
+    </p>
+    <div id="hero-cta" class="opacity-0 translate-y-2 transition-all duration-700 delay-300">
+      <a
+        href="#about"
+        class="inline-flex items-center gap-2 text-[#c8973e] font-medium text-sm hover:underline underline-offset-4 decoration-[#c8973e]/40"
+      >
+        <span data-lang="en">View my work</span>
+        <span data-lang="bg">Вижте работата ми</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hint: desktop -->
+  <div id="hero-hint" class="absolute inset-0 z-[3] pointer-events-none hidden md:block">
+    <div class="hint-beacon">
+      <svg class="hint-arrow" width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <path d="M12 12 L12 30" stroke="rgba(200,151,62,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 12 L30 12" stroke="rgba(200,151,62,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 12 L28 28" stroke="rgba(200,151,62,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="3" fill="rgba(200,151,62,0.9)"/>
+      </svg>
+      <div class="hint-ring"></div>
+      <div class="hint-ring hint-ring-2"></div>
+    </div>
+    <p class="hint-label">
+      <span data-lang="en">move your cursor here<br/>to read my story</span>
+      <span data-lang="bg">преместете курсора тук<br/>за да прочетете историята ми</span>
+    </p>
+  </div>
+
+  <!-- Mobile hint text -->
+  <p id="mobile-hint" class="md:hidden absolute bottom-8 left-0 right-0 text-center z-[3] pointer-events-none">
+    <span class="font-mono text-[11px] text-[#c8973e]/40 tracking-wide">
+      <span data-lang="en">touch &amp; hold to reveal my story</span>
+      <span data-lang="bg">докоснете и задръжте, за да разкриете историята ми</span>
+    </span>
+  </p>
+</section>
+
+<style>
+  .code-layer { overflow: hidden; }
+  .code-block {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    color: rgba(200, 151, 62, 0.55);
+    white-space: pre;
+  }
+  .code-block-1 { top: 8%; left: 3%; }
+  .code-block-2 { top: 9%; right: 3%; }
+  .code-block-3 { top: 32%; left: 2%; }
+  .code-block-4 { top: 30%; right: 2%; }
+  .code-block-5 { bottom: 4%; left: 5%; }
+  .code-block-6 { bottom: 3%; right: 3%; }
+
+  #spotlight-overlay {
+    background: radial-gradient(
+      circle 320px at var(--mx, 50%) var(--my, 50%),
+      transparent 0%,
+      rgba(12, 12, 29, 0.4) 35%,
+      rgba(12, 12, 29, 0.8) 65%,
+      rgba(12, 12, 29, 0.97) 100%
+    );
+    transition: background 0.05s ease;
+  }
+
+  .hint-beacon {
+    position: absolute;
+    top: 12%;
+    left: 5%;
+    width: 48px;
+    height: 48px;
+    animation: hint-float 3s ease-in-out infinite;
+  }
+  .hint-arrow {
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 8px rgba(200, 151, 62, 0.4));
+  }
+  .hint-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    border: 1px solid rgba(200, 151, 62, 0.3);
+    border-radius: 50%;
+    animation: hint-pulse 2.5s ease-out infinite;
+  }
+  .hint-ring-2 { animation-delay: 1.25s; }
+  .hint-label {
+    position: absolute;
+    top: calc(12% + 60px);
+    left: 5%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(200, 151, 62, 0.5);
+    letter-spacing: 0.5px;
+    animation: hint-fade-text 2s ease-in-out infinite alternate;
+  }
+  @keyframes hint-pulse {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  @keyframes hint-float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-4px, -4px); }
+  }
+  @keyframes hint-fade-text {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
+  }
+  #hero-hint { transition: opacity 0.8s ease; }
+  #mobile-hint { transition: opacity 0.8s ease; }
+
+  @media (max-width: 767px) {
+    #spotlight-overlay {
+      background: radial-gradient(
+        circle 200px at var(--mx, 110%) var(--my, 110%),
+        transparent 0%,
+        rgba(12, 12, 29, 0.3) 30%,
+        rgba(12, 12, 29, 0.75) 55%,
+        rgba(12, 12, 29, 0.97) 100%
+      );
+    }
+    .code-block { font-size: 9px; line-height: 1.5; color: rgba(200, 151, 62, 0.5); }
+    .code-block-1 { top: 10%; left: 4%; right: auto; }
+    .code-block-2 { top: 10%; left: auto; right: 4%; }
+    .code-block-3 { top: 28%; left: 4%; right: auto; }
+    .code-block-4 { top: 28%; left: auto; right: 4%; }
+    .code-block-5 { bottom: 5%; left: 4%; right: auto; }
+    .code-block-6 { bottom: 5%; left: auto; right: 4%; }
+  }
+</style>
+
+<script>
+  // ---- Spotlight: desktop mouse tracking ----
+  (function () {
+    const hero = document.getElementById('hero');
+    const overlay = document.getElementById('spotlight-overlay');
+    const hint = document.getElementById('hero-hint');
+    if (!hero || !overlay) return;
+
+    let hintHidden = false;
+
+    hero.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      overlay.style.setProperty('--mx', x + 'px');
+      overlay.style.setProperty('--my', y + 'px');
+
+      if (!hintHidden && hint) {
+        const pctX = x / rect.width;
+        const pctY = y / rect.height;
+        if (pctX < 0.25 && pctY < 0.35) {
+          hint.style.opacity = '0';
+          hintHidden = true;
+        }
+      }
+    });
+  })();
+
+  // ---- Mobile: touch to reveal ----
+  (function () {
+    const hero = document.getElementById('hero');
+    const overlay = document.getElementById('spotlight-overlay');
+    const mobileHint = document.getElementById('mobile-hint');
+    if (!hero || !overlay) return;
+
+    let hintGone = false;
+
+    hero.addEventListener('touchstart', (e: TouchEvent) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+      overlay.style.setProperty('--mx', x + 'px');
+      overlay.style.setProperty('--my', y + 'px');
+      if (!hintGone && mobileHint) {
+        mobileHint.style.opacity = '0';
+        hintGone = true;
+      }
+    }, { passive: true });
+
+    hero.addEventListener('touchmove', (e: TouchEvent) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+      overlay.style.setProperty('--mx', x + 'px');
+      overlay.style.setProperty('--my', y + 'px');
+    }, { passive: true });
+
+    hero.addEventListener('touchend', () => {
+      overlay.style.setProperty('--mx', '110%');
+      overlay.style.setProperty('--my', '110%');
+    });
+  })();
+
+  // ---- Particle System (pauses when off-screen) ----
+  (function () {
+    const canvas = document.getElementById('particles') as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    let width: number, height: number;
+    const isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const COUNT = prefersReducedMotion ? 0 : (isMobile ? 20 : 50);
+    const DIST = isMobile ? 90 : 120;
+    const mouse = { x: -999, y: -999 };
+    let animId: number;
+    let isVisible = true;
+
+    interface Particle { x: number; y: number; vx: number; vy: number; r: number; }
+    let particles: Particle[] = [];
+
+    function resize() {
+      width = canvas.width = hero.offsetWidth;
+      height = canvas.height = hero.offsetHeight;
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 1.5 + 0.5,
+        });
+      }
+    }
+
+    function draw() {
+      if (!isVisible) return;
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(200, 151, 62, 0.15)';
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const d = Math.hypot(p.x - q.x, p.y - q.y);
+          if (d < DIST) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(200, 151, 62, ${0.06 * (1 - d / DIST)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+
+        const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (md < DIST * 1.5) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(200, 151, 62, ${0.2 * (1 - md / (DIST * 1.5))})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) animId = requestAnimationFrame(draw);
+        else cancelAnimationFrame(animId);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(hero);
+
+    hero.addEventListener('mousemove', (e: MouseEvent) => {
+      const r = hero.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    hero.addEventListener('mouseleave', () => { mouse.x = mouse.y = -999; });
+    window.addEventListener('resize', resize);
+
+    resize();
+    init();
+    draw();
+  })();
+
+  // ---- Typing Effect with rotating roles ----
+  (function () {
+    const el = document.getElementById('typed-text');
+    const subtitle = document.getElementById('hero-subtitle');
+    const cta = document.getElementById('hero-cta');
+    const roleEl = document.getElementById('hero-role');
+    if (!el) return;
+
+    const names = {
+      en: 'Krasimir Kralev',
+      bg: 'Красимир Кралев',
+    };
+
+    const roles = {
+      en: ['Web Developer', 'QA Specialist', 'Guitarist @ Slathe', 'Web3 Enthusiast'],
+      bg: ['Уеб Разработчик', 'QA Специалист', 'Китарист @ Slathe', 'Web3 Ентусиаст'],
+    };
+    let roleIdx = 0;
+
+    function getLang(): string {
+      return document.documentElement.dataset.lang || 'en';
+    }
+
+    const lang = getLang() as keyof typeof names;
+    const text = names[lang] || names.en;
+    let i = 0;
+
+    function cycleRole() {
+      if (!roleEl) return;
+      const lang = getLang() as keyof typeof roles;
+      const list = roles[lang] || roles.en;
+      roleEl.style.opacity = '0';
+      setTimeout(() => {
+        roleIdx = (roleIdx + 1) % list.length;
+        roleEl.textContent = list[roleIdx];
+        roleEl.style.opacity = '1';
+      }, 400);
+    }
+
+    function typeChar() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeChar, 65);
+      } else {
+        const lang = getLang() as keyof typeof roles;
+        const list = roles[lang] || roles.en;
+        if (roleEl) {
+          roleEl.textContent = list[0];
+          roleEl.style.transition = 'opacity 0.4s ease';
+        }
+        subtitle?.classList.remove('opacity-0', 'translate-y-2');
+        subtitle?.classList.add('opacity-100', 'translate-y-0');
+        cta?.classList.remove('opacity-0', 'translate-y-2');
+        cta?.classList.add('opacity-100', 'translate-y-0');
+        setInterval(cycleRole, 3000);
+      }
+    }
+
+    setTimeout(typeChar, 600);
+  })();
+</script>

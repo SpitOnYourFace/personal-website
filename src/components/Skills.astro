@@ -1,0 +1,148 @@
+---
+const categories = [
+  {
+    id: 'frontend',
+    en: 'Frontend',
+    bg: 'Фронтенд',
+    skills: [
+      { name: 'JavaScript', icon: 'logos:javascript' },
+      { name: 'TypeScript', icon: 'logos:typescript-icon' },
+      { name: 'HTML5', icon: 'vscode-icons:file-type-html' },
+      { name: 'CSS3', icon: 'vscode-icons:file-type-css' },
+      { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
+      { name: 'Astro', icon: 'logos:astro-icon' },
+    ],
+  },
+  {
+    id: 'backend',
+    en: 'Backend',
+    bg: 'Бекенд',
+    skills: [
+      { name: 'Node.js', icon: 'logos:nodejs-icon' },
+      { name: 'Express', icon: 'skill-icons:expressjs-light' },
+      { name: 'Java', icon: 'logos:java' },
+      { name: 'C++', icon: 'logos:c-plusplus' },
+    ],
+  },
+  {
+    id: 'tools',
+    en: 'Tools',
+    bg: 'Инструменти',
+    skills: [
+      { name: 'Git', icon: 'logos:git-icon' },
+      { name: 'VS Code', icon: 'logos:visual-studio-code' },
+      { name: 'npm', icon: 'logos:npm-icon' },
+      { name: 'SQL', icon: 'vscode-icons:file-type-sql' },
+    ],
+  },
+  {
+    id: 'learning',
+    en: 'Learning',
+    bg: 'Уча',
+    skills: [
+      { name: 'Web3 / ICP', icon: 'cryptocurrency:icp' },
+      { name: 'React', icon: 'logos:react' },
+    ],
+  },
+];
+---
+
+<section id="skills" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <p data-reveal class="text-xs font-semibold uppercase tracking-[2px] text-accent mb-4">
+      <span data-lang="en">Skills & Technologies</span>
+      <span data-lang="bg">Умения и технологии</span>
+    </p>
+    <p data-reveal class="text-primary-secondary mb-10 max-w-lg">
+      <span data-lang="en">The tools and technologies I use to bring ideas to life.</span>
+      <span data-lang="bg">Инструментите и технологиите, с които превръщам идеите в реалност.</span>
+    </p>
+
+    <!-- Filter buttons -->
+    <div data-reveal class="flex flex-wrap gap-2 mb-8">
+      <button
+        data-filter="all"
+        class="skill-filter active text-xs font-semibold px-4 py-2 rounded-full border border-accent bg-accent text-white transition-all duration-300"
+      >
+        <span data-lang="en">All</span>
+        <span data-lang="bg">Всички</span>
+      </button>
+      {categories.map((cat) => (
+        <button
+          data-filter={cat.id}
+          class="skill-filter text-xs font-semibold px-4 py-2 rounded-full border border-primary/10 text-primary-secondary hover:border-accent hover:text-accent transition-all duration-300"
+        >
+          <span data-lang="en">{cat.en}</span>
+          <span data-lang="bg">{cat.bg}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Skills grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      {categories.map((cat) =>
+        cat.skills.map((skill) => (
+          <div
+            data-reveal
+            data-category={cat.id}
+            class="skill-card group relative bg-surface rounded-xl shadow-card p-5 text-center transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1 overflow-hidden"
+          >
+            <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-all duration-500 rounded-xl"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-accent/10 group-hover:bg-accent/20 flex items-center justify-center transition-colors duration-500">
+                <iconify-icon icon={skill.icon} class="text-3xl"></iconify-icon>
+              </div>
+              <p class="text-sm font-semibold text-primary group-hover:text-accent transition-colors duration-500">{skill.name}</p>
+              <p class="text-[10px] text-primary-tertiary uppercase tracking-wider mt-1">
+                <span data-lang="en">{cat.en}</span>
+                <span data-lang="bg">{cat.bg}</span>
+              </p>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const buttons = document.querySelectorAll('.skill-filter');
+    const cards = document.querySelectorAll('.skill-card');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = (btn as HTMLElement).dataset.filter;
+
+        buttons.forEach((b) => {
+          b.classList.remove('active', 'border-accent', 'bg-accent', 'text-white');
+          b.classList.add('border-primary/10', 'text-primary-secondary');
+        });
+        btn.classList.add('active', 'border-accent', 'bg-accent', 'text-white');
+        btn.classList.remove('border-primary/10', 'text-primary-secondary');
+
+        cards.forEach((card) => {
+          const cat = (card as HTMLElement).dataset.category;
+          const el = card as HTMLElement;
+          if (filter === 'all' || cat === filter) {
+            el.style.display = '';
+            requestAnimationFrame(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            });
+          } else {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(8px)';
+            setTimeout(() => {
+              if ((btn as HTMLElement).dataset.filter === filter && btn.classList.contains('active')) {
+                el.style.display = 'none';
+              }
+            }, 300);
+          }
+        });
+      });
+    });
+  })();
+</script>
+
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" is:inline></script>

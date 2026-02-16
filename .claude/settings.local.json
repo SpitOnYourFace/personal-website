@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd /c \"move index.html public\\\\ && move style.css public\\\\ && move images public\\\\ && move \"Dice Game\" public\\\\ && move \"Simon Game\" public\\\\ && move \"TinDog Project\" public\"\")",
+      "Bash(dir:*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Projects\\HTML,CSS,JS\\Personal Website"
+    ]
+  }
+}

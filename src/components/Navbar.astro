@@ -1,0 +1,249 @@
+---
+const links = [
+  { href: '#about', en: 'about', bg: 'за мен' },
+  { href: '#skills', en: 'skills', bg: 'умения' },
+  { href: '#projects', en: 'projects', bg: 'проекти' },
+  { href: '#crypto', en: 'crypto', bg: 'крипто' },
+  { href: '#contact', en: 'contact', bg: 'контакт' },
+];
+---
+
+<nav id="main-nav" data-nav-theme="hero" class="fixed top-0 w-full z-50 transition-all duration-500 backdrop-blur-md border-b" role="navigation" aria-label="Main navigation">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between h-14">
+    <a href="#" class="font-mono font-bold text-lg tracking-tight">
+      <span class="nav-brand transition-colors duration-500">InternetCodeSolutions</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-1">
+      <ul class="flex items-center gap-1">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="nav-link px-3 py-2 text-sm font-medium transition-colors rounded-lg"
+            >
+              <span data-lang="en">{link.en}</span>
+              <span data-lang="bg">{link.bg}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Dark mode toggle -->
+      <button
+        id="theme-toggle"
+        class="theme-toggle-btn p-2 rounded-lg transition-colors ml-2"
+        aria-label="Toggle dark mode"
+      >
+        <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg id="icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <!-- Language toggle (desktop) -->
+      <div class="flex items-center gap-0.5 ml-1 text-xs font-mono">
+        <button data-set-lang="en" class="lang-btn lang-btn-en px-2 py-1 rounded transition-colors font-semibold" aria-pressed="true">EN</button>
+        <span class="lang-sep">/</span>
+        <button data-set-lang="bg" class="lang-btn lang-btn-bg px-2 py-1 rounded transition-colors" aria-pressed="false">BG</button>
+      </div>
+    </div>
+
+    <!-- Mobile toggle -->
+    <div class="flex items-center gap-1 md:hidden">
+      <button
+        id="theme-toggle-mobile"
+        class="theme-toggle-btn p-2 transition-colors duration-500"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg class="icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+      <button
+        id="mobile-toggle"
+        class="nav-toggle p-2 transition-colors duration-500"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t backdrop-blur-xl transition-colors duration-500">
+    <ul class="px-6 py-4 space-y-1">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="mobile-link nav-link-mobile block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors"
+          >
+            <span data-lang="en">{link.en}</span>
+            <span data-lang="bg">{link.bg}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="flex justify-center gap-2 px-6 py-3 border-t border-primary/10">
+      <button data-set-lang="en" class="lang-btn lang-btn-en px-3 py-1.5 text-xs font-mono font-semibold rounded transition-colors" aria-pressed="true">EN</button>
+      <button data-set-lang="bg" class="lang-btn lang-btn-bg px-3 py-1.5 text-xs font-mono rounded transition-colors" aria-pressed="false">BG</button>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Hero theme (dark) */
+  [data-nav-theme="hero"] {
+    background: rgba(10, 10, 24, 0.8);
+    border-color: rgba(200, 151, 62, 0.15);
+  }
+  [data-nav-theme="hero"] .nav-brand { color: #c8973e; }
+  [data-nav-theme="hero"] .nav-link { color: rgba(200, 151, 62, 0.7); }
+  [data-nav-theme="hero"] .nav-link:hover { color: #c8973e; background: rgba(255,255,255,0.05); }
+  [data-nav-theme="hero"] .nav-toggle { color: rgba(200, 151, 62, 0.7); }
+  [data-nav-theme="hero"] .nav-toggle:hover { color: #c8973e; }
+  [data-nav-theme="hero"] .nav-link-mobile { color: rgba(200, 151, 62, 0.7); }
+  [data-nav-theme="hero"] .nav-link-mobile:hover { color: #c8973e; background: rgba(255,255,255,0.05); }
+  [data-nav-theme="hero"] .theme-toggle-btn { color: rgba(200, 151, 62, 0.7); }
+  [data-nav-theme="hero"] .theme-toggle-btn:hover { color: #c8973e; }
+  [data-nav-theme="hero"] .lang-sep { color: rgba(255,255,255,0.2); }
+  [data-nav-theme="hero"] .lang-btn[aria-pressed="true"] { color: #c8973e; font-weight: 600; }
+  [data-nav-theme="hero"] .lang-btn[aria-pressed="false"] { color: rgba(255,255,255,0.4); }
+  [data-nav-theme="hero"] #mobile-menu { background: rgba(10, 10, 24, 0.9); border-color: rgba(200, 151, 62, 0.1); }
+
+  /* Page theme — uses CSS variables so it auto-adapts to dark mode */
+  [data-nav-theme="page"] {
+    background: rgb(var(--color-surface) / 0.8);
+    border-color: rgb(var(--color-primary) / 0.06);
+  }
+  [data-nav-theme="page"] .nav-brand { color: rgb(var(--color-primary)); }
+  [data-nav-theme="page"] .nav-link { color: rgb(var(--color-primary-secondary)); }
+  [data-nav-theme="page"] .nav-link:hover { color: rgb(var(--color-primary)); background: rgb(var(--color-primary) / 0.03); }
+  [data-nav-theme="page"] .nav-toggle { color: rgb(var(--color-primary-secondary)); }
+  [data-nav-theme="page"] .nav-toggle:hover { color: rgb(var(--color-primary)); }
+  [data-nav-theme="page"] .nav-link-mobile { color: rgb(var(--color-primary-secondary)); }
+  [data-nav-theme="page"] .nav-link-mobile:hover { color: rgb(var(--color-primary)); background: rgb(var(--color-primary) / 0.03); }
+  [data-nav-theme="page"] .theme-toggle-btn { color: rgb(var(--color-primary-secondary)); }
+  [data-nav-theme="page"] .theme-toggle-btn:hover { color: rgb(var(--color-primary)); }
+  [data-nav-theme="page"] .lang-sep { color: rgb(var(--color-primary-tertiary)); }
+  [data-nav-theme="page"] .lang-btn[aria-pressed="true"] { color: rgb(var(--color-primary)); font-weight: 600; }
+  [data-nav-theme="page"] .lang-btn[aria-pressed="false"] { color: rgb(var(--color-primary-tertiary)); }
+  [data-nav-theme="page"] #mobile-menu { background: rgb(var(--color-surface) / 0.95); border-color: rgb(var(--color-primary) / 0.05); }
+</style>
+
+<script>
+  // ---- Language toggle ----
+  (function () {
+    function getLang(): string {
+      return document.documentElement.dataset.lang || 'en';
+    }
+
+    function setLang(lang: string) {
+      document.documentElement.lang = lang;
+      document.documentElement.dataset.lang = lang;
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        const btnLang = (btn as HTMLElement).dataset.setLang;
+        (btn as HTMLElement).setAttribute('aria-pressed', btnLang === lang ? 'true' : 'false');
+      });
+    }
+
+    document.querySelectorAll('[data-set-lang]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setLang((btn as HTMLElement).dataset.setLang!);
+      });
+    });
+
+    // Set initial aria-pressed
+    const currentLang = getLang();
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      const btnLang = (btn as HTMLElement).dataset.setLang;
+      (btn as HTMLElement).setAttribute('aria-pressed', btnLang === currentLang ? 'true' : 'false');
+    });
+  })();
+
+  // ---- Dark mode toggle ----
+  (function () {
+    function isDark(): boolean {
+      return document.documentElement.classList.contains('dark');
+    }
+
+    function updateIcons() {
+      const dark = isDark();
+      document.querySelectorAll('#icon-sun, .icon-sun').forEach(el => el.classList.toggle('hidden', !dark));
+      document.querySelectorAll('#icon-moon, .icon-moon').forEach(el => el.classList.toggle('hidden', dark));
+    }
+
+    function toggleTheme() {
+      const dark = isDark();
+      document.documentElement.classList.toggle('dark', !dark);
+      localStorage.setItem('theme', dark ? 'light' : 'dark');
+      updateIcons();
+    }
+
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+    document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+    updateIcons();
+  })();
+
+  // ---- Mobile menu toggle ----
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-open');
+  const iconClose = document.getElementById('menu-close');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  document.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close mobile menu when resizing to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && menu && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // ---- Navbar theme swap on scroll past hero ----
+  (function () {
+    const nav = document.getElementById('main-nav');
+    const hero = document.getElementById('hero');
+    if (!nav || !hero) return;
+
+    function update() {
+      const heroBottom = hero!.getBoundingClientRect().bottom;
+      nav!.dataset.navTheme = heroBottom <= 60 ? 'page' : 'hero';
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>

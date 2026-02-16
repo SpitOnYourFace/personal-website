@@ -1,0 +1,276 @@
+---
+/**
+ * Transition dividers placed between sections to create
+ * the Space → Sky → Forest → Underground visual journey.
+ * Each divider is a standalone element with smooth gradients.
+ */
+---
+
+<!-- ═══════════ TRANSITION 1: Space → Atmosphere → Sky ═══════════ -->
+<div class="transition-divider space-to-sky" aria-hidden="true">
+  <!-- Stars that fade out -->
+  <div class="stars-fade">
+    <div class="star" style="top:8%;left:12%;animation-delay:0s"></div>
+    <div class="star" style="top:15%;left:45%;animation-delay:1.2s"></div>
+    <div class="star" style="top:5%;left:72%;animation-delay:0.6s"></div>
+    <div class="star" style="top:22%;left:88%;animation-delay:1.8s"></div>
+    <div class="star" style="top:12%;left:30%;animation-delay:0.3s"></div>
+    <div class="star" style="top:18%;left:60%;animation-delay:1.5s"></div>
+    <div class="star" style="top:3%;left:20%;animation-delay:0.9s"></div>
+    <div class="star" style="top:10%;left:80%;animation-delay:2.1s"></div>
+  </div>
+  <!-- Clouds appearing -->
+  <svg class="clouds-svg" viewBox="0 0 1200 200" preserveAspectRatio="none">
+    <ellipse cx="200" cy="140" rx="120" ry="30" fill="rgba(255,255,255,0.08)" />
+    <ellipse cx="600" cy="155" rx="180" ry="35" fill="rgba(255,255,255,0.06)" />
+    <ellipse cx="950" cy="135" rx="140" ry="28" fill="rgba(255,255,255,0.07)" />
+  </svg>
+</div>
+
+<!-- ═══════════ TRANSITION 2: Sky → Forest ═══════════ -->
+<div class="transition-divider sky-to-forest" aria-hidden="true">
+  <!-- Distant mountains -->
+  <svg class="mountains-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <!-- Far mountains (lighter) -->
+    <path d="M0,280 Q180,160 360,220 T720,180 T1080,230 T1440,200 L1440,320 L0,320 Z" fill="rgba(60,90,70,0.25)" />
+    <!-- Mid mountains -->
+    <path d="M0,300 Q240,200 480,260 T960,220 T1440,270 L1440,320 L0,320 Z" fill="rgba(45,75,55,0.35)" />
+    <!-- Close mountains (darker) -->
+    <path d="M0,310 Q300,250 600,290 T1200,265 T1440,300 L1440,320 L0,320 Z" fill="rgba(35,60,42,0.5)" />
+  </svg>
+  <!-- Tree silhouettes -->
+  <svg class="trees-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+    <!-- Conifer trees -->
+    <polygon points="80,200 110,80 140,200" fill="rgba(30,55,38,0.6)" />
+    <polygon points="95,120 110,60 125,120" fill="rgba(30,55,38,0.6)" />
+    <polygon points="200,200 240,60 280,200" fill="rgba(25,50,35,0.7)" />
+    <polygon points="220,100 240,30 260,100" fill="rgba(25,50,35,0.7)" />
+    <polygon points="380,200 410,90 440,200" fill="rgba(35,60,42,0.5)" />
+    <polygon points="395,130 410,70 425,130" fill="rgba(35,60,42,0.5)" />
+    <polygon points="550,200 585,70 620,200" fill="rgba(28,52,36,0.65)" />
+    <polygon points="565,110 585,40 605,110" fill="rgba(28,52,36,0.65)" />
+    <polygon points="720,200 755,85 790,200" fill="rgba(30,55,38,0.6)" />
+    <polygon points="735,125 755,65 775,125" fill="rgba(30,55,38,0.6)" />
+    <polygon points="880,200 915,60 950,200" fill="rgba(25,48,34,0.7)" />
+    <polygon points="895,100 915,30 935,100" fill="rgba(25,48,34,0.7)" />
+    <polygon points="1050,200 1080,80 1110,200" fill="rgba(32,58,40,0.55)" />
+    <polygon points="1065,120 1080,55 1095,120" fill="rgba(32,58,40,0.55)" />
+    <polygon points="1220,200 1255,70 1290,200" fill="rgba(28,52,36,0.65)" />
+    <polygon points="1235,110 1255,40 1275,110" fill="rgba(28,52,36,0.65)" />
+    <polygon points="1370,200 1400,90 1430,200" fill="rgba(30,55,38,0.6)" />
+    <polygon points="1385,130 1400,70 1415,130" fill="rgba(30,55,38,0.6)" />
+  </svg>
+</div>
+
+<!-- ═══════════ TRANSITION 3: Forest → Underground ═══════════ -->
+<div class="transition-divider forest-to-underground" aria-hidden="true">
+  <!-- Ground/grass line -->
+  <svg class="ground-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <!-- Grass surface -->
+    <path d="M0,60 Q360,20 720,50 T1440,40 L1440,80 Q1080,50 720,70 Q360,90 0,60 Z" fill="rgba(60,100,50,0.4)" />
+    <!-- Dirt layers -->
+    <path d="M0,80 L1440,80 L1440,160 L0,160 Z" fill="rgba(80,55,30,0.3)" />
+    <path d="M0,160 L1440,160 L1440,240 L0,240 Z" fill="rgba(65,45,25,0.4)" />
+    <path d="M0,240 L1440,240 L1440,320 L0,320 Z" fill="rgba(50,35,20,0.5)" />
+    <!-- Rocks in soil -->
+    <ellipse cx="200" cy="180" rx="25" ry="12" fill="rgba(90,80,70,0.3)" />
+    <ellipse cx="600" cy="220" rx="20" ry="10" fill="rgba(85,75,65,0.25)" />
+    <ellipse cx="1000" cy="200" rx="30" ry="14" fill="rgba(90,80,70,0.2)" />
+    <ellipse cx="1300" cy="260" rx="18" ry="9" fill="rgba(85,75,65,0.3)" />
+  </svg>
+  <!-- Root system -->
+  <svg class="roots-svg" viewBox="0 0 1440 300" preserveAspectRatio="none">
+    <!-- Main roots -->
+    <path d="M200,0 C190,60 210,120 195,180 C185,220 175,260 180,300" stroke="rgba(90,65,40,0.3)" stroke-width="4" fill="none" stroke-linecap="round" />
+    <path d="M200,80 C170,110 140,150 120,200" stroke="rgba(90,65,40,0.2)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <path d="M200,60 C230,90 260,130 280,180" stroke="rgba(90,65,40,0.2)" stroke-width="2" fill="none" stroke-linecap="round" />
+
+    <path d="M600,0 C610,70 590,140 605,210 C615,250 610,280 600,300" stroke="rgba(90,65,40,0.3)" stroke-width="3.5" fill="none" stroke-linecap="round" />
+    <path d="M600,90 C570,120 540,170 520,230" stroke="rgba(90,65,40,0.2)" stroke-width="2" fill="none" stroke-linecap="round" />
+    <path d="M600,70 C630,100 660,150 680,210" stroke="rgba(90,65,40,0.2)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+
+    <path d="M1000,0 C990,65 1010,130 995,195 C985,240 990,270 1000,300" stroke="rgba(90,65,40,0.3)" stroke-width="3" fill="none" stroke-linecap="round" />
+    <path d="M1000,75 C970,105 940,155 920,220" stroke="rgba(90,65,40,0.2)" stroke-width="2" fill="none" stroke-linecap="round" />
+    <path d="M1000,55 C1030,85 1060,140 1080,200" stroke="rgba(90,65,40,0.2)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+
+    <path d="M1350,0 C1340,55 1360,110 1345,165 C1335,210 1340,260 1350,300" stroke="rgba(90,65,40,0.25)" stroke-width="3" fill="none" stroke-linecap="round" />
+    <path d="M1350,65 C1320,95 1290,145 1270,210" stroke="rgba(90,65,40,0.15)" stroke-width="2" fill="none" stroke-linecap="round" />
+  </svg>
+</div>
+
+<style>
+  /* ===== Base transition divider ===== */
+  .transition-divider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ===== SPACE → SKY ===== */
+  .space-to-sky {
+    height: 300px;
+    background: linear-gradient(
+      to bottom,
+      #0c0c1d 0%,
+      #111535 15%,
+      #1a2555 30%,
+      #2a3a78 45%,
+      #3d5a9e 60%,
+      #5a85bf 75%,
+      #7aabda 88%,
+      #a4cfe8 100%
+    );
+  }
+
+  .dark .space-to-sky {
+    background: linear-gradient(
+      to bottom,
+      #0c0c1d 0%,
+      #0e1028 15%,
+      #111535 30%,
+      #161d48 45%,
+      #1c2758 60%,
+      #243268 75%,
+      #2d3f7a 88%,
+      #364d8c 100%
+    );
+  }
+
+  .stars-fade {
+    position: absolute;
+    inset: 0;
+    mask-image: linear-gradient(to bottom, white 0%, transparent 60%);
+    -webkit-mask-image: linear-gradient(to bottom, white 0%, transparent 60%);
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .clouds-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+  }
+
+  /* ===== SKY → FOREST ===== */
+  .sky-to-forest {
+    height: 350px;
+    background: linear-gradient(
+      to bottom,
+      #a4cfe8 0%,
+      #8ec5e0 10%,
+      #78bbd8 20%,
+      #6aafcc 30%,
+      #5da3c0 40%,
+      #5a9a8a 55%,
+      #4a8a6a 68%,
+      #3a7a55 78%,
+      #2d6a42 88%,
+      #1e5530 100%
+    );
+  }
+
+  .dark .sky-to-forest {
+    height: 350px;
+    background: linear-gradient(
+      to bottom,
+      #364d8c 0%,
+      #2f4878 10%,
+      #284365 20%,
+      #223e55 30%,
+      #1d3a48 40%,
+      #1a3a3a 55%,
+      #173a30 68%,
+      #143828 78%,
+      #113520 88%,
+      #0e3018 100%
+    );
+  }
+
+  .mountains-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+  }
+
+  .trees-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+  }
+
+  /* ===== FOREST → UNDERGROUND ===== */
+  .forest-to-underground {
+    height: 350px;
+    background: linear-gradient(
+      to bottom,
+      #1e5530 0%,
+      #2a5a30 8%,
+      #3a6a38 15%,
+      #4a7a3e 22%,
+      #507a3e 30%,
+      #5a7035 38%,
+      #5e6530 45%,
+      #604a28 55%,
+      #583a20 65%,
+      #4a2e1a 75%,
+      #3a2515 85%,
+      #2a1c10 92%,
+      #1e150c 100%
+    );
+  }
+
+  .dark .forest-to-underground {
+    background: linear-gradient(
+      to bottom,
+      #0e3018 0%,
+      #122e18 8%,
+      #162c18 15%,
+      #1a2a18 22%,
+      #1c2616 30%,
+      #1e2214 38%,
+      #1e1e12 45%,
+      #1e1a10 55%,
+      #1c160e 65%,
+      #1a120c 75%,
+      #180f0a 85%,
+      #150c08 92%,
+      #120a06 100%
+    );
+  }
+
+  .ground-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+  }
+
+  .roots-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+  }
+</style>

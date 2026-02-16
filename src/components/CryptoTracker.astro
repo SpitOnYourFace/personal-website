@@ -1,0 +1,247 @@
+---
+---
+
+<section id="crypto" class="py-24 relative">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex items-center justify-between mb-10">
+      <p data-reveal class="text-xs font-semibold uppercase tracking-[2px] text-accent">
+        <span data-lang="en">Live Tracker</span>
+        <span data-lang="bg">Крипто на живо</span>
+      </p>
+      <div id="crypto-refresh" class="hidden items-center gap-2 text-[10px] text-primary-tertiary font-mono" data-reveal>
+        <div id="refresh-dot" class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+        <span data-lang="en">Auto-refreshes every 60s</span>
+        <span data-lang="bg">Обновява се на 60сек</span>
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div id="crypto-spinner" class="text-center py-12">
+      <div class="w-5 h-5 border-2 border-primary/10 border-t-accent rounded-full animate-spin mx-auto"></div>
+      <p class="mt-4 text-sm text-primary-tertiary">
+        <span data-lang="en">Loading data...</span>
+        <span data-lang="bg">Зареждане...</span>
+      </p>
+    </div>
+
+    <!-- Error -->
+    <div id="crypto-error" class="hidden text-center py-8 px-6 bg-red-50 text-red-600 rounded-2xl text-sm" role="alert"></div>
+
+    <!-- Coin cards grid -->
+    <div id="crypto-grid" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-5" aria-live="polite">
+      <!-- BTC -->
+      <div class="coin-card bg-surface rounded-2xl shadow-card p-5 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1" data-coin="BTC">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="/images/btc-logo.png" alt="Bitcoin" width="36" height="36" loading="lazy" class="w-9 h-9 rounded-lg" />
+          <div>
+            <span class="block font-semibold text-sm text-primary leading-tight">Bitcoin</span>
+            <span class="text-[11px] text-primary-tertiary font-medium tracking-wider uppercase">BTC</span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2.5 mb-4">
+          <span class="coin-price text-2xl font-bold text-primary font-mono"></span>
+          <span class="coin-change-24h text-[11px] font-semibold px-2 py-0.5 rounded-md"></span>
+        </div>
+        <div class="flex gap-3 border-t border-primary/5 pt-3">
+          <div class="flex-1">
+            <span class="block text-[9px] font-medium uppercase tracking-wider text-primary-tertiary mb-0.5">
+              <span data-lang="en">Market Cap</span>
+              <span data-lang="bg">Пазарна кап.</span>
+            </span>
+            <span class="coin-mcap block text-xs font-semibold text-primary font-mono"></span>
+          </div>
+          <div class="flex-1">
+            <span class="block text-[9px] font-medium uppercase tracking-wider text-primary-tertiary mb-0.5">
+              <span data-lang="en">7d</span>
+              <span data-lang="bg">7д</span>
+            </span>
+            <span class="coin-change-7d block text-xs font-semibold font-mono"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ETH -->
+      <div class="coin-card bg-surface rounded-2xl shadow-card p-5 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1" data-coin="ETH">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="/images/eth-logo.png" alt="Ethereum" width="36" height="36" loading="lazy" class="w-9 h-9 rounded-lg" />
+          <div>
+            <span class="block font-semibold text-sm text-primary leading-tight">Ethereum</span>
+            <span class="text-[11px] text-primary-tertiary font-medium tracking-wider uppercase">ETH</span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2.5 mb-4">
+          <span class="coin-price text-2xl font-bold text-primary font-mono"></span>
+          <span class="coin-change-24h text-[11px] font-semibold px-2 py-0.5 rounded-md"></span>
+        </div>
+        <div class="flex gap-3 border-t border-primary/5 pt-3">
+          <div class="flex-1">
+            <span class="block text-[9px] font-medium uppercase tracking-wider text-primary-tertiary mb-0.5">
+              <span data-lang="en">Market Cap</span>
+              <span data-lang="bg">Пазарна кап.</span>
+            </span>
+            <span class="coin-mcap block text-xs font-semibold text-primary font-mono"></span>
+          </div>
+          <div class="flex-1">
+            <span class="block text-[9px] font-medium uppercase tracking-wider text-primary-tertiary mb-0.5">
+              <span data-lang="en">7d</span>
+              <span data-lang="bg">7д</span>
+            </span>
+            <span class="coin-change-7d block text-xs font-semibold font-mono"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ICP -->
+      <div class="coin-card bg-surface rounded-2xl shadow-card p-5 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1 ring-1 ring-accent/20" data-coin="ICP">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="/images/icp-logo.png" alt="ICP" width="36" height="36" loading="lazy" class="w-9 h-9 rounded-lg" />
+          <div>
+            <span class="block font-semibold text-sm text-primary leading-tight">Internet Computer</span>
+            <span class="text-[11px] text-accent font-semibold tracking-wider uppercase">ICP</span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2.5 mb-4">
+          <span class="coin-price text-2xl font-bold text-primary font-mono"></span>
+          <span class="coin-change-24h text-[11px] font-semibold px-2 py-0.5 rounded-md"></span>
+        </div>
+        <div class="flex gap-3 border-t border-primary/5 pt-3">
+          <div class="flex-1">
+            <span class="block text-[9px] font-medium uppercase tracking-wider text-primary-tertiary mb-0.5">
+              <span data-lang="en">Market Cap</span>
+              <span data-lang="bg">Пазарна кап.</span>
+            </span>
+            <span class="coin-mcap block text-xs font-semibold text-primary font-mono"></span>
+          </div>
+          <div class="flex-1">
+            <span class="block text-[9px] font-medium uppercase tracking-wider text-primary-tertiary mb-0.5">
+              <span data-lang="en">7d</span>
+              <span data-lang="bg">7д</span>
+            </span>
+            <span class="coin-change-7d block text-xs font-semibold font-mono"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const spinner = document.getElementById('crypto-spinner');
+    const errorMsg = document.getElementById('crypto-error');
+    const grid = document.getElementById('crypto-grid');
+    const refreshIndicator = document.getElementById('crypto-refresh');
+
+    function formatCompact(value: number): string {
+      if (value >= 1e12) return (value / 1e12).toFixed(2) + 'T';
+      if (value >= 1e9) return (value / 1e9).toFixed(2) + 'B';
+      if (value >= 1e6) return (value / 1e6).toFixed(2) + 'M';
+      return Number(value).toLocaleString('en-US');
+    }
+
+    function formatPrice(price: number): string {
+      if (price >= 1000) {
+        return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+    }
+
+    function renderCoin(coin: any) {
+      const card = document.querySelector(`[data-coin="${coin.symbol}"]`);
+      if (!card) return;
+
+      const priceEl = card.querySelector('.coin-price');
+      if (priceEl) priceEl.textContent = formatPrice(coin.price);
+
+      const change24h = Number(coin.percent_change_24h);
+      const badge24h = card.querySelector('.coin-change-24h');
+      if (badge24h) {
+        const sign = change24h >= 0 ? '+' : '';
+        badge24h.textContent = sign + change24h.toFixed(2) + '%';
+        badge24h.className = 'coin-change-24h text-[11px] font-semibold px-2 py-0.5 rounded-md ' +
+          (change24h >= 0 ? 'text-green-600 bg-green-500/10' : 'text-red-600 bg-red-500/10');
+      }
+
+      const mcapEl = card.querySelector('.coin-mcap');
+      if (mcapEl) mcapEl.textContent = '$' + formatCompact(coin.market_cap);
+
+      const change7d = Number(coin.percent_change_7d);
+      const el7d = card.querySelector('.coin-change-7d');
+      if (el7d) {
+        const sign = change7d >= 0 ? '+' : '';
+        el7d.textContent = sign + change7d.toFixed(2) + '%';
+        el7d.className = 'coin-change-7d block text-xs font-semibold font-mono ' +
+          (change7d >= 0 ? 'text-green-600' : 'text-red-600');
+      }
+    }
+
+    const CACHE_KEY = 'crypto_cache';
+
+    function cacheData(data: any[]) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() }));
+      } catch { /* ignore quota errors */ }
+    }
+
+    function getCachedData(): any[] | null {
+      try {
+        const raw = localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        // Cache valid for 10 minutes
+        if (Date.now() - parsed.ts > 600_000) return null;
+        return parsed.data;
+      } catch { return null; }
+    }
+
+    async function fetchWithRetry(retries = 3): Promise<any[]> {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const res = await fetch('/api/crypto');
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to load data.');
+          if (!Array.isArray(data)) throw new Error('Unexpected response format.');
+          return data;
+        } catch (err) {
+          if (i === retries - 1) throw err;
+          await new Promise(r => setTimeout(r, 1000 * (i + 1)));
+        }
+      }
+      throw new Error('Failed after retries');
+    }
+
+    async function loadCoins() {
+      try {
+        const data = await fetchWithRetry();
+        spinner?.classList.add('hidden');
+        errorMsg?.classList.add('hidden');
+        data.forEach(renderCoin);
+        cacheData(data);
+        grid?.classList.remove('hidden');
+        if (refreshIndicator) {
+          refreshIndicator.classList.remove('hidden');
+          refreshIndicator.classList.add('flex');
+        }
+      } catch {
+        spinner?.classList.add('hidden');
+        // Try cached data as fallback
+        const cached = getCachedData();
+        if (cached) {
+          cached.forEach(renderCoin);
+          grid?.classList.remove('hidden');
+          if (refreshIndicator) {
+            refreshIndicator.classList.remove('hidden');
+            refreshIndicator.classList.add('flex');
+          }
+        } else if (errorMsg) {
+          errorMsg.textContent = 'Could not connect to server.';
+          errorMsg.classList.remove('hidden');
+        }
+      }
+    }
+
+    loadCoins();
+    // Auto-refresh every 60 seconds
+    setInterval(loadCoins, 60_000);
+  })();
+</script>

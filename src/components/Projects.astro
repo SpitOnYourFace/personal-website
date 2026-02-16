@@ -1,0 +1,122 @@
+---
+const projects = [
+  {
+    title: 'Slathe Band',
+    descEn: 'Official website for the band Slathe — featuring music, upcoming events, and band info with a modern responsive design.',
+    descBg: 'Официален уебсайт на група Slathe — музика, предстоящи събития и информация за групата с модерен респонсив дизайн.',
+    tags: 'HTML · CSS · JavaScript',
+    href: 'https://slathe-band.vercel.app/',
+    github: '',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>`,
+  },
+  {
+    title: 'Barbershop Halil',
+    descEn: 'Full-stack booking system for a barbershop — clients book appointments online, owner manages reservations through an admin panel.',
+    descBg: 'Пълна система за резервации за бръснарница — клиентите записват часове онлайн, собственикът управлява резервациите чрез админ панел.',
+    tags: 'Node.js · Express · HTML · CSS',
+    href: 'https://barbershop-halil.onrender.com/',
+    github: '',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+  },
+];
+---
+
+<section id="projects" class="relative py-24 overflow-hidden">
+  <!-- Small flowers scattered around -->
+  <div class="flowers" aria-hidden="true">
+    <svg class="flower f1" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" fill="rgba(220,180,60,0.6)"/><circle cx="8.5" cy="11" r="3" fill="rgba(255,200,80,0.5)"/><circle cx="15.5" cy="11" r="3" fill="rgba(255,200,80,0.5)"/><circle cx="10" cy="14.5" r="3" fill="rgba(220,180,60,0.6)"/><circle cx="14" cy="14.5" r="3" fill="rgba(220,180,60,0.6)"/><circle cx="12" cy="11.5" r="2.5" fill="rgba(200,151,62,0.9)"/></svg>
+    <svg class="flower f2" viewBox="0 0 20 20"><circle cx="10" cy="6" r="2.5" fill="rgba(200,140,180,0.5)"/><circle cx="6.5" cy="9" r="2.5" fill="rgba(220,160,190,0.4)"/><circle cx="13.5" cy="9" r="2.5" fill="rgba(220,160,190,0.4)"/><circle cx="8" cy="12.5" r="2.5" fill="rgba(200,140,180,0.5)"/><circle cx="12" cy="12.5" r="2.5" fill="rgba(200,140,180,0.5)"/><circle cx="10" cy="9.5" r="2" fill="rgba(240,200,80,0.8)"/></svg>
+    <svg class="flower f3" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" fill="rgba(255,220,100,0.5)"/><circle cx="8.5" cy="11" r="3" fill="rgba(255,235,140,0.4)"/><circle cx="15.5" cy="11" r="3" fill="rgba(255,235,140,0.4)"/><circle cx="10" cy="14.5" r="3" fill="rgba(255,220,100,0.5)"/><circle cx="14" cy="14.5" r="3" fill="rgba(255,220,100,0.5)"/><circle cx="12" cy="11.5" r="2.5" fill="rgba(200,151,62,0.9)"/></svg>
+    <svg class="flower f4" viewBox="0 0 20 20"><circle cx="10" cy="6" r="2.5" fill="rgba(180,210,160,0.5)"/><circle cx="6.5" cy="9" r="2.5" fill="rgba(200,230,180,0.4)"/><circle cx="13.5" cy="9" r="2.5" fill="rgba(200,230,180,0.4)"/><circle cx="8" cy="12.5" r="2.5" fill="rgba(180,210,160,0.5)"/><circle cx="12" cy="12.5" r="2.5" fill="rgba(180,210,160,0.5)"/><circle cx="10" cy="9.5" r="2" fill="rgba(240,220,80,0.8)"/></svg>
+    <svg class="flower f5" viewBox="0 0 20 20"><circle cx="10" cy="6" r="2.5" fill="rgba(200,140,180,0.5)"/><circle cx="6.5" cy="9" r="2.5" fill="rgba(220,160,190,0.4)"/><circle cx="13.5" cy="9" r="2.5" fill="rgba(220,160,190,0.4)"/><circle cx="8" cy="12.5" r="2.5" fill="rgba(200,140,180,0.5)"/><circle cx="12" cy="12.5" r="2.5" fill="rgba(200,140,180,0.5)"/><circle cx="10" cy="9.5" r="2" fill="rgba(240,200,80,0.8)"/></svg>
+    <svg class="flower f6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" fill="rgba(255,220,100,0.5)"/><circle cx="8.5" cy="11" r="3" fill="rgba(255,235,140,0.4)"/><circle cx="15.5" cy="11" r="3" fill="rgba(255,235,140,0.4)"/><circle cx="10" cy="14.5" r="3" fill="rgba(255,220,100,0.5)"/><circle cx="14" cy="14.5" r="3" fill="rgba(255,220,100,0.5)"/><circle cx="12" cy="11.5" r="2.5" fill="rgba(200,151,62,0.9)"/></svg>
+    <svg class="flower f7" viewBox="0 0 20 20"><circle cx="10" cy="6" r="2.5" fill="rgba(180,210,160,0.5)"/><circle cx="6.5" cy="9" r="2.5" fill="rgba(200,230,180,0.4)"/><circle cx="13.5" cy="9" r="2.5" fill="rgba(200,230,180,0.4)"/><circle cx="8" cy="12.5" r="2.5" fill="rgba(180,210,160,0.5)"/><circle cx="12" cy="12.5" r="2.5" fill="rgba(180,210,160,0.5)"/><circle cx="10" cy="9.5" r="2" fill="rgba(240,220,80,0.8)"/></svg>
+    <svg class="flower f8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" fill="rgba(220,180,60,0.6)"/><circle cx="8.5" cy="11" r="3" fill="rgba(255,200,80,0.5)"/><circle cx="15.5" cy="11" r="3" fill="rgba(255,200,80,0.5)"/><circle cx="10" cy="14.5" r="3" fill="rgba(220,180,60,0.6)"/><circle cx="14" cy="14.5" r="3" fill="rgba(220,180,60,0.6)"/><circle cx="12" cy="11.5" r="2.5" fill="rgba(200,151,62,0.9)"/></svg>
+    <!-- White flowers -->
+    <svg class="flower f9" viewBox="0 0 22 22"><circle cx="11" cy="7" r="2.8" fill="rgba(255,255,255,0.55)"/><circle cx="7.5" cy="10" r="2.8" fill="rgba(245,245,245,0.45)"/><circle cx="14.5" cy="10" r="2.8" fill="rgba(245,245,245,0.45)"/><circle cx="9" cy="13.5" r="2.8" fill="rgba(255,255,255,0.55)"/><circle cx="13" cy="13.5" r="2.8" fill="rgba(255,255,255,0.55)"/><circle cx="11" cy="10.5" r="2" fill="rgba(240,220,80,0.85)"/></svg>
+    <svg class="flower f10" viewBox="0 0 20 20"><circle cx="10" cy="6" r="2.5" fill="rgba(255,255,255,0.5)"/><circle cx="6.5" cy="9" r="2.5" fill="rgba(240,240,240,0.4)"/><circle cx="13.5" cy="9" r="2.5" fill="rgba(240,240,240,0.4)"/><circle cx="8" cy="12.5" r="2.5" fill="rgba(255,255,255,0.5)"/><circle cx="12" cy="12.5" r="2.5" fill="rgba(255,255,255,0.5)"/><circle cx="10" cy="9.5" r="2" fill="rgba(240,200,60,0.85)"/></svg>
+    <svg class="flower f11" viewBox="0 0 22 22"><circle cx="11" cy="7" r="2.8" fill="rgba(255,255,255,0.55)"/><circle cx="7.5" cy="10" r="2.8" fill="rgba(245,245,245,0.45)"/><circle cx="14.5" cy="10" r="2.8" fill="rgba(245,245,245,0.45)"/><circle cx="9" cy="13.5" r="2.8" fill="rgba(255,255,255,0.55)"/><circle cx="13" cy="13.5" r="2.8" fill="rgba(255,255,255,0.55)"/><circle cx="11" cy="10.5" r="2" fill="rgba(240,220,80,0.85)"/></svg>
+    <svg class="flower f12" viewBox="0 0 20 20"><circle cx="10" cy="6" r="2.5" fill="rgba(255,255,255,0.5)"/><circle cx="6.5" cy="9" r="2.5" fill="rgba(240,240,240,0.4)"/><circle cx="13.5" cy="9" r="2.5" fill="rgba(240,240,240,0.4)"/><circle cx="8" cy="12.5" r="2.5" fill="rgba(255,255,255,0.5)"/><circle cx="12" cy="12.5" r="2.5" fill="rgba(255,255,255,0.5)"/><circle cx="10" cy="9.5" r="2" fill="rgba(240,200,60,0.85)"/></svg>
+  </div>
+  <div class="max-w-5xl mx-auto px-6">
+    <p data-reveal class="text-xs font-semibold uppercase tracking-[2px] text-accent mb-10">
+      <span data-lang="en">Projects</span>
+      <span data-lang="bg">Проекти</span>
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <div data-reveal class="project-card group relative bg-surface rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1.5 overflow-hidden">
+          <!-- Accent line -->
+          <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+          <!-- Glow -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-accent/0 to-accent/0 group-hover:from-accent/[0.02] group-hover:to-accent/[0.06] transition-all duration-500"></div>
+          <div class="relative p-6">
+            <div class="flex items-start justify-between mb-4">
+              <div class="text-accent p-2.5 bg-accent/5 rounded-xl group-hover:bg-accent/10 transition-colors duration-500" set:html={project.icon} />
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 text-xs font-medium text-primary-tertiary group-hover:text-accent transition-colors duration-500 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+              >
+                <span>
+                  <span data-lang="en">Visit</span>
+                  <span data-lang="bg">Виж</span>
+                </span>
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
+            <a href={project.href} target="_blank" rel="noopener noreferrer">
+              <h3 class="text-lg font-semibold text-primary mb-2 group-hover:text-accent transition-colors duration-500">
+                {project.title}
+              </h3>
+            </a>
+            <p class="text-sm text-primary-secondary leading-relaxed mb-4">
+              <span data-lang="en">{project.descEn}</span>
+              <span data-lang="bg">{project.descBg}</span>
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.split(' · ').map((tag: string) => (
+                <span class="text-[11px] font-medium text-primary-tertiary bg-primary/[0.03] px-2.5 py-1 rounded-md group-hover:bg-accent/5 group-hover:text-accent/80 transition-all duration-500">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .flowers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .flower {
+    position: absolute;
+    animation: sway ease-in-out infinite;
+  }
+
+  .f1 { width: 18px; top: 8%;  left: 5%;  animation-duration: 4s; }
+  .f2 { width: 14px; top: 15%; right: 8%; animation-duration: 5s; animation-delay: -1s; }
+  .f3 { width: 16px; top: 45%; left: 3%;  animation-duration: 4.5s; animation-delay: -2s; }
+  .f4 { width: 12px; top: 55%; right: 4%; animation-duration: 5.5s; animation-delay: -0.5s; }
+  .f5 { width: 13px; top: 80%; left: 7%;  animation-duration: 4.2s; animation-delay: -3s; }
+  .f6 { width: 15px; top: 85%; right: 6%; animation-duration: 5.2s; animation-delay: -1.5s; }
+  .f7 { width: 11px; top: 30%; left: 1%;  animation-duration: 4.8s; animation-delay: -2.5s; }
+  .f8 { width: 16px; top: 70%; right: 2%; animation-duration: 4.3s; animation-delay: -0.8s; }
+  .f9 { width: 15px; top: 12%; left: 12%; animation-duration: 5.1s; animation-delay: -1.2s; }
+  .f10 { width: 12px; top: 40%; right: 10%; animation-duration: 4.6s; animation-delay: -3.5s; }
+  .f11 { width: 14px; top: 65%; left: 2%;  animation-duration: 5.3s; animation-delay: -0.3s; }
+  .f12 { width: 11px; top: 90%; right: 9%; animation-duration: 4.4s; animation-delay: -2.2s; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(5deg) translateY(-3px); }
+  }
+</style>
