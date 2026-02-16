@@ -175,17 +175,24 @@ import Footer from '../components/Footer.astro';
       });
     }
 
-    // ---- Scroll Progress Bar ----
+    // ---- Scroll Progress Bar (GPU-accelerated with rAF) ----
     (function () {
       const bar = document.getElementById('scroll-progress');
       if (!bar) return;
+      let ticking = false;
       function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        bar.style.width = progress + '%';
+        const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+        bar.style.transform = 'scaleX(' + progress + ')';
+        ticking = false;
       }
-      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateProgress);
+        }
+      }, { passive: true });
       updateProgress();
     })();
 
@@ -246,16 +253,24 @@ import Footer from '../components/Footer.astro';
 <style>
   /* ===== TRANSITION: SPACE → SKY ===== */
   .layer-space-to-sky {
-    height: 250px;
+    position: relative;
+    height: 450px;
+    margin-top: -180px;
+    z-index: 1;
     background: linear-gradient(
       to bottom,
-      #0c0c1d 0%,
-      #111535 12%,
-      #1a2555 25%,
+      transparent 0%,
+      rgba(26, 37, 85, 0.3) 8%,
+      rgba(26, 37, 85, 0.6) 16%,
+      #1a2555 24%,
+      #223080 32%,
       #2a3a78 40%,
-      #3d5a9e 55%,
-      #5a85bf 70%,
-      #7aabda 85%,
+      #3455a0 50%,
+      #4570b2 60%,
+      #5a85bf 68%,
+      #6e9dd0 76%,
+      #84b5de 84%,
+      #96c8e5 92%,
       #a4cfe8 100%
     );
   }
@@ -263,13 +278,18 @@ import Footer from '../components/Footer.astro';
   :global(.dark) .layer-space-to-sky {
     background: linear-gradient(
       to bottom,
-      #0c0c1d 0%,
-      #0e1028 12%,
-      #111535 25%,
-      #161d48 40%,
-      #1c2758 55%,
-      #243268 70%,
-      #2d3f7a 85%,
+      transparent 0%,
+      rgba(17, 21, 53, 0.3) 8%,
+      rgba(17, 21, 53, 0.6) 16%,
+      #111535 24%,
+      #172050 32%,
+      #1c2758 40%,
+      #223068 50%,
+      #283a78 60%,
+      #2d3f7a 68%,
+      #324588 76%,
+      #364a8c 84%,
+      #384f8e 92%,
       #364d8c 100%
     );
   }
@@ -278,6 +298,7 @@ import Footer from '../components/Footer.astro';
   .layer-sky {
     position: relative;
     overflow: hidden;
+    contain: layout style;
     --color-primary: 30 30 50;
     --color-primary-secondary: 50 50 75;
     --color-primary-tertiary: 80 80 110;
@@ -309,6 +330,7 @@ import Footer from '../components/Footer.astro';
     height: 600px;
     pointer-events: none;
     z-index: 0;
+    contain: layout style;
   }
 
   .sun-core {
@@ -506,6 +528,9 @@ import Footer from '../components/Footer.astro';
     position: absolute;
     filter: blur(1.5px);
     animation: drift-cloud linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout style;
   }
 
   :global(.dark) .cloud-svg {

@@ -232,18 +232,25 @@ const links = [
     }
   });
 
-  // ---- Navbar theme swap on scroll past hero ----
+  // ---- Navbar theme swap on scroll past hero (rAF-throttled) ----
   (function () {
     const nav = document.getElementById('main-nav');
     const hero = document.getElementById('hero');
     if (!nav || !hero) return;
 
+    let ticking = false;
     function update() {
       const heroBottom = hero!.getBoundingClientRect().bottom;
       nav!.dataset.navTheme = heroBottom <= 60 ? 'page' : 'hero';
+      ticking = false;
     }
 
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
     update();
   })();
 </script>
