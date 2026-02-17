@@ -336,17 +336,30 @@ Protocol (ICP) ме зоват.
   }
 
   .story-btn {
-    box-shadow: 0 0 0 rgba(200, 151, 62, 0);
-    animation: story-glow 3s ease-in-out infinite;
+    position: relative;
     -webkit-tap-highlight-color: transparent;
   }
-  .story-btn:hover {
-    box-shadow: 0 0 20px rgba(200, 151, 62, 0.15), inset 0 0 20px rgba(200, 151, 62, 0.05);
+  /* GPU-composited glow: static shadow on pseudo, animate only opacity */
+  .story-btn::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    box-shadow: 0 0 16px rgba(200, 151, 62, 0.25), 0 0 6px rgba(200, 151, 62, 0.15);
+    opacity: 0;
+    animation: story-glow 3s ease-in-out infinite;
+    pointer-events: none;
+    will-change: opacity;
+  }
+  .story-btn:hover::before {
+    opacity: 1;
     animation: none;
+    box-shadow: 0 0 22px rgba(200, 151, 62, 0.2), 0 0 8px rgba(200, 151, 62, 0.1);
+    transition: opacity 0.3s ease;
   }
   @keyframes story-glow {
-    0%, 100% { box-shadow: 0 0 8px rgba(200, 151, 62, 0); }
-    50% { box-shadow: 0 0 14px rgba(200, 151, 62, 0.2); }
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
   }
 
   #hero-hint { transition: opacity 0.8s ease; }
@@ -435,12 +448,23 @@ Protocol (ICP) ме зоват.
     }, { capture: true });
   })();
 
-  // ---- Spotlight: desktop mouse tracking (rAF-throttled) ----
+  // ---- Spotlight: shared cached rect (zero layout queries per interaction) ----
   (function () {
     const hero = document.getElementById('hero');
     const overlay = document.getElementById('spotlight-overlay');
     const hint = document.getElementById('hero-hint');
     if (!hero || !overlay) return;
+
+    // Cache hero rect — recalc on resize and interaction start (not per-frame)
+    let heroLeft = 0, heroTop = 0, heroW = 0, heroH = 0;
+    function cacheHeroRect() {
+      const r = hero.getBoundingClientRect();
+      heroLeft = r.left; heroTop = r.top; heroW = r.width; heroH = r.height;
+    }
+    cacheHeroRect();
+    window.addEventListener('resize', cacheHeroRect, { passive: true });
+    hero.addEventListener('mouseenter', cacheHeroRect, { passive: true });
+    hero.addEventListener('touchstart', cacheHeroRect, { passive: true });
 
     let hintHidden = false;
     let spotX = '-200%';
@@ -456,17 +480,14 @@ Protocol (ICP) ме зоват.
 
     hero.addEventListener('mousemove', (e: MouseEvent) => {
       if (__spotlightSuppressed) return;
-      const rect = hero.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = e.clientX - heroLeft;
+      const y = e.clientY - heroTop;
       spotX = x + 'px';
       spotY = y + 'px';
       if (!spotRaf) { spotRaf = true; requestAnimationFrame(flushSpot); }
 
       if (!hintHidden && hint) {
-        const pctX = x / rect.width;
-        const pctY = y / rect.height;
-        if (pctX < 0.25 && pctY < 0.35) {
+        if (x / heroW < 0.25 && y / heroH < 0.35) {
           hint.style.opacity = '0';
           hintHidden = true;
         }
@@ -482,14 +503,8 @@ Protocol (ICP) ме зоват.
       spotX = '-200%'; spotY = '-200%';
       if (!spotRaf) { spotRaf = true; requestAnimationFrame(flushSpot); }
     });
-  })();
 
-  // ---- Mobile: touch to reveal (rAF-throttled) ----
-  (function () {
-    const hero = document.getElementById('hero');
-    const overlay = document.getElementById('spotlight-overlay');
-    if (!hero || !overlay) return;
-
+    // ---- Mobile: touch to reveal (rAF-throttled, uses cached rect) ----
     let touchX = '110%';
     let touchY = '110%';
     let touchRaf = false;
@@ -507,17 +522,15 @@ Protocol (ICP) ме зоват.
 
     hero.addEventListener('touchstart', (e: TouchEvent) => {
       if (__spotlightSuppressed) return;
-      const rect = hero.getBoundingClientRect();
-      touchX = (e.touches[0].clientX - rect.left) + 'px';
-      touchY = (e.touches[0].clientY - rect.top) + 'px';
+      touchX = (e.touches[0].clientX - heroLeft) + 'px';
+      touchY = (e.touches[0].clientY - heroTop) + 'px';
       scheduleTouch();
     }, { passive: true });
 
     hero.addEventListener('touchmove', (e: TouchEvent) => {
       if (__spotlightSuppressed) return;
-      const rect = hero.getBoundingClientRect();
-      touchX = (e.touches[0].clientX - rect.left) + 'px';
-      touchY = (e.touches[0].clientY - rect.top) + 'px';
+      touchX = (e.touches[0].clientX - heroLeft) + 'px';
+      touchY = (e.touches[0].clientY - heroTop) + 'px';
       scheduleTouch();
     }, { passive: true });
 
@@ -527,7 +540,7 @@ Protocol (ICP) ме зоват.
       touchY = '110%';
       scheduleTouch();
     });
-  })();
+  })();  // end spotlight + touch IIFE
 
   // ---- Particle System (pauses when off-screen, optimized) ----
   (function () {
@@ -786,9 +799,41 @@ Protocol (ICP) ме зоват.
     const overlay = document.getElementById('spotlight-overlay');
     let running = false;
 
+    // Sparkle pool: reuse DOM nodes instead of create/remove
+    const SPARKLE_POOL_SIZE = 35;
+    const SPARKLE_LIFE = 700;
+    const sparklePool: SVGCircleElement[] = [];
+    const activeSparkles: { el: SVGCircleElement; born: number }[] = [];
+
+    for (let i = 0; i < SPARKLE_POOL_SIZE; i++) {
+      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('r', '2');
+      c.setAttribute('fill', '#ffd97a');
+      c.setAttribute('opacity', '0');
+      sparklesG!.appendChild(c);
+      sparklePool.push(c);
+    }
+    let poolIdx = 0;
+
     function clearSparkles() {
-      while (sparklesG!.firstChild) {
-        sparklesG!.removeChild(sparklesG!.firstChild);
+      for (let i = 0; i < SPARKLE_POOL_SIZE; i++) {
+        sparklePool[i].setAttribute('opacity', '0');
+      }
+      activeSparkles.length = 0;
+    }
+
+    // Batch-fade all sparkles in one pass (no individual rAF loops)
+    function fadeSparkles(now: number) {
+      for (let i = activeSparkles.length - 1; i >= 0; i--) {
+        const s = activeSparkles[i];
+        const age = now - s.born;
+        const o = Math.max(0, 1 - age / SPARKLE_LIFE);
+        if (o <= 0) {
+          s.el.setAttribute('opacity', '0');
+          activeSparkles.splice(i, 1);
+        } else {
+          s.el.setAttribute('opacity', `${(o * 0.9).toFixed(2)}`);
+        }
       }
     }
 
@@ -831,14 +876,14 @@ Protocol (ICP) ме зоват.
         overlay.style.setProperty('--sy', '-200%');
       }
 
-      const duration = 900;
+      const duration = 1000;
       const start = performance.now();
       let lastSparkle = 0;
 
       function animate(now: number) {
         const elapsed = now - start;
         const t = Math.min(elapsed / duration, 1);
-        // Ease out cubic
+        // Ease out cubic — smooth deceleration
         const ease = 1 - Math.pow(1 - t, 3);
 
         // Draw trail
@@ -855,60 +900,65 @@ Protocol (ICP) ме зоват.
           overlay.style.setProperty('--sy', `${pt.y}px`);
         }
 
-        // Grow star as it approaches destination
+        // Smooth grow: 5 → 9px radius with ease
         const starR = 5 + ease * 4;
-        trailStar!.setAttribute('r', `${starR}`);
+        trailStar!.setAttribute('r', `${starR.toFixed(1)}`);
 
-        // Spawn sparkles every ~30ms
-        if (elapsed - lastSparkle > 30 && t < 0.95) {
+        // Spawn sparkles every ~35ms — reuse pooled elements
+        if (elapsed - lastSparkle > 35 && t < 0.92) {
           lastSparkle = elapsed;
-          const spark = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          const spark = sparklePool[poolIdx % SPARKLE_POOL_SIZE];
+          poolIdx++;
           spark.setAttribute('cx', `${pt.x + (Math.random() - 0.5) * 14}`);
           spark.setAttribute('cy', `${pt.y + (Math.random() - 0.5) * 14}`);
-          spark.setAttribute('r', `${1.5 + Math.random() * 2.5}`);
+          spark.setAttribute('r', `${(1.5 + Math.random() * 2.5).toFixed(1)}`);
           spark.setAttribute('fill', Math.random() > 0.3 ? '#ffd97a' : '#fff');
           spark.setAttribute('opacity', '0.9');
-          sparklesG!.appendChild(spark);
-          // Fade sparkle out
-          const sparkEl = spark;
-          const sparkBorn = now;
-          function fadeSpark(n: number) {
-            const age = n - sparkBorn;
-            const o = Math.max(0, 1 - age / 600);
-            sparkEl.setAttribute('opacity', `${o * 0.9}`);
-            if (o > 0) requestAnimationFrame(fadeSpark);
-            else sparkEl.remove();
-          }
-          requestAnimationFrame(fadeSpark);
+          activeSparkles.push({ el: spark, born: now });
         }
+
+        // Batch-fade all active sparkles in one pass
+        fadeSparkles(now);
 
         if (t < 1) {
           requestAnimationFrame(animate);
         } else {
-          // Brief hold, then fade fast
-          trailStar!.setAttribute('r', '10');
+          // Smooth ending: grow + fade simultaneously via rAF
+          const fadeStart = performance.now();
+          const fadeDuration = 500;
+          const endR = starR;
 
-          // Fade star and trail immediately
-          trailPath!.style.transition = 'opacity 0.4s ease';
-          trailPath!.style.opacity = '0';
-          trailStar!.style.transition = 'opacity 0.3s ease';
-          trailStar!.style.opacity = '0';
+          function fadeOut(now: number) {
+            const ft = Math.min((now - fadeStart) / fadeDuration, 1);
+            const fEase = 1 - Math.pow(1 - ft, 2); // ease out quad
 
-          setTimeout(() => {
-            // Move star spotlight off-screen
-            if (overlay) {
-              overlay.style.setProperty('--sx', '-200%');
-              overlay.style.setProperty('--sy', '-200%');
+            // Grow star smoothly: 9 → 12
+            trailStar!.setAttribute('r', `${(endR + fEase * 3).toFixed(1)}`);
+            // Fade trail + star
+            trailPath!.style.opacity = `${(0.8 * (1 - fEase)).toFixed(2)}`;
+            trailStar!.style.opacity = `${(1 - fEase).toFixed(2)}`;
+            // Fade sparkles too
+            fadeSparkles(now);
+
+            if (ft < 1) {
+              requestAnimationFrame(fadeOut);
+            } else {
+              // Move star spotlight off-screen
+              if (overlay) {
+                overlay.style.setProperty('--sx', '-200%');
+                overlay.style.setProperty('--sy', '-200%');
+              }
+              setTimeout(() => {
+                svg!.style.display = 'none';
+                trailStar!.setAttribute('r', '5');
+                trailStar!.style.opacity = '1';
+                trailPath!.style.opacity = '0.8';
+                clearSparkles();
+                running = false;
+              }, 300);
             }
-            setTimeout(() => {
-              svg!.style.display = 'none';
-              trailPath!.style.transition = '';
-              trailStar!.style.transition = '';
-              trailStar!.setAttribute('r', '5');
-              clearSparkles();
-              running = false;
-            }, 600);
-          }, 800);
+          }
+          requestAnimationFrame(fadeOut);
         }
       }
 
