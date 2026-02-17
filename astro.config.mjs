@@ -6,7 +6,7 @@ import sentry from '@sentry/astro';
 export default defineConfig({
   adapter: vercel(),
   integrations: [
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
     ...(process.env.SENTRY_DSN
       ? [sentry({ dsn: process.env.SENTRY_DSN })]
       : []),

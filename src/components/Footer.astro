@@ -1,10 +1,36 @@
 ---
 const year = new Date().getFullYear();
+
+const navLinks = [
+  { en: 'About', bg: 'За мен', href: '#about' },
+  { en: 'Skills', bg: 'Умения', href: '#skills' },
+  { en: 'Projects', bg: 'Проекти', href: '#projects' },
+  { en: 'Crypto', bg: 'Крипто', href: '#crypto' },
+  { en: 'Contact', bg: 'Контакт', href: '#contact' },
+];
 ---
 
-<footer class="relative z-10 py-8 border-t border-accent/15">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <p class="text-xs text-primary-secondary">&copy; {year} InternetCodeSolutions</p>
+<footer class="relative z-10 py-6 border-t border-accent/15">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <!-- Left: Brand + Copyright -->
+    <div class="flex flex-col items-center sm:items-start gap-0.5">
+      <span class="text-xs font-mono font-semibold text-primary-secondary">InternetCodeSolutions</span>
+      <span class="text-[10px] text-primary-tertiary">&copy; {year}</span>
+    </div>
+
+    <!-- Center: Quick nav -->
+    <nav class="flex flex-wrap justify-center gap-x-5 gap-y-1" aria-label="Footer navigation">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-[11px] text-primary-tertiary hover:text-accent transition-colors duration-300"
+        >
+          <span data-lang="en">{link.en}</span>
+          <span data-lang="bg">{link.bg}</span>
+        </a>
+      ))}
+    </nav>
+
   </div>
 
   <!-- Back to top button -->

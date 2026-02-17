@@ -18,7 +18,7 @@ const links = [
 >
   <div class="flex items-center justify-between h-11 px-5 md:px-6 gap-2">
     <!-- Brand -->
-    <a href="#" class="nav-brand font-mono font-bold tracking-tight transition-colors duration-500 text-sm shrink-0">
+    <a href="#" class="nav-brand relative font-mono font-bold tracking-tight transition-colors duration-500 text-sm shrink-0">
       InternetCodeSolutions
     </a>
 
@@ -171,20 +171,42 @@ const links = [
     }
   }
 
-  /* ===== Underline slide on hover ===== */
+  /* ===== Underline slide on hover/active ===== */
   .nav-link::after {
     content: '';
     position: absolute;
     bottom: 2px;
     left: 50%;
     width: 0;
-    height: 1px;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
     transition: width 0.3s ease, left 0.3s ease;
   }
-  .nav-link:hover::after,
-  .nav-link.active::after {
+  .nav-link:hover::after {
     width: 60%;
     left: 20%;
+  }
+  .nav-link.active::after {
+    width: 70%;
+    left: 15%;
+  }
+
+  /* Brand underline */
+  .nav-brand::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  .nav-brand.active::after {
+    width: 90%;
+    left: 5%;
   }
 
   /* Active dot */
@@ -272,19 +294,25 @@ const links = [
   [data-nav-theme="hero"] ~ .mobile-panel .lang-btn[aria-pressed="true"] { color: #c8973e; font-weight: 600; }
   [data-nav-theme="hero"] ~ .mobile-panel .lang-btn[aria-pressed="false"] { color: rgba(255, 255, 255, 0.3); }
 
-  /* ===== Page theme (CSS variables, auto-adapts to dark mode) ===== */
+  /* ===== Page theme (glassy transparent for About & Skills) ===== */
   [data-nav-theme="page"].nav-pill {
-    background: rgb(var(--color-surface) / 0.7);
-    border-color: rgb(var(--color-primary) / 0.06);
-    box-shadow: 0 4px 24px rgb(var(--color-primary) / 0.06),
-                0 0 0 1px rgb(var(--color-primary) / 0.03) inset;
+    background: rgb(var(--color-surface) / 0.15);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-color: rgb(var(--color-primary) / 0.1);
+    box-shadow: 0 4px 24px rgb(var(--color-primary) / 0.04),
+                0 0 0 1px rgb(var(--color-primary) / 0.06) inset;
   }
-  [data-nav-theme="page"] .nav-brand { color: rgb(var(--color-primary)); }
+  :global(.dark) [data-nav-theme="page"].nav-pill {
+    background: rgb(var(--color-surface) / 0.2);
+    border-color: rgb(var(--color-primary) / 0.08);
+  }
+  [data-nav-theme="page"] .nav-brand { color: rgb(var(--color-accent)); }
   [data-nav-theme="page"] .nav-link { color: rgb(var(--color-primary-tertiary)); }
   [data-nav-theme="page"] .nav-link:hover { color: rgb(var(--color-primary)); }
   [data-nav-theme="page"] .nav-link::after { background: rgb(var(--color-accent)); }
   [data-nav-theme="page"] .nav-link .nav-dot { background: rgb(var(--color-accent)); }
-  [data-nav-theme="page"] .nav-link.active { color: rgb(var(--color-primary)); }
+  [data-nav-theme="page"] .nav-link.active { color: rgb(var(--color-accent)); }
   [data-nav-theme="page"] .nav-toggle { color: rgb(var(--color-primary-secondary)); }
   [data-nav-theme="page"] .nav-toggle:hover { color: rgb(var(--color-primary)); }
   [data-nav-theme="page"] .theme-switch-track { background: rgba(0, 0, 0, 0.12); border: 1px solid rgba(0, 0, 0, 0.2); }
@@ -299,9 +327,11 @@ const links = [
 
   /* Page mobile panel */
   [data-nav-theme="page"] ~ .mobile-panel {
-    background: rgb(var(--color-surface) / 0.9);
-    border-color: rgb(var(--color-primary) / 0.06);
-    box-shadow: 0 8px 32px rgb(var(--color-primary) / 0.08);
+    background: rgb(var(--color-surface) / 0.2);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-color: rgb(var(--color-primary) / 0.08);
+    box-shadow: 0 8px 32px rgb(var(--color-primary) / 0.06);
   }
   [data-nav-theme="page"] ~ .mobile-panel .nav-link-mobile { color: rgb(var(--color-primary-secondary)); }
   [data-nav-theme="page"] ~ .mobile-panel .nav-link-mobile:hover,
@@ -309,6 +339,76 @@ const links = [
   [data-nav-theme="page"] ~ .mobile-panel .border-t { border-color: rgb(var(--color-primary) / 0.06); }
   [data-nav-theme="page"] ~ .mobile-panel .lang-btn[aria-pressed="true"] { color: rgb(var(--color-primary)); font-weight: 600; }
   [data-nav-theme="page"] ~ .mobile-panel .lang-btn[aria-pressed="false"] { color: rgb(var(--color-primary-tertiary)); }
+
+  /* ===== Forest theme (green backdrop, light text) ===== */
+  [data-nav-theme="forest"].nav-pill {
+    background: rgba(20, 50, 30, 0.65);
+    border-color: rgba(160, 200, 120, 0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(160, 200, 120, 0.05) inset;
+  }
+  [data-nav-theme="forest"] .nav-brand { color: rgba(220, 240, 210, 0.9); }
+  [data-nav-theme="forest"] .nav-link { color: rgba(200, 220, 190, 0.5); }
+  [data-nav-theme="forest"] .nav-link:hover { color: rgba(220, 240, 210, 0.9); }
+  [data-nav-theme="forest"] .nav-link::after { background: rgba(200, 220, 120, 0.7); }
+  [data-nav-theme="forest"] .nav-link .nav-dot { background: rgba(200, 220, 120, 0.7); }
+  [data-nav-theme="forest"] .nav-link.active { color: rgba(220, 240, 210, 0.9); }
+  [data-nav-theme="forest"] .nav-toggle { color: rgba(200, 220, 190, 0.6); }
+  [data-nav-theme="forest"] .nav-toggle:hover { color: rgba(220, 240, 210, 0.9); }
+  [data-nav-theme="forest"] .theme-switch-track { background: rgba(200, 220, 190, 0.15); border: 1px solid rgba(200, 220, 190, 0.25); }
+  [data-nav-theme="forest"] .theme-switch-knob { background: rgba(220, 240, 210, 0.9); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+  [data-nav-theme="forest"] .theme-switch-icon { color: #1a3c24; }
+  [data-nav-theme="forest"] .nav-divider { background: rgba(200, 220, 190, 0.15); }
+  [data-nav-theme="forest"] .lang-sep { color: rgba(200, 220, 190, 0.2); }
+  [data-nav-theme="forest"] .lang-btn[aria-pressed="true"] { color: rgba(220, 240, 210, 0.9); font-weight: 600; }
+  [data-nav-theme="forest"] .lang-btn[aria-pressed="false"] { color: rgba(200, 220, 190, 0.35); }
+
+  [data-nav-theme="forest"] ~ .mobile-panel {
+    background: rgba(20, 50, 30, 0.85);
+    border-color: rgba(160, 200, 120, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+  [data-nav-theme="forest"] ~ .mobile-panel .nav-link-mobile { color: rgba(200, 220, 190, 0.6); }
+  [data-nav-theme="forest"] ~ .mobile-panel .nav-link-mobile:hover,
+  [data-nav-theme="forest"] ~ .mobile-panel .nav-link-mobile.active { color: rgba(220, 240, 210, 0.9); background: rgba(200, 220, 190, 0.08); }
+  [data-nav-theme="forest"] ~ .mobile-panel .border-t { border-color: rgba(200, 220, 190, 0.08); }
+  [data-nav-theme="forest"] ~ .mobile-panel .lang-btn[aria-pressed="true"] { color: rgba(220, 240, 210, 0.9); font-weight: 600; }
+  [data-nav-theme="forest"] ~ .mobile-panel .lang-btn[aria-pressed="false"] { color: rgba(200, 220, 190, 0.35); }
+
+  /* ===== Pond theme (cool water tones) ===== */
+  [data-nav-theme="underground"].nav-pill {
+    background: rgba(10, 30, 50, 0.7);
+    border-color: rgba(100, 180, 220, 0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(100, 180, 220, 0.05) inset;
+  }
+  [data-nav-theme="underground"] .nav-brand { color: rgba(210, 235, 250, 0.9); }
+  [data-nav-theme="underground"] .nav-link { color: rgba(160, 200, 225, 0.5); }
+  [data-nav-theme="underground"] .nav-link:hover { color: rgba(210, 235, 250, 0.9); }
+  [data-nav-theme="underground"] .nav-link::after { background: #c8973e; }
+  [data-nav-theme="underground"] .nav-link .nav-dot { background: #c8973e; }
+  [data-nav-theme="underground"] .nav-link.active { color: rgba(210, 235, 250, 0.9); }
+  [data-nav-theme="underground"] .nav-toggle { color: rgba(160, 200, 225, 0.6); }
+  [data-nav-theme="underground"] .nav-toggle:hover { color: rgba(210, 235, 250, 0.9); }
+  [data-nav-theme="underground"] .theme-switch-track { background: rgba(100, 180, 220, 0.15); border: 1px solid rgba(100, 180, 220, 0.25); }
+  [data-nav-theme="underground"] .theme-switch-knob { background: rgba(210, 235, 250, 0.9); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35); }
+  [data-nav-theme="underground"] .theme-switch-icon { color: #0a1e32; }
+  [data-nav-theme="underground"] .nav-divider { background: rgba(100, 180, 220, 0.15); }
+  [data-nav-theme="underground"] .lang-sep { color: rgba(100, 180, 220, 0.2); }
+  [data-nav-theme="underground"] .lang-btn[aria-pressed="true"] { color: rgba(210, 235, 250, 0.9); font-weight: 600; }
+  [data-nav-theme="underground"] .lang-btn[aria-pressed="false"] { color: rgba(160, 200, 225, 0.35); }
+
+  [data-nav-theme="underground"] ~ .mobile-panel {
+    background: rgba(10, 30, 50, 0.88);
+    border-color: rgba(100, 180, 220, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  [data-nav-theme="underground"] ~ .mobile-panel .nav-link-mobile { color: rgba(160, 200, 225, 0.6); }
+  [data-nav-theme="underground"] ~ .mobile-panel .nav-link-mobile:hover,
+  [data-nav-theme="underground"] ~ .mobile-panel .nav-link-mobile.active { color: rgba(210, 235, 250, 0.9); background: rgba(100, 180, 220, 0.08); }
+  [data-nav-theme="underground"] ~ .mobile-panel .border-t { border-color: rgba(100, 180, 220, 0.08); }
+  [data-nav-theme="underground"] ~ .mobile-panel .lang-btn[aria-pressed="true"] { color: rgba(210, 235, 250, 0.9); font-weight: 600; }
+  [data-nav-theme="underground"] ~ .mobile-panel .lang-btn[aria-pressed="false"] { color: rgba(160, 200, 225, 0.35); }
 </style>
 
 <script>
@@ -492,12 +592,40 @@ const links = [
     const navLinks = nav.querySelectorAll('.nav-link[data-section]');
     const mobileLinks = document.querySelectorAll('.nav-link-mobile[data-section]');
 
+    // Layer boundaries for theme detection
+    const forest = document.querySelector('.layer-forest') as HTMLElement | null;
+    const forestTransition = document.querySelector('.layer-sky-to-forest') as HTMLElement | null;
+    const underground = document.querySelector('.layer-pond') as HTMLElement | null;
+    const underTransition = document.querySelector('.layer-forest-to-pond') as HTMLElement | null;
+
+    function getNavTheme(): string {
+      const heroBottom = hero!.getBoundingClientRect().bottom;
+      if (heroBottom > 60) return 'hero';
+
+      // Check if we're in forest zone (including transition into it)
+      const forestStart = forestTransition || forest;
+      const forestEnd = underTransition || underground;
+      if (forestStart && forestEnd) {
+        const fTop = forestStart.getBoundingClientRect().top;
+        const fBottom = forestEnd.getBoundingClientRect().top;
+        if (fTop <= 40 && fBottom > 40) return 'forest';
+      }
+
+      // Check if we're in underground zone
+      if (underground) {
+        const uTop = (underTransition || underground).getBoundingClientRect().top;
+        if (uTop <= 40) return 'underground';
+      }
+
+      return 'page';
+    }
+
     function update() {
       const scrollY = window.scrollY;
       const heroBottom = hero!.getBoundingClientRect().bottom;
 
       // Theme swap
-      nav!.dataset.navTheme = heroBottom <= 60 ? 'page' : 'hero';
+      nav!.dataset.navTheme = getNavTheme();
 
       // Auto-hide (only after scrolling past hero)
       if (heroBottom <= 60) {
@@ -536,6 +664,10 @@ const links = [
           break;
         }
       }
+
+      // Highlight brand when at the top (no section active)
+      const brand = nav!.querySelector('.nav-brand');
+      if (brand) brand.classList.toggle('active', activeId === '');
 
       navLinks.forEach((link) => {
         const section = (link as HTMLElement).dataset.section;

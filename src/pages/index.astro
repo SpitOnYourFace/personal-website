@@ -267,13 +267,13 @@ import Footer from '../components/Footer.astro';
   <!-- Transition: Sky → Forest -->
   <div class="layer-sky-to-forest" aria-hidden="true">
     <!-- Distant mountains -->
-    <svg class="mountains-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <svg class="mountains-svg" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice">
       <path d="M0,280 Q180,160 360,220 T720,180 T1080,230 T1440,200 L1440,320 L0,320 Z" fill="rgba(60,90,70,0.25)" />
       <path d="M0,300 Q240,200 480,260 T960,220 T1440,270 L1440,320 L0,320 Z" fill="rgba(45,75,55,0.35)" />
       <path d="M0,310 Q300,250 600,290 T1200,265 T1440,300 L1440,320 L0,320 Z" fill="rgba(35,60,42,0.5)" />
     </svg>
-    <!-- Tree silhouettes -->
-    <svg class="trees-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+    <!-- Tree silhouettes — desktop (hidden on mobile) -->
+    <svg class="trees-svg trees-desktop" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax slice">
       <polygon points="80,200 110,80 140,200" fill="rgba(30,55,38,0.6)" />
       <polygon points="95,120 110,60 125,120" fill="rgba(30,55,38,0.6)" />
       <polygon points="200,200 240,60 280,200" fill="rgba(25,50,35,0.7)" />
@@ -293,29 +293,189 @@ import Footer from '../components/Footer.astro';
       <polygon points="1370,200 1400,90 1430,200" fill="rgba(30,55,38,0.6)" />
       <polygon points="1385,130 1400,70 1415,130" fill="rgba(30,55,38,0.6)" />
     </svg>
+    <!-- Tree silhouettes — mobile (fewer, wider, properly spaced) -->
+    <svg class="trees-svg trees-mobile" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice">
+      <!-- Tree 1 — left -->
+      <polygon points="30,200 60,70 90,200" fill="rgba(30,55,38,0.6)" />
+      <polygon points="45,110 60,50 75,110" fill="rgba(30,55,38,0.6)" />
+      <!-- Tree 2 — left-center -->
+      <polygon points="110,200 145,55 180,200" fill="rgba(25,50,35,0.7)" />
+      <polygon points="127,95 145,25 163,95" fill="rgba(25,50,35,0.7)" />
+      <!-- Tree 3 — center -->
+      <polygon points="195,200 225,80 255,200" fill="rgba(28,52,36,0.65)" />
+      <polygon points="208,120 225,60 242,120" fill="rgba(28,52,36,0.65)" />
+      <!-- Tree 4 — right-center -->
+      <polygon points="270,200 300,60 330,200" fill="rgba(32,58,40,0.55)" />
+      <polygon points="283,100 300,35 317,100" fill="rgba(32,58,40,0.55)" />
+      <!-- Tree 5 — right -->
+      <polygon points="345,200 372,75 400,200" fill="rgba(30,55,38,0.6)" />
+      <polygon points="357,115 372,55 387,115" fill="rgba(30,55,38,0.6)" />
+    </svg>
   </div>
 
   <!-- ====== LAYER 3: FOREST ====== -->
   <div class="layer-forest">
+    <!-- Forest flowers -->
+    <div class="forest-flowers" aria-hidden="true">
+      <svg class="ff ff-1" viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="6" r="3.5" fill="#f0b8cc"/><circle cx="17" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="7" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-2" viewBox="0 0 24 24" width="12" height="12"><circle cx="12" cy="6" r="3.5" fill="#d8b8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-3" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="6" r="3.5" fill="#f5c8d8"/><circle cx="17" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="7" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-4" viewBox="0 0 24 24" width="10" height="10"><circle cx="12" cy="6" r="3.5" fill="#b8d8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#b8d8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#b8d8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#b8d8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#b8d8f0"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-5" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="6" r="3.5" fill="#e8a0b8"/><circle cx="17" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="7" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-6" viewBox="0 0 24 24" width="13" height="13"><circle cx="12" cy="6" r="3.5" fill="#f0c8a8"/><circle cx="17" cy="9.5" r="3.5" fill="#f0c8a8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0c8a8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0c8a8"/><circle cx="7" cy="9.5" r="3.5" fill="#f0c8a8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-7" viewBox="0 0 24 24" width="11" height="11"><circle cx="12" cy="6" r="3.5" fill="#c8e0a8"/><circle cx="17" cy="9.5" r="3.5" fill="#c8e0a8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#c8e0a8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#c8e0a8"/><circle cx="7" cy="9.5" r="3.5" fill="#c8e0a8"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <svg class="ff ff-8" viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="6" r="3.5" fill="#f0b8cc"/><circle cx="17" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="7" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <!-- Extra crypto-area flowers -->
+      <svg class="ff ff-9" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="6" r="3.5" fill="#e8a0b8"/><circle cx="17" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="7" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-10" viewBox="0 0 24 24" width="12" height="12"><circle cx="12" cy="6" r="3.5" fill="#d8b8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <svg class="ff ff-11" viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="6" r="3.5" fill="#f5c8d8"/><circle cx="17" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="7" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-12" viewBox="0 0 24 24" width="10" height="10"><circle cx="12" cy="6" r="3.5" fill="#f0c8a8"/><circle cx="17" cy="9.5" r="3.5" fill="#f0c8a8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0c8a8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0c8a8"/><circle cx="7" cy="9.5" r="3.5" fill="#f0c8a8"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <svg class="ff ff-13" viewBox="0 0 24 24" width="13" height="13"><circle cx="12" cy="6" r="3.5" fill="#b8d8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#b8d8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#b8d8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#b8d8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#b8d8f0"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="ff ff-14" viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="6" r="3.5" fill="#c8e0a8"/><circle cx="17" cy="9.5" r="3.5" fill="#c8e0a8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#c8e0a8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#c8e0a8"/><circle cx="7" cy="9.5" r="3.5" fill="#c8e0a8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+    </div>
     <Projects />
     <CryptoTracker />
   </div>
 
-  <!-- Transition: Forest → Underground -->
-  <div class="layer-forest-to-underground" aria-hidden="true">
-    <!-- Rock layer -->
-    <svg class="rock-layer-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
-      <!-- Back rock ridge -->
-      <path d="M0,140 Q80,100 160,120 Q240,90 340,110 Q420,80 520,105 Q600,75 700,100 Q780,70 880,95 Q960,65 1060,90 Q1140,70 1240,100 Q1320,80 1440,110 L1440,200 L0,200 Z" fill="#5a4a38" />
-      <!-- Mid rock ridge -->
-      <path d="M0,160 Q100,125 200,145 Q300,110 420,135 Q520,105 640,130 Q740,100 860,125 Q960,95 1080,120 Q1180,100 1300,130 Q1380,115 1440,135 L1440,200 L0,200 Z" fill="#4a3c2c" />
-      <!-- Front rock ridge -->
-      <path d="M0,175 Q120,150 240,165 Q360,140 480,158 Q600,135 720,155 Q840,130 960,152 Q1080,138 1200,160 Q1320,145 1440,162 L1440,200 L0,200 Z" fill="#3c3022" />
+  <!-- Transition: Forest → Pond -->
+  <div class="layer-forest-to-pond" aria-hidden="true">
+    <!-- Grassy bank edge — organic curved pond shape -->
+    <svg class="bank-edge-svg" viewBox="0 0 1440 280" preserveAspectRatio="none">
+      <!-- Back grass — big sweeping curves -->
+      <path d="M0,120 C80,85 180,140 300,100 C420,60 480,130 600,95 C720,60 800,135 920,90 C1040,50 1120,120 1240,95 C1340,75 1400,110 1440,100 L1440,280 L0,280 Z" fill="#2d6b3a" />
+      <!-- Mid grass — deeper dips like a real bank -->
+      <path d="M0,160 C120,125 200,175 360,135 C480,105 540,170 680,140 C800,110 880,165 1020,130 C1140,100 1220,160 1360,140 C1400,132 1430,148 1440,145 L1440,280 L0,280 Z" fill="#1e5a30" />
+      <!-- Water edge — smooth concave pond curve -->
+      <path d="M0,210 C160,185 280,220 440,195 C560,175 640,215 780,192 C900,172 1000,210 1140,190 C1260,174 1360,205 1440,198 L1440,280 L0,280 Z" fill="#1a4a5e" />
     </svg>
+
+    <!-- Reeds & cattails -->
+    <svg class="reeds-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <!-- Left reeds -->
+      <line x1="60" y1="200" x2="55" y2="95" stroke="#2a5e32" stroke-width="2.5" />
+      <line x1="80" y1="200" x2="78" y2="80" stroke="#1e5428" stroke-width="2" />
+      <line x1="100" y1="200" x2="96" y2="105" stroke="#2a5e32" stroke-width="2.5" />
+      <ellipse cx="55" cy="92" rx="3.5" ry="10" fill="#4a3020" />
+      <ellipse cx="78" cy="77" rx="3" ry="9" fill="#5a3828" />
+      <ellipse cx="96" cy="102" rx="3.5" ry="10" fill="#4a3020" />
+      <!-- Right reeds -->
+      <line x1="1340" y1="200" x2="1345" y2="90" stroke="#2a5e32" stroke-width="2.5" />
+      <line x1="1360" y1="200" x2="1358" y2="75" stroke="#1e5428" stroke-width="2" />
+      <line x1="1380" y1="200" x2="1383" y2="100" stroke="#2a5e32" stroke-width="2.5" />
+      <ellipse cx="1345" cy="87" rx="3.5" ry="10" fill="#4a3020" />
+      <ellipse cx="1358" cy="72" rx="3" ry="9" fill="#5a3828" />
+      <ellipse cx="1383" cy="97" rx="3.5" ry="10" fill="#4a3020" />
+    </svg>
+
+    <!-- Bank flowers — scattered along the grassy edge -->
+    <div class="bank-flowers">
+      <!-- Left cluster -->
+      <svg class="flower flower-1" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="6" r="3.5" fill="#f0b8cc"/><circle cx="17" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="7" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="flower flower-2" viewBox="0 0 24 24" width="13" height="13"><circle cx="12" cy="6" r="3.5" fill="#d8b8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="flower flower-3" viewBox="0 0 24 24" width="10" height="10"><circle cx="12" cy="6" r="3.5" fill="#f5c8d8"/><circle cx="17" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="7" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <!-- Left-center -->
+      <svg class="flower flower-4" viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="6" r="3.5" fill="#e8a0b8"/><circle cx="17" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="7" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="flower flower-5" viewBox="0 0 24 24" width="11" height="11"><circle cx="12" cy="6" r="3.5" fill="#c8e0a8"/><circle cx="17" cy="9.5" r="3.5" fill="#c8e0a8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#c8e0a8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#c8e0a8"/><circle cx="7" cy="9.5" r="3.5" fill="#c8e0a8"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <!-- Center -->
+      <svg class="flower flower-6" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="6" r="3.5" fill="#f0c8a8"/><circle cx="17" cy="9.5" r="3.5" fill="#f0c8a8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0c8a8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0c8a8"/><circle cx="7" cy="9.5" r="3.5" fill="#f0c8a8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="flower flower-7" viewBox="0 0 24 24" width="12" height="12"><circle cx="12" cy="6" r="3.5" fill="#b8d8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#b8d8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#b8d8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#b8d8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#b8d8f0"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <!-- Right-center -->
+      <svg class="flower flower-8" viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="6" r="3.5" fill="#f0b8cc"/><circle cx="17" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f0b8cc"/><circle cx="7" cy="9.5" r="3.5" fill="#f0b8cc"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="flower flower-9" viewBox="0 0 24 24" width="10" height="10"><circle cx="12" cy="6" r="3.5" fill="#d8b8f0"/><circle cx="17" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="15.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="8.5" cy="15.5" r="3.5" fill="#d8b8f0"/><circle cx="7" cy="9.5" r="3.5" fill="#d8b8f0"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <!-- Right cluster -->
+      <svg class="flower flower-10" viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="6" r="3.5" fill="#f5c8d8"/><circle cx="17" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#f5c8d8"/><circle cx="7" cy="9.5" r="3.5" fill="#f5c8d8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+      <svg class="flower flower-11" viewBox="0 0 24 24" width="12" height="12"><circle cx="12" cy="6" r="3.5" fill="#e8a0b8"/><circle cx="17" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#e8a0b8"/><circle cx="7" cy="9.5" r="3.5" fill="#e8a0b8"/><circle cx="12" cy="12" r="2.5" fill="#f5d060"/></svg>
+      <svg class="flower flower-12" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="6" r="3.5" fill="#a0c8e8"/><circle cx="17" cy="9.5" r="3.5" fill="#a0c8e8"/><circle cx="15.5" cy="15.5" r="3.5" fill="#a0c8e8"/><circle cx="8.5" cy="15.5" r="3.5" fill="#a0c8e8"/><circle cx="7" cy="9.5" r="3.5" fill="#a0c8e8"/><circle cx="12" cy="12" r="3" fill="#f5d060"/></svg>
+    </div>
   </div>
 
-  <!-- ====== LAYER 4: UNDERGROUND ====== -->
-  <div class="layer-underground">
+  <!-- ====== LAYER 4: POND ====== -->
+  <div class="layer-pond">
+    <!-- Pond decorations -->
+    <div class="pond-decorations" aria-hidden="true">
+      <!-- Lily pads & water lilies — left side -->
+      <svg class="lily lily-1" viewBox="0 0 60 60" width="70" height="70">
+        <path d="M30,5 A25,25 0 1,1 28,5 L30,30 Z" fill="#2a7a3a" opacity="0.7" />
+        <path d="M30,30 Q20,18 12,22 Q18,12 30,5" fill="#1e6a2e" opacity="0.5" />
+      </svg>
+      <svg class="lily lily-2" viewBox="0 0 60 60" width="55" height="55">
+        <path d="M30,5 A25,25 0 1,1 28,5 L30,30 Z" fill="#2a7a3a" opacity="0.6" />
+      </svg>
+      <!-- Water lily flower on pad -->
+      <svg class="water-lily water-lily-1" viewBox="0 0 40 40" width="32" height="32">
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(0 20 20)" />
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(45 20 20)" />
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(90 20 20)" />
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(135 20 20)" />
+        <ellipse cx="20" cy="20" rx="7" ry="3.5" fill="#fce8f2" transform="rotate(22.5 20 20)" />
+        <ellipse cx="20" cy="20" rx="7" ry="3.5" fill="#fce8f2" transform="rotate(67.5 20 20)" />
+        <ellipse cx="20" cy="20" rx="7" ry="3.5" fill="#fce8f2" transform="rotate(112.5 20 20)" />
+        <ellipse cx="20" cy="20" rx="7" ry="3.5" fill="#fce8f2" transform="rotate(157.5 20 20)" />
+        <circle cx="20" cy="20" r="4" fill="#f5d060" />
+      </svg>
+
+      <!-- Lily pads — right side -->
+      <svg class="lily lily-3" viewBox="0 0 60 60" width="65" height="65">
+        <path d="M30,5 A25,25 0 1,1 28,5 L30,30 Z" fill="#2a7a3a" opacity="0.65" />
+        <path d="M30,30 Q20,18 12,22 Q18,12 30,5" fill="#1e6a2e" opacity="0.4" />
+      </svg>
+      <svg class="lily lily-4" viewBox="0 0 60 60" width="48" height="48">
+        <path d="M30,5 A25,25 0 1,1 28,5 L30,30 Z" fill="#2a7a3a" opacity="0.55" />
+      </svg>
+      <!-- Water lily flower on pad -->
+      <svg class="water-lily water-lily-2" viewBox="0 0 40 40" width="26" height="26">
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(0 20 20)" />
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(60 20 20)" />
+        <ellipse cx="20" cy="20" rx="8" ry="4" fill="#f8e8f0" transform="rotate(120 20 20)" />
+        <ellipse cx="20" cy="20" rx="6.5" ry="3" fill="#fce8f2" transform="rotate(30 20 20)" />
+        <ellipse cx="20" cy="20" rx="6.5" ry="3" fill="#fce8f2" transform="rotate(90 20 20)" />
+        <ellipse cx="20" cy="20" rx="6.5" ry="3" fill="#fce8f2" transform="rotate(150 20 20)" />
+        <circle cx="20" cy="20" r="3.5" fill="#f5d060" />
+      </svg>
+
+      <!-- Frogs -->
+      <svg class="frog frog-1" viewBox="0 0 50 40" width="42" height="34">
+        <!-- Body -->
+        <ellipse cx="25" cy="28" rx="14" ry="10" fill="#3a8a42" />
+        <!-- Head -->
+        <ellipse cx="25" cy="18" rx="11" ry="9" fill="#42964a" />
+        <!-- Eyes -->
+        <circle cx="18" cy="12" r="5" fill="#42964a" />
+        <circle cx="32" cy="12" r="5" fill="#42964a" />
+        <circle cx="18" cy="11" r="3.2" fill="white" />
+        <circle cx="32" cy="11" r="3.2" fill="white" />
+        <circle cx="19" cy="10.5" r="1.8" fill="#1a1a2a" />
+        <circle cx="33" cy="10.5" r="1.8" fill="#1a1a2a" />
+        <!-- Mouth -->
+        <path d="M18,22 Q25,26 32,22" fill="none" stroke="#2a6a30" stroke-width="1" />
+        <!-- Front legs -->
+        <path d="M14,30 Q8,34 5,30 Q7,32 10,30" fill="#3a8a42" />
+        <path d="M36,30 Q42,34 45,30 Q43,32 40,30" fill="#3a8a42" />
+        <!-- Spots -->
+        <circle cx="22" cy="25" r="2" fill="#2e7a36" opacity="0.5" />
+        <circle cx="28" cy="27" r="1.5" fill="#2e7a36" opacity="0.5" />
+      </svg>
+
+      <svg class="frog frog-2" viewBox="0 0 50 40" width="34" height="28">
+        <ellipse cx="25" cy="28" rx="14" ry="10" fill="#348a3c" />
+        <ellipse cx="25" cy="18" rx="11" ry="9" fill="#3c9044" />
+        <circle cx="18" cy="12" r="5" fill="#3c9044" />
+        <circle cx="32" cy="12" r="5" fill="#3c9044" />
+        <circle cx="18" cy="11" r="3.2" fill="white" />
+        <circle cx="32" cy="11" r="3.2" fill="white" />
+        <circle cx="19" cy="10.5" r="1.8" fill="#1a1a2a" />
+        <circle cx="33" cy="10.5" r="1.8" fill="#1a1a2a" />
+        <path d="M18,22 Q25,26 32,22" fill="none" stroke="#286a2e" stroke-width="1" />
+        <path d="M14,30 Q8,34 5,30 Q7,32 10,30" fill="#348a3c" />
+        <path d="M36,30 Q42,34 45,30 Q43,32 40,30" fill="#348a3c" />
+      </svg>
+
+      <!-- Water ripples -->
+      <div class="ripple ripple-1"></div>
+      <div class="ripple ripple-2"></div>
+      <div class="ripple ripple-3"></div>
+    </div>
+
     <Contact />
     <Footer />
   </div>
@@ -972,6 +1132,16 @@ import Footer from '../components/Footer.astro';
     height: 50%;
   }
 
+  .trees-mobile { display: none; }
+
+  @media (max-width: 768px) {
+    .trees-desktop { display: none; }
+    .trees-mobile { display: block; }
+    .layer-sky-to-forest .mountains-svg {
+      height: 60%;
+    }
+  }
+
   :global(.dark) .layer-sky-to-forest {
     background: linear-gradient(
       to bottom,
@@ -989,6 +1159,8 @@ import Footer from '../components/Footer.astro';
 
   /* ===== FOREST LAYER ===== */
   .layer-forest {
+    position: relative;
+    overflow: hidden;
     margin-top: -1px;
     transition: background 0.55s ease;
     --color-primary: 230 240 230;
@@ -1021,8 +1193,45 @@ import Footer from '../components/Footer.astro';
     );
   }
 
-  /* ===== TRANSITION: FOREST → UNDERGROUND ===== */
-  .layer-forest-to-underground {
+  /* Forest flowers — decorative flowers on Projects & Crypto sections */
+  .forest-flowers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .ff {
+    position: absolute;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.25));
+    opacity: 0.7;
+  }
+  /* Projects area — left & right edges */
+  .ff-1 { top: 18%; left: 2%;  transform: rotate(-20deg); }
+  .ff-2 { top: 32%; left: 1%;  transform: rotate(15deg); }
+  .ff-5 { top: 15%; right: 2%;  transform: rotate(12deg); }
+  .ff-6 { top: 28%; right: 1%;  transform: rotate(-18deg); }
+  /* Crypto area — more flowers, both edges */
+  .ff-3  { top: 55%; left: 3%;   transform: rotate(-10deg); }
+  .ff-4  { top: 72%; left: 1.5%; transform: rotate(25deg); }
+  .ff-7  { top: 60%; right: 2.5%; transform: rotate(8deg); }
+  .ff-8  { top: 75%; right: 1.5%; transform: rotate(-22deg); }
+  .ff-9  { top: 65%; left: 5%;   transform: rotate(18deg); }
+  .ff-10 { top: 80%; left: 3%;   transform: rotate(-12deg); }
+  .ff-11 { top: 58%; right: 5%;  transform: rotate(-15deg); }
+  .ff-12 { top: 70%; right: 3.5%; transform: rotate(10deg); }
+  .ff-13 { top: 85%; left: 2%;   transform: rotate(22deg); }
+  .ff-14 { top: 88%; right: 2%;  transform: rotate(-8deg); }
+
+  @media (max-width: 768px) {
+    .ff { opacity: 0.5; }
+    .ff-2, .ff-4, .ff-6, .ff-8, .ff-10, .ff-12 { display: none; }
+    .ff-1 { left: 1%; }
+    .ff-5 { right: 1%; }
+  }
+
+  /* ===== TRANSITION: FOREST → POND ===== */
+  .layer-forest-to-pond {
     position: relative;
     height: 300px;
     overflow: hidden;
@@ -1032,37 +1241,31 @@ import Footer from '../components/Footer.astro';
     background: linear-gradient(
       to bottom,
       #3a7a45 0%,
-      #4a7a3e 8%,
-      #5a7035 18%,
-      #5e6530 28%,
-      #605828 38%,
-      #5e4e24 48%,
-      #5a4422 58%,
-      #563c20 68%,
-      #50361e 78%,
-      #4a301c 88%,
-      #3c3022 100%
+      #2e6e3c 15%,
+      #246234 30%,
+      #1e5a30 45%,
+      #1a5238 60%,
+      #184a42 75%,
+      #15424a 90%,
+      #123a50 100%
     );
   }
 
-  :global(.dark) .layer-forest-to-underground {
+  :global(.dark) .layer-forest-to-pond {
     background: linear-gradient(
       to bottom,
       #1a3c24 0%,
-      #1c3420 8%,
-      #1e2c1c 18%,
-      #202618 28%,
-      #222016 38%,
-      #221c14 48%,
-      #221a12 58%,
-      #201810 68%,
-      #1e160e 78%,
-      #1c140c 88%,
-      #1a120a 100%
+      #163420 15%,
+      #122c1e 30%,
+      #10261e 45%,
+      #0e2020 60%,
+      #0c1c24 75%,
+      #0a1828 90%,
+      #08142a 100%
     );
   }
 
-  .rock-layer-svg {
+  .bank-edge-svg {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1070,48 +1273,176 @@ import Footer from '../components/Footer.astro';
     height: 55%;
   }
 
-  :global(.dark) .rock-layer-svg path:nth-child(1) { fill: #2a2218; }
-  :global(.dark) .rock-layer-svg path:nth-child(2) { fill: #221a12; }
-  :global(.dark) .rock-layer-svg path:nth-child(3) { fill: #1a120a; }
+  :global(.dark) .bank-edge-svg path:nth-child(1) { fill: #1a4a28; }
+  :global(.dark) .bank-edge-svg path:nth-child(2) { fill: #123a20; }
+  :global(.dark) .bank-edge-svg path:nth-child(3) { fill: #0a2a3e; }
 
-  /* ===== UNDERGROUND LAYER ===== */
-  .layer-underground {
+  .reeds-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  :global(.dark) .reeds-svg line { opacity: 0.7; }
+  :global(.dark) .reeds-svg ellipse { opacity: 0.6; }
+
+  .bank-flowers {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .flower {
+    position: absolute;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  }
+  /* Left cluster */
+  .flower-1  { bottom: 38%; left: 5%;  transform: rotate(-15deg); }
+  .flower-2  { bottom: 32%; left: 10%; transform: rotate(12deg); }
+  .flower-3  { bottom: 42%; left: 8%;  transform: rotate(-30deg); }
+  /* Left-center */
+  .flower-4  { bottom: 35%; left: 20%; transform: rotate(8deg); }
+  .flower-5  { bottom: 28%; left: 25%; transform: rotate(-20deg); }
+  /* Center */
+  .flower-6  { bottom: 40%; left: 42%; transform: rotate(15deg); }
+  .flower-7  { bottom: 34%; left: 55%; transform: rotate(-10deg); }
+  /* Right-center */
+  .flower-8  { bottom: 36%; right: 22%; transform: rotate(22deg); }
+  .flower-9  { bottom: 30%; right: 18%; transform: rotate(-8deg); }
+  /* Right cluster */
+  .flower-10 { bottom: 40%; right: 8%;  transform: rotate(-18deg); }
+  .flower-11 { bottom: 33%; right: 4%;  transform: rotate(25deg); }
+  .flower-12 { bottom: 44%; right: 11%; transform: rotate(5deg); }
+
+  @media (max-width: 768px) {
+    .flower-1 { left: 2%; }
+    .flower-2 { left: 8%; }
+    .flower-3 { left: 5%; }
+    .flower-4, .flower-5, .flower-6, .flower-7 { display: none; }
+    .flower-8, .flower-9 { display: none; }
+    .flower-10 { right: 5%; }
+    .flower-11 { right: 2%; }
+    .flower-12 { right: 8%; }
+    .reeds-svg { opacity: 0.6; }
+  }
+
+  /* ===== POND LAYER ===== */
+  .layer-pond {
     position: relative;
     margin-top: -1px;
     transition: background 0.55s ease;
-    --color-primary: 255 248 235;
-    --color-primary-secondary: 225 205 175;
-    --color-primary-tertiary: 195 175 145;
-    --color-surface: 60 48 34;
-    --color-surface-subtle: 72 58 42;
+    --color-primary: 230 245 250;
+    --color-primary-secondary: 180 210 220;
+    --color-primary-tertiary: 140 175 190;
+    --color-surface: 18 52 68;
+    --color-surface-subtle: 24 60 78;
     --color-accent: 200 151 62;
     background: linear-gradient(
       to bottom,
-      #3c3022 0%,
-      #3e3224 10%,
-      #3c3022 30%,
-      #3a2e20 50%,
-      #382c1e 70%,
-      #362a1c 90%,
-      #34281a 100%
+      #123a50 0%,
+      #143c52 5%,
+      #123a50 15%,
+      #10384e 30%,
+      #0e364c 50%,
+      #0c344a 70%,
+      #0a3248 90%,
+      #083046 100%
     );
   }
 
-  :global(.dark) .layer-underground {
-    --color-primary: 245 235 218;
-    --color-primary-secondary: 205 185 155;
-    --color-primary-tertiary: 170 150 125;
-    --color-surface: 28 20 14;
-    --color-surface-subtle: 38 28 20;
+  :global(.dark) .layer-pond {
+    --color-primary: 220 238 248;
+    --color-primary-secondary: 165 195 215;
+    --color-primary-tertiary: 120 155 180;
+    --color-surface: 8 20 34;
+    --color-surface-subtle: 14 28 42;
     background: linear-gradient(
       to bottom,
-      #1a120a 0%,
-      #1c140c 10%,
-      #1a120a 30%,
-      #181008 50%,
-      #160e08 70%,
-      #140c06 90%,
-      #120a04 100%
+      #08142a 0%,
+      #0a162c 5%,
+      #08142a 15%,
+      #061228 30%,
+      #051026 50%,
+      #040e24 70%,
+      #030c22 90%,
+      #020a20 100%
     );
+  }
+
+  /* Pond decorations */
+  .pond-decorations {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .lily {
+    position: absolute;
+    opacity: 0.6;
+    animation: lily-drift 8s ease-in-out infinite;
+  }
+  .lily-1 { top: 8%; left: 4%; animation-delay: 0s; }
+  .lily-2 { top: 55%; left: 2%; animation-delay: -3s; transform: rotate(45deg); }
+  .lily-3 { top: 12%; right: 5%; animation-delay: -1.5s; transform: rotate(-30deg); }
+  .lily-4 { bottom: 18%; right: 3%; animation-delay: -5s; transform: rotate(60deg); }
+
+  .water-lily {
+    position: absolute;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    animation: lily-drift 8s ease-in-out infinite;
+  }
+  .water-lily-1 { top: 6%; left: 6.5%; animation-delay: -0.5s; }
+  .water-lily-2 { top: 10%; right: 6%; animation-delay: -2s; }
+
+  .frog {
+    position: absolute;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+    animation: frog-breathe 4s ease-in-out infinite;
+  }
+  .frog-1 { top: 50%; left: 1%; animation-delay: 0s; }
+  .frog-2 { bottom: 25%; right: 2%; animation-delay: -2s; transform: scaleX(-1); }
+
+  @keyframes lily-drift {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-4px) rotate(var(--r, 0deg)); }
+  }
+
+  @keyframes frog-breathe {
+    0%, 100% { transform: scaleY(1) scaleX(var(--sx, 1)); }
+    50% { transform: scaleY(1.03) scaleX(var(--sx, 1)); }
+  }
+
+  .ripple {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    animation: ripple-expand 6s ease-out infinite;
+  }
+  .ripple-1 { top: 30%; left: 25%; animation-delay: 0s; }
+  .ripple-2 { top: 60%; right: 20%; animation-delay: -2s; }
+  .ripple-3 { bottom: 35%; left: 40%; animation-delay: -4s; }
+
+  @keyframes ripple-expand {
+    0% { transform: scale(0.5); opacity: 0.5; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .lily, .water-lily, .frog, .ripple { opacity: 0.4; }
+    .frog { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lily, .water-lily, .frog, .ripple { animation: none; }
   }
 </style>

@@ -2,21 +2,38 @@
 const projects = [
   {
     title: 'Slathe Band',
-    descEn: 'Official website for the band Slathe — featuring music, upcoming events, and band info with a modern responsive design.',
-    descBg: 'Официален уебсайт на група Slathe — музика, предстоящи събития и информация за групата с модерен респонсив дизайн.',
-    tags: 'HTML · CSS · JavaScript',
+    descEn: 'Dark grunge-styled website for the band Slathe — custom audio player with a 13-track album, merchandise store with cart & wishlist, concert listings, and Ko-fi donations. Fully bilingual (EN/BG).',
+    descBg: 'Уебсайт в тъмен grunge стил за група Slathe — собствен аудио плейър с 13-песенен албум, магазин за мърч с количка и любими, концертна програма и Ko-fi дарения. Напълно двуезичен (EN/BG).',
+    tags: 'React · Vite · Tailwind CSS · Framer Motion',
     href: 'https://slathe-band.vercel.app/',
-    github: '',
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>`,
+    preview: '/images/preview-slathe.png',
+    previewAlt: 'Slathe Band website preview',
+    previewUrl: 'slathe-band.vercel.app',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>`,
   },
   {
     title: 'Barbershop Halil',
-    descEn: 'Full-stack booking system for a barbershop — clients book appointments online, owner manages reservations through an admin panel.',
-    descBg: 'Пълна система за резервации за бръснарница — клиентите записват часове онлайн, собственикът управлява резервациите чрез админ панел.',
-    tags: 'Node.js · Express · HTML · CSS',
+    descEn: 'Client-facing booking website for a barbershop in Plovdiv — dark luxury design with gold accents, 4 services with pricing, real-time appointment scheduling, Google Maps integration, and working hours display.',
+    descBg: 'Клиентски уебсайт за бръснарница в Пловдив — луксозен тъмен дизайн със златни акценти, 4 услуги с цени, записване на часове в реално време, Google Maps интеграция и работно време.',
+    tags: 'HTML · CSS · JavaScript',
     href: 'https://barbershop-halil.onrender.com/',
-    github: '',
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+    preview: '/images/preview-barbershop.png',
+    previewAlt: 'Barbershop Halil client booking page',
+    previewUrl: 'barbershop-halil.onrender.com',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.121 14.121A3 3 0 109.88 9.88m4.243 4.243L9.878 9.878m4.243 4.243L20 20M9.878 9.878L4 4m0 0h4m-4 0v4"/></svg>`,
+  },
+  {
+    title: 'Barbershop Halil — Admin',
+    titleEn: 'Barbershop Halil — Admin',
+    titleBg: 'Barbershop Halil — Админ',
+    descEn: 'Full admin dashboard for the barbershop owner — reservation management with confirm/reject actions, weekly schedule overview, top clients tracking, blocked numbers list, revenue forecasting, and search by name, phone, or booking code.',
+    descBg: 'Пълен админ панел за собственика на бръснарницата — управление на резервации с потвърждаване/отказ, седмичен преглед на графика, проследяване на топ клиенти, блокирани номера, прогноза за приходи и търсене по име, телефон или код.',
+    tags: 'Node.js · Express · JavaScript · CSS',
+    href: 'https://barbershop-halil.onrender.com/admin.html',
+    preview: '/images/preview-barbershop-admin.png',
+    previewAlt: 'Barbershop Halil admin dashboard',
+    previewUrl: 'barbershop-halil.onrender.com/admin',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
   },
 ];
 ---
@@ -43,44 +60,69 @@ const projects = [
       <span data-lang="en">Projects</span>
       <span data-lang="bg">Проекти</span>
     </p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div class="flex flex-col gap-8">
       {projects.map((project) => (
-        <div data-reveal class="project-card group relative bg-surface rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1.5 overflow-hidden">
-          <!-- Accent line -->
+        <div data-reveal class="project-card group relative bg-surface rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-500 overflow-hidden">
           <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-          <!-- Glow -->
           <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-accent/0 to-accent/0 group-hover:from-accent/[0.02] group-hover:to-accent/[0.06] transition-all duration-500"></div>
-          <div class="relative p-6">
-            <div class="flex items-start justify-between mb-4">
-              <div class="text-accent p-2.5 bg-accent/5 rounded-xl group-hover:bg-accent/10 transition-colors duration-500" set:html={project.icon} />
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-1.5 text-xs font-medium text-primary-tertiary group-hover:text-accent transition-colors duration-500 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
-              >
-                <span>
-                  <span data-lang="en">Visit</span>
-                  <span data-lang="bg">Виж</span>
-                </span>
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-                </svg>
-              </a>
-            </div>
-            <a href={project.href} target="_blank" rel="noopener noreferrer">
-              <h3 class="text-base font-semibold text-primary mb-2 group-hover:text-accent transition-colors duration-500">
-                {project.title}
-              </h3>
+          <div class="relative flex flex-col md:flex-row">
+            <!-- Preview -->
+            <a href={project.href} target="_blank" rel="noopener noreferrer" class="block md:w-[55%] shrink-0">
+              <div class="browser-frame m-4 mb-0 md:mb-4 md:mr-0">
+                <div class="browser-bar">
+                  <div class="browser-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="browser-url">
+                    <svg class="w-3 h-3 opacity-40 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm0 0c0 1.657 1.343 3 3 3s3-1.343 3-3-1.343-3-3-3-3 1.343-3 3zm0 0v4m0-4V7"/></svg>
+                    <span>{project.previewUrl}</span>
+                  </div>
+                </div>
+                <div class="browser-content">
+                  <img src={project.preview} alt={project.previewAlt} width="800" height="450" decoding="async" loading="lazy" class="w-full h-auto block" />
+                </div>
+              </div>
             </a>
-            <p class="text-[13px] text-primary-secondary leading-relaxed mb-4">
-              <span data-lang="en">{project.descEn}</span>
-              <span data-lang="bg">{project.descBg}</span>
-            </p>
-            <div class="flex flex-wrap gap-2">
-              {project.tags.split(' · ').map((tag: string) => (
-                <span class="text-[11px] font-medium text-primary-tertiary bg-primary/[0.03] px-2.5 py-1 rounded-md group-hover:bg-accent/5 group-hover:text-accent/80 transition-all duration-500">{tag}</span>
-              ))}
+            <!-- Content -->
+            <div class="p-6 flex flex-col justify-center">
+              <div class="flex items-start justify-between mb-3">
+                <div class="text-accent p-2 bg-accent/5 rounded-xl group-hover:bg-accent/10 transition-colors duration-500" set:html={project.icon} />
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-1.5 text-xs font-medium text-primary-tertiary group-hover:text-accent transition-colors duration-500 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+                >
+                  <span>
+                    <span data-lang="en">Visit</span>
+                    <span data-lang="bg">Виж</span>
+                  </span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+                  </svg>
+                </a>
+              </div>
+              <a href={project.href} target="_blank" rel="noopener noreferrer">
+                <h3 class="text-lg font-semibold text-primary mb-2 group-hover:text-accent transition-colors duration-500">
+                  {project.titleBg ? (
+                    <>
+                      <span data-lang="en">{project.titleEn}</span>
+                      <span data-lang="bg">{project.titleBg}</span>
+                    </>
+                  ) : project.title}
+                </h3>
+              </a>
+              <p class="text-[13px] text-primary-secondary leading-relaxed mb-4">
+                <span data-lang="en">{project.descEn}</span>
+                <span data-lang="bg">{project.descBg}</span>
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.split(' · ').map((tag: string) => (
+                  <span class="text-[11px] font-medium text-primary-tertiary bg-primary/[0.03] px-2.5 py-1 rounded-md group-hover:bg-accent/5 group-hover:text-accent/80 transition-all duration-500">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -120,5 +162,62 @@ const projects = [
   @keyframes sway {
     0%, 100% { transform: rotate(-5deg) translateY(0); }
     50% { transform: rotate(5deg) translateY(-3px); }
+  }
+
+  /* Browser frame mockup */
+  .browser-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgb(var(--color-primary) / 0.08);
+    background: rgb(var(--color-surface-subtle));
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: rgb(var(--color-primary) / 0.04);
+    border-bottom: 1px solid rgb(var(--color-primary) / 0.06);
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .browser-url {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: rgb(var(--color-primary-tertiary));
+    background: rgb(var(--color-primary) / 0.03);
+    padding: 3px 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .browser-content {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .browser-content img {
+    transition: opacity 0.3s ease;
   }
 </style>
