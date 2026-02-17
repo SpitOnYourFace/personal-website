@@ -1005,10 +1005,12 @@ import Footer from '../components/Footer.astro';
     100%  { transform: translateX(0)      translateY(0); }
   }
 
-  @media (max-width: 767px) {
-    .sun-glow { opacity: 0.55; }
-    .sun-halo { opacity: 0.45; }
-    .sun-rays { opacity: 0.5; }
+  @media (max-width: 768px) {
+    /* Hide heavy elements on mobile for smooth 60fps scrolling */
+    .clouds-layer { display: none; }
+    .sun-rays, .sun-halo, .moon-rays, .moon-halo { display: none; }
+    .sun-glow { width: 300px; height: 300px; top: -60px; opacity: 0.5; }
+    .moon-glow { width: 250px; height: 250px; top: -50px; opacity: 0.5; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1090,8 +1092,8 @@ import Footer from '../components/Footer.astro';
   }
 
   @keyframes cloud-bob {
-    0%, 100% { margin-top: 0; }
-    50% { margin-top: -6px; }
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -6px; }
   }
 
   /* ===== TRANSITION: SKY → FOREST ===== */
@@ -1329,7 +1331,7 @@ import Footer from '../components/Footer.astro';
     .flower-10 { right: 5%; }
     .flower-11 { right: 2%; }
     .flower-12 { right: 8%; }
-    .reeds-svg { opacity: 0.6; }
+    .reeds-svg { display: none; }
   }
 
   /* ===== POND LAYER ===== */
@@ -1438,8 +1440,10 @@ import Footer from '../components/Footer.astro';
   }
 
   @media (max-width: 768px) {
-    .lily, .water-lily, .frog, .ripple { opacity: 0.4; }
-    .frog { display: none; }
+    .lily, .water-lily, .ripple { opacity: 0.4; }
+    .frog-1 { opacity: 0.5; left: 3%; }
+    .frog-2 { display: none; }
+    .ripple-2, .ripple-3 { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {

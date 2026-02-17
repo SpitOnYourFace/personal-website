@@ -407,6 +407,11 @@ Protocol (ICP) ме зоват.
   }
 
   /* Wide + tall screens (480px+ wide, 800px+ tall, tablets): all 3 blocks */
+
+  /* Mobile perf: reduce star animations from 36 to 18 */
+  @media (max-width: 768px) {
+    .star:nth-child(2n) { display: none; }
+  }
 </style>
 
 <script>
@@ -479,34 +484,48 @@ Protocol (ICP) ме зоват.
     });
   })();
 
-  // ---- Mobile: touch to reveal ----
+  // ---- Mobile: touch to reveal (rAF-throttled) ----
   (function () {
     const hero = document.getElementById('hero');
     const overlay = document.getElementById('spotlight-overlay');
     if (!hero || !overlay) return;
 
+    let touchX = '110%';
+    let touchY = '110%';
+    let touchRaf = false;
+
+    function flushTouch() {
+      if (__spotlightSuppressed) { touchRaf = false; return; }
+      overlay.style.setProperty('--mx', touchX);
+      overlay.style.setProperty('--my', touchY);
+      touchRaf = false;
+    }
+
+    function scheduleTouch() {
+      if (!touchRaf) { touchRaf = true; requestAnimationFrame(flushTouch); }
+    }
+
     hero.addEventListener('touchstart', (e: TouchEvent) => {
       if (__spotlightSuppressed) return;
       const rect = hero.getBoundingClientRect();
-      const x = e.touches[0].clientX - rect.left;
-      const y = e.touches[0].clientY - rect.top;
-      overlay.style.setProperty('--mx', x + 'px');
-      overlay.style.setProperty('--my', y + 'px');
+      touchX = (e.touches[0].clientX - rect.left) + 'px';
+      touchY = (e.touches[0].clientY - rect.top) + 'px';
+      scheduleTouch();
     }, { passive: true });
 
     hero.addEventListener('touchmove', (e: TouchEvent) => {
       if (__spotlightSuppressed) return;
       const rect = hero.getBoundingClientRect();
-      const x = e.touches[0].clientX - rect.left;
-      const y = e.touches[0].clientY - rect.top;
-      overlay.style.setProperty('--mx', x + 'px');
-      overlay.style.setProperty('--my', y + 'px');
+      touchX = (e.touches[0].clientX - rect.left) + 'px';
+      touchY = (e.touches[0].clientY - rect.top) + 'px';
+      scheduleTouch();
     }, { passive: true });
 
     hero.addEventListener('touchend', () => {
       if (__spotlightSuppressed) return;
-      overlay.style.setProperty('--mx', '110%');
-      overlay.style.setProperty('--my', '110%');
+      touchX = '110%';
+      touchY = '110%';
+      scheduleTouch();
     });
   })();
 
@@ -522,7 +541,8 @@ Protocol (ICP) ме зоват.
     let width: number, height: number;
     const isMobile = window.innerWidth < 768;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const COUNT = prefersReducedMotion ? 0 : (isMobile ? 8 : 50);
+    const COUNT = prefersReducedMotion || isMobile ? 0 : 50;
+    if (COUNT === 0) { canvas.style.display = 'none'; return; }
     const DIST = isMobile ? 70 : 120;
     const DIST_SQ = DIST * DIST;
     const MOUSE_DIST = DIST * 1.5;
