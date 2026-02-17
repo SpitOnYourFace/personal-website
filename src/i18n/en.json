@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "about": "about",
+    "skills": "skills",
+    "projects": "projects",
+    "crypto": "crypto",
+    "contact": "contact"
+  },
+  "hero": {
+    "subtitle": "I write code that speaks for itself.",
+    "cta": "View my work",
+    "hintDesktop": "move your cursor here<br/>to read my story",
+    "hintMobile": "touch & hold to reveal my story",
+    "readStory": "Read my story",
+    "storyText": "My name is Krasimir Kralev. Curiosity drives everything I do. I study Computer Science at the University of Plovdiv \"Paisii Hilendarski\". At ResultsCX I'm a QA & Development Specialist on the Sky UK project. I play guitar in Slathe. JavaScript is my weapon of choice — Node.js, Astro, Tailwind CSS. I'm passionate about Web3 and the Internet Computer Protocol. This is just the beginning.",
+    "roles": ["Web Developer", "QA Specialist", "Guitarist @ Slathe", "Web3 Enthusiast"]
+  },
+  "about": {
+    "title": "About",
+    "bio1": "Quality Assurance specialist with <strong class=\"font-semibold\">3+ years at ResultsCx</strong>, currently studying <strong class=\"font-semibold\">Computer Science at Plovdiv University</strong>.",
+    "bio2": "When I'm not debugging code, I'm playing guitar in <a href=\"https://www.youtube.com/channel/UCtA80N1APoWs2ELq8udQHpA\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-accent font-medium hover:underline underline-offset-2\">Slathe</a>. Music and code share the same discipline.",
+    "getInTouch": "Get in touch"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "The tools and technologies I use to bring ideas to life.",
+    "all": "All",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "learning": "Learning"
+  },
+  "projects": {
+    "title": "Projects",
+    "visit": "Visit"
+  },
+  "crypto": {
+    "title": "Live Tracker",
+    "autoRefresh": "Auto-refreshes every 60s",
+    "loading": "Loading data...",
+    "marketCap": "Market Cap",
+    "sevenDay": "7d"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's build something together.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "serverError": "Could not connect to server.",
+    "nameRequired": "Name is required (min 2 characters)",
+    "nameMin": "Minimum 2 characters",
+    "emailRequired": "A valid email is required",
+    "emailInvalid": "Invalid email address",
+    "messageRequired": "Message is required (min 10 characters)",
+    "messageMin": "Minimum 10 characters"
+  },
+  "skipNav": "Skip to content"
+}

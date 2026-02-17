@@ -1,95 +1,122 @@
 ---
 ---
 
-<section id="about" class="about-section py-24 relative z-[2]">
-  <div class="max-w-5xl mx-auto px-6">
-    <div data-reveal class="about-card relative rounded-2xl p-8 md:p-10">
-      <!-- Glass card background -->
-      <div class="about-card-bg"></div>
-      <div class="about-card-border"></div>
+<section id="about" class="about-section py-20 md:py-28 relative z-[2]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div data-reveal class="about-layout relative">
 
-      <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
-        <!-- Profile image with sun-ring glow -->
-        <div class="about-avatar-wrap flex-shrink-0">
-          <div class="about-avatar-glow"></div>
-          <img
-            src="/images/selfie.jpg"
-            alt="Krasimir Kralev"
-            width="96"
-            height="96"
-            loading="lazy"
-            class="about-avatar w-24 h-24 rounded-full object-cover object-top relative z-10"
-          />
+      <!-- Large photo side -->
+      <div class="about-photo-col">
+        <div class="about-photo-frame">
+          <!-- Photo with border frame -->
+          <div class="photo-wrapper">
+            <img
+              src="/images/selfie.jpg"
+              alt="Krasimir Kralev"
+              width="380"
+              height="380"
+              loading="lazy"
+              class="about-photo"
+            />
+            <div class="photo-overlay"></div>
+          </div>
+          <!-- Gold frame border -->
+          <div class="photo-border"></div>
+          <!-- Ambient glow behind photo -->
+          <div class="photo-glow"></div>
         </div>
+      </div>
 
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[2px] text-accent mb-6">
-            <span data-lang="en">About</span>
+      <!-- Content side -->
+      <div class="about-content-col">
+        <div class="about-content-inner">
+          <!-- Label -->
+          <p class="about-label">
+            <span class="label-line"></span>
+            <span data-lang="en">About me</span>
             <span data-lang="bg">За мен</span>
           </p>
-          <p class="text-primary leading-relaxed mb-2 max-w-xl" data-lang="en">
-            Quality Assurance specialist with <strong class="font-semibold">3+ years at ResultsCx</strong>,
-            currently studying <strong class="font-semibold">Computer Science at Plovdiv University</strong>.
-          </p>
-          <p class="text-primary leading-relaxed mb-2 max-w-xl" data-lang="bg">
-            Специалист по осигуряване на качеството с <strong class="font-semibold">3+ години в ResultsCx</strong>,
-            в момента уча <strong class="font-semibold">Информатика в Пловдивски университет</strong>.
-          </p>
-          <p class="text-primary-secondary leading-relaxed mb-6 max-w-xl" data-lang="en">
-            When I'm not debugging code, I'm playing guitar in
-            <a
-              href="https://www.youtube.com/channel/UCtA80N1APoWs2ELq8udQHpA"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-accent font-medium hover:underline underline-offset-2"
-            >Slathe</a>.
-            Music and code share the same discipline.
-          </p>
-          <p class="text-primary-secondary leading-relaxed mb-6 max-w-xl" data-lang="bg">
-            Когато не дебъгвам код, свиря на китара в
-            <a
-              href="https://www.youtube.com/channel/UCtA80N1APoWs2ELq8udQHpA"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-accent font-medium hover:underline underline-offset-2"
-            >Slathe</a>.
-            Музиката и кодът споделят една и съща дисциплина.
-          </p>
-          <div class="flex gap-4 flex-wrap">
+
+          <!-- Name -->
+          <h2 class="about-name">Krasimir Kralev</h2>
+
+          <!-- Role badge -->
+          <div class="about-role">
+            <span class="role-dot"></span>
+            <span data-lang="en">QA Specialist &amp; Web Developer</span>
+            <span data-lang="bg">QA Специалист &amp; Уеб Разработчик</span>
+          </div>
+
+          <!-- Bio -->
+          <div class="about-bio">
+            <p data-lang="en">
+              Quality Assurance specialist with <strong>3+ years at ResultsCx</strong>,
+              currently studying <strong>Computer Science at Plovdiv University</strong>.
+            </p>
+            <p data-lang="bg">
+              Специалист по осигуряване на качеството с <strong>3+ години в ResultsCx</strong>,
+              в момента уча <strong>Информатика в Пловдивски университет</strong>.
+            </p>
+            <p data-lang="en">
+              When I'm not debugging code, I'm playing guitar in
+              <a href="https://www.youtube.com/channel/UCtA80N1APoWs2ELq8udQHpA" target="_blank" rel="noopener noreferrer" class="about-link">Slathe</a>.
+              Music and code share the same discipline.
+            </p>
+            <p data-lang="bg">
+              Когато не дебъгвам код, свиря на китара в
+              <a href="https://www.youtube.com/channel/UCtA80N1APoWs2ELq8udQHpA" target="_blank" rel="noopener noreferrer" class="about-link">Slathe</a>.
+              Музиката и кодът споделят една и съща дисциплина.
+            </p>
+          </div>
+
+          <!-- Stats row -->
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number">3+</span>
+              <span class="stat-label" data-lang="en">Years QA</span>
+              <span class="stat-label" data-lang="bg">Години QA</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">CS</span>
+              <span class="stat-label" data-lang="en">University</span>
+              <span class="stat-label" data-lang="bg">Университет</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">JS</span>
+              <span class="stat-label" data-lang="en">Main Stack</span>
+              <span class="stat-label" data-lang="bg">Осн. Стек</span>
+            </div>
+          </div>
+
+          <!-- CTA buttons -->
+          <div class="about-actions">
             <a
               href="https://github.com/SpitOnYourFace"
               target="_blank"
               rel="noopener noreferrer"
-              class="about-btn group relative inline-flex items-center gap-2.5 px-6 py-3 text-sm font-semibold rounded-full overflow-hidden transition-all duration-500"
+              class="about-btn group"
             >
-              <span class="absolute inset-0 rounded-full border border-primary/15 group-hover:border-accent/60 transition-colors duration-500"></span>
-              <span class="absolute inset-0 rounded-full bg-accent/0 group-hover:bg-accent/5 transition-all duration-500"></span>
-              <svg class="relative z-10 w-4 h-4 text-primary-tertiary group-hover:text-accent transition-colors duration-500" viewBox="0 0 24 24" fill="currentColor">
+              <svg class="w-[18px] h-[18px] text-current" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
               </svg>
-              <span class="relative z-10 text-primary-secondary group-hover:text-primary transition-colors duration-500">GitHub</span>
-              <svg class="relative z-10 w-3.5 h-3.5 text-primary-tertiary/0 group-hover:text-accent -translate-x-2 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span>GitHub</span>
+              <svg class="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
             </a>
-            <a
-              href="#contact"
-              class="cta-btn group relative inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold rounded-full overflow-hidden transition-all duration-500"
-            >
-              <span class="absolute inset-0 rounded-full bg-accent transition-all duration-500"></span>
-              <span class="absolute inset-0 rounded-full bg-gradient-to-r from-[#d4a84e] to-[#b8852e] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-              <span class="absolute inset-0 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_0_20px_rgba(200,151,62,0.3)] transition-shadow duration-500"></span>
-              <span class="relative z-10 text-white">
-                <span data-lang="en">Get in touch</span>
-                <span data-lang="bg">Свържете се</span>
-              </span>
-              <svg class="relative z-10 w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="#contact" class="about-cta group">
+              <span data-lang="en">Get in touch</span>
+              <span data-lang="bg">Свържете се</span>
+              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -99,106 +126,369 @@
     position: relative;
   }
 
-  /* Glassmorphism card */
-  .about-card {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .about-card-bg {
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    z-index: 0;
-  }
-
-  :global(.dark) .about-card-bg {
-    background: rgba(30, 45, 90, 0.35);
-    backdrop-filter: blur(22px) saturate(1.3);
-    -webkit-backdrop-filter: blur(22px) saturate(1.3);
-  }
-
-  .about-card-border {
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  :global(.dark) .about-card-border {
-    border-color: rgba(140, 170, 230, 0.15);
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(140, 170, 230, 0.1);
-  }
-
-  /* Avatar with glow ring */
-  .about-avatar-wrap {
-    position: relative;
-    display: flex;
+  /* ===== LAYOUT ===== */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
     align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-layout {
+      grid-template-columns: auto 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* ===== PHOTO COLUMN ===== */
+  .about-photo-col {
+    display: flex;
     justify-content: center;
   }
 
-  .about-avatar {
-    box-shadow:
-      0 0 0 3px rgba(255, 255, 255, 0.6),
-      0 0 20px rgba(255, 200, 80, 0.25);
-    transition: box-shadow 0.5s ease;
+  .about-photo-frame {
+    position: relative;
+    width: 260px;
+    height: 260px;
   }
 
-  .about-avatar-wrap:hover .about-avatar {
-    box-shadow:
-      0 0 0 3px rgba(255, 255, 255, 0.8),
-      0 0 30px rgba(255, 200, 80, 0.45);
+  @media (min-width: 768px) {
+    .about-photo-frame {
+      width: 300px;
+      height: 300px;
+    }
   }
 
-  :global(.dark) .about-avatar {
-    box-shadow:
-      0 0 0 3px rgba(140, 170, 230, 0.3),
-      0 0 20px rgba(140, 170, 230, 0.15);
+  .photo-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    z-index: 2;
   }
 
-  :global(.dark) .about-avatar-wrap:hover .about-avatar {
-    box-shadow:
-      0 0 0 3px rgba(140, 170, 230, 0.5),
-      0 0 30px rgba(140, 170, 230, 0.3);
+  .about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .about-avatar-glow {
+  .about-photo-frame:hover .about-photo {
+    transform: scale(1.05);
+  }
+
+  .photo-overlay {
     position: absolute;
-    width: 130px;
-    height: 130px;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      transparent 40%,
+      rgba(200, 151, 62, 0.1) 70%,
+      rgba(200, 151, 62, 0.15) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Gold frame border */
+  .photo-border {
+    position: absolute;
+    inset: -4px;
+    border-radius: 1.4rem;
+    z-index: 1;
+    background: linear-gradient(
+      145deg,
+      rgba(212, 168, 78, 0.7) 0%,
+      rgba(200, 151, 62, 0.35) 25%,
+      rgba(184, 133, 46, 0.15) 50%,
+      rgba(200, 151, 62, 0.35) 75%,
+      rgba(212, 168, 78, 0.7) 100%
+    );
+    pointer-events: none;
+  }
+
+  .photo-border::before {
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    border-radius: calc(1.4rem - 1.5px);
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  :global(.dark) .photo-border {
+    background: linear-gradient(
+      145deg,
+      rgba(140, 170, 230, 0.5) 0%,
+      rgba(140, 170, 230, 0.2) 25%,
+      rgba(100, 140, 210, 0.08) 50%,
+      rgba(140, 170, 230, 0.2) 75%,
+      rgba(140, 170, 230, 0.5) 100%
+    );
+  }
+
+  /* Ambient glow */
+  .photo-glow {
+    position: absolute;
+    inset: -40px;
     border-radius: 50%;
     background: radial-gradient(
       circle,
-      rgba(255, 210, 100, 0.3) 0%,
-      rgba(255, 195, 80, 0.12) 40%,
+      rgba(200, 151, 62, 0.2) 0%,
+      rgba(200, 151, 62, 0.08) 40%,
       transparent 70%
     );
-    filter: blur(8px);
-    animation: avatar-glow 4s ease-in-out infinite;
+    filter: blur(20px);
+    z-index: 0;
+    animation: photo-glow-pulse 5s ease-in-out infinite;
   }
 
-  :global(.dark) .about-avatar-glow {
+  :global(.dark) .photo-glow {
     background: radial-gradient(
       circle,
-      rgba(150, 185, 245, 0.2) 0%,
-      rgba(130, 165, 230, 0.08) 40%,
+      rgba(140, 170, 230, 0.15) 0%,
+      rgba(140, 170, 230, 0.05) 40%,
       transparent 70%
     );
   }
 
-  @keyframes avatar-glow {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.08); }
+  @keyframes photo-glow-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  /* ===== CONTENT COLUMN ===== */
+  .about-content-col {
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-content-col {
+      text-align: left;
+    }
+  }
+
+  .about-content-inner {
+    max-width: 520px;
+  }
+
+  @media (min-width: 768px) {
+    .about-content-inner {
+      max-width: none;
+    }
+  }
+
+  /* Label */
+  .about-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgb(var(--color-accent));
+    margin-bottom: 1rem;
+  }
+
+  .label-line {
+    display: inline-block;
+    width: 32px;
+    height: 1.5px;
+    background: rgb(var(--color-accent));
+    border-radius: 1px;
+  }
+
+  /* Name */
+  .about-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgb(var(--color-primary));
+    letter-spacing: -0.5px;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .about-name {
+      font-size: 2.5rem;
+    }
+  }
+
+  /* Role badge */
+  .about-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    background: rgba(200, 151, 62, 0.1);
+    border: 1px solid rgba(200, 151, 62, 0.2);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgb(var(--color-accent));
+    margin-bottom: 1.75rem;
+  }
+
+  :global(.dark) .about-role {
+    background: rgba(200, 151, 62, 0.08);
+    border-color: rgba(200, 151, 62, 0.15);
+  }
+
+  .role-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgb(var(--color-accent));
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; box-shadow: 0 0 6px rgba(200, 151, 62, 0.6); }
+  }
+
+  /* Bio text */
+  .about-bio {
+    margin-bottom: 1.75rem;
+  }
+
+  .about-bio p {
+    color: rgb(var(--color-primary) / 0.8);
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .about-bio strong {
+    color: rgb(var(--color-primary));
+    font-weight: 600;
+  }
+
+  .about-link {
+    color: rgb(var(--color-accent));
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .about-link:hover {
+    border-color: rgb(var(--color-accent));
+  }
+
+  /* Stats row */
+  .about-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    margin-bottom: 2rem;
+    border-top: 1px solid rgb(var(--color-primary) / 0.08);
+    border-bottom: 1px solid rgb(var(--color-primary) / 0.08);
+  }
+
+  @media (min-width: 768px) {
+    .about-stats {
+      justify-content: flex-start;
+    }
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  @media (min-width: 768px) {
+    .stat-item {
+      align-items: flex-start;
+    }
+  }
+
+  .stat-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: rgb(var(--color-accent));
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgb(var(--color-primary) / 0.5);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgb(var(--color-primary) / 0.1);
+  }
+
+  /* Action buttons */
+  .about-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  .about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgb(var(--color-primary) / 0.7);
+    border: 1px solid rgb(var(--color-primary) / 0.12);
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+  }
+
+  .about-btn:hover {
+    color: rgb(var(--color-accent));
+    border-color: rgb(var(--color-accent) / 0.5);
+    background: rgb(var(--color-accent) / 0.05);
+  }
+
+  .about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    background: rgb(var(--color-accent));
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 12px rgba(200, 151, 62, 0.25);
+  }
+
+  .about-cta:hover {
+    background: linear-gradient(135deg, #d4a84e, #b8852e);
+    box-shadow: 0 4px 20px rgba(200, 151, 62, 0.4);
   }
 </style>

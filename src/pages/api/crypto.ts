@@ -1,11 +1,28 @@
 import type { APIRoute } from 'astro';
+import { env } from '../../env';
 
 export const prerender = false;
 
-export const GET: APIRoute = async () => {
-  const apiKey = import.meta.env.CMC_API_KEY;
+// In-memory cache: 60s TTL
+let cache: { data: string; timestamp: number } | null = null;
+const CACHE_TTL = 60_000;
 
-  if (!apiKey || apiKey === 'your_api_key_here') {
+export const GET: APIRoute = async () => {
+  // Return cached response if fresh
+  if (cache && Date.now() - cache.timestamp < CACHE_TTL) {
+    return new Response(cache.data, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=60',
+      },
+    });
+  }
+
+  let apiKey: string;
+  try {
+    apiKey = env.CMC_API_KEY;
+  } catch {
     return new Response(JSON.stringify({ error: 'API key not configured' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
@@ -47,7 +64,10 @@ export const GET: APIRoute = async () => {
       };
     });
 
-    return new Response(JSON.stringify(coins), {
+    const body = JSON.stringify(coins);
+    cache = { data: body, timestamp: Date.now() };
+
+    return new Response(body, {
       status: 200,
       headers: {
         'Content-Type': 'application/json',

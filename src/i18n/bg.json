@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "about": "за мен",
+    "skills": "умения",
+    "projects": "проекти",
+    "crypto": "крипто",
+    "contact": "контакт"
+  },
+  "hero": {
+    "subtitle": "Пиша код, който говори сам за себе си.",
+    "cta": "Вижте работата ми",
+    "hintDesktop": "преместете курсора тук<br/>за да прочетете историята ми",
+    "hintMobile": "докоснете и задръжте, за да разкриете историята ми",
+    "readStory": "Прочетете историята ми",
+    "storyText": "Казвам се Красимир Кралев. Любопитството движи всичко, което правя. Уча Информатика в Пловдивски университет \u201EПаисий Хилендарски\u201C. В ResultsCX съм специалист по Качество и развитие по проекта Sky UK. Свиря на китара в Slathe. JavaScript е моето оръжие \u2014 Node.js, Astro, Tailwind CSS. Увлечен съм от Web3 и Internet Computer Protocol. Това е само началото.",
+    "roles": ["Уеб Разработчик", "QA Специалист", "Китарист @ Slathe", "Web3 Ентусиаст"]
+  },
+  "about": {
+    "title": "За мен",
+    "bio1": "Специалист по осигуряване на качеството с <strong class=\"font-semibold\">3+ години в ResultsCx</strong>, в момента уча <strong class=\"font-semibold\">Информатика в Пловдивски университет</strong>.",
+    "bio2": "Когато не дебъгвам код, свиря на китара в <a href=\"https://www.youtube.com/channel/UCtA80N1APoWs2ELq8udQHpA\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-accent font-medium hover:underline underline-offset-2\">Slathe</a>. Музиката и кодът споделят една и съща дисциплина.",
+    "getInTouch": "Свържете се"
+  },
+  "skills": {
+    "title": "Умения и технологии",
+    "subtitle": "Инструментите и технологиите, с които превръщам идеите в реалност.",
+    "all": "Всички",
+    "frontend": "Фронтенд",
+    "backend": "Бекенд",
+    "tools": "Инструменти",
+    "learning": "Уча"
+  },
+  "projects": {
+    "title": "Проекти",
+    "visit": "Виж"
+  },
+  "crypto": {
+    "title": "Крипто на живо",
+    "autoRefresh": "Обновява се на 60сек",
+    "loading": "Зареждане...",
+    "marketCap": "Пазарна кап.",
+    "sevenDay": "7д"
+  },
+  "contact": {
+    "title": "Контакт",
+    "subtitle": "Нека изградим нещо заедно.",
+    "nameLabel": "Име",
+    "emailLabel": "Имейл",
+    "messageLabel": "Съобщение",
+    "send": "Изпрати",
+    "sending": "Изпращане...",
+    "success": "Съобщението е изпратено!",
+    "serverError": "Неуспешна връзка със сървъра.",
+    "nameRequired": "Името е задължително (мин. 2 символа)",
+    "nameMin": "Минимум 2 символа",
+    "emailRequired": "Валиден имейл е задължителен",
+    "emailInvalid": "Невалиден имейл",
+    "messageRequired": "Съобщението е задължително (мин. 10 символа)",
+    "messageMin": "Минимум 10 символа"
+  },
+  "skipNav": "Към съдържанието"
+}

@@ -19,41 +19,107 @@ import Footer from '../components/Footer.astro';
   <!-- Transition: Space → Sky -->
   <div class="layer-space-to-sky"></div>
 
+  <!-- Sun: positioned between layers to avoid overflow clipping -->
+  <div class="sky-sun" aria-hidden="true">
+    <div class="sun-rays"></div>
+    <div class="sun-halo"></div>
+    <div class="sun-glow"></div>
+    <div class="sun-core"></div>
+  </div>
+
   <!-- ====== LAYER 2: SKY ====== -->
   <div class="layer-sky">
-    <!-- Sun: persistent background at top of sky -->
-    <div class="sky-sun" aria-hidden="true">
-      <div class="sun-rays"></div>
-      <div class="sun-halo"></div>
-      <div class="sun-glow"></div>
-      <div class="sun-core"></div>
-    </div>
-
     <!-- Upper clouds - drift behind About -->
     <div class="clouds-layer clouds-back" aria-hidden="true">
       <svg class="cloud-svg cloud-a1" viewBox="0 0 520 180" fill="none">
-        <ellipse cx="260" cy="120" rx="220" ry="55" fill="rgba(255,255,255,0.4)" />
-        <ellipse cx="180" cy="90" rx="130" ry="65" fill="rgba(255,255,255,0.45)" />
-        <ellipse cx="330" cy="80" rx="140" ry="70" fill="rgba(255,255,255,0.42)" />
-        <ellipse cx="250" cy="65" rx="110" ry="55" fill="rgba(255,255,255,0.5)" />
-        <ellipse cx="400" cy="100" rx="90" ry="48" fill="rgba(255,255,255,0.35)" />
-        <ellipse cx="120" cy="105" rx="85" ry="42" fill="rgba(255,255,255,0.35)" />
-        <ellipse cx="260" cy="55" rx="80" ry="42" fill="rgba(255,255,255,0.48)" />
+        <defs>
+          <filter id="cloud-blur-a1" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="1" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="1.5"/>
+          </filter>
+          <radialGradient id="cloud-grad-a1" cx="50%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.6"/>
+            <stop offset="60%" stop-color="white" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.05"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-a1)">
+          <path d="M80,130 Q60,110 90,90 Q75,60 120,55 Q140,30 190,40 Q220,20 270,35 Q310,15 350,40 Q400,30 420,55 Q460,50 455,80 Q475,100 440,120 Q450,140 400,145 Q350,155 280,148 Q200,155 140,145 Q100,148 80,130Z" fill="url(#cloud-grad-a1)"/>
+          <path d="M130,125 Q120,100 155,85 Q150,55 200,50 Q230,32 275,45 Q315,28 345,50 Q380,42 395,70 Q415,80 400,105 Q410,125 370,130 Q310,140 240,132 Q170,138 130,125Z" fill="rgba(255,255,255,0.35)"/>
+          <path d="M170,115 Q165,90 200,78 Q195,55 240,50 Q270,38 300,52 Q330,42 350,65 Q370,72 360,95 Q368,112 335,118 Q290,128 230,120 Q190,125 170,115Z" fill="rgba(255,255,255,0.25)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(260,85)">
+          <!-- AWS logo -->
+          <text x="0" y="-8" text-anchor="middle" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="900" fill="#232F3E" letter-spacing="5">aws</text>
+          <!-- Smile arrow -->
+          <path d="M-30,8 Q0,22 30,8" stroke="#FF9900" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M26,4 L34,9 L26,14" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#FF9900" opacity="0.85" letter-spacing="1">amazon web services</text>
+        </g>
       </svg>
       <svg class="cloud-svg cloud-a2" viewBox="0 0 440 160" fill="none">
-        <ellipse cx="220" cy="105" rx="185" ry="50" fill="rgba(255,255,255,0.38)" />
-        <ellipse cx="155" cy="78" rx="110" ry="60" fill="rgba(255,255,255,0.44)" />
-        <ellipse cx="285" cy="72" rx="120" ry="62" fill="rgba(255,255,255,0.4)" />
-        <ellipse cx="215" cy="58" rx="90" ry="50" fill="rgba(255,255,255,0.5)" />
-        <ellipse cx="360" cy="88" rx="70" ry="40" fill="rgba(255,255,255,0.32)" />
-        <ellipse cx="80" cy="92" rx="68" ry="38" fill="rgba(255,255,255,0.34)" />
+        <defs>
+          <filter id="cloud-blur-a2" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="7" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="1.2"/>
+          </filter>
+          <radialGradient id="cloud-grad-a2" cx="45%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.55"/>
+            <stop offset="55%" stop-color="white" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.04"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-a2)">
+          <path d="M65,115 Q50,95 75,78 Q60,50 110,45 Q135,25 175,35 Q210,18 250,32 Q285,15 320,38 Q360,28 375,55 Q400,58 390,85 Q405,105 370,115 Q350,132 280,128 Q200,135 130,125 Q90,128 65,115Z" fill="url(#cloud-grad-a2)"/>
+          <path d="M110,108 Q100,85 135,72 Q125,48 170,45 Q200,30 240,42 Q275,25 305,48 Q338,38 348,65 Q365,75 350,95 Q358,110 325,115 Q270,125 200,118 Q145,122 110,108Z" fill="rgba(255,255,255,0.3)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(220,72)">
+          <!-- Azure swoosh logo -->
+          <path d="M-22,-22 L-6,-22 L-18,0 L6,0 L-14,22 L-10,6 L-26,6Z" fill="url(#azure-grad)" />
+          <defs>
+            <linearGradient id="azure-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0078D4"/>
+              <stop offset="100%" stop-color="#50E6FF"/>
+            </linearGradient>
+          </defs>
+          <text x="18" y="-4" text-anchor="start" font-family="'Inter', sans-serif" font-size="22" font-weight="800" fill="#0078D4" letter-spacing="1">Azure</text>
+          <text x="18" y="12" text-anchor="start" font-family="Inter, sans-serif" font-size="9" fill="#50E6FF" opacity="0.9" letter-spacing="0.5">Microsoft</text>
+        </g>
       </svg>
       <svg class="cloud-svg cloud-a3" viewBox="0 0 380 140" fill="none">
-        <ellipse cx="190" cy="95" rx="160" ry="42" fill="rgba(255,255,255,0.36)" />
-        <ellipse cx="130" cy="70" rx="95" ry="52" fill="rgba(255,255,255,0.42)" />
-        <ellipse cx="250" cy="65" rx="100" ry="55" fill="rgba(255,255,255,0.4)" />
-        <ellipse cx="190" cy="52" rx="75" ry="42" fill="rgba(255,255,255,0.48)" />
-        <ellipse cx="310" cy="80" rx="60" ry="35" fill="rgba(255,255,255,0.3)" />
+        <defs>
+          <filter id="cloud-blur-a3" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="1.8"/>
+          </filter>
+          <radialGradient id="cloud-grad-a3" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.5"/>
+            <stop offset="50%" stop-color="white" stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.03"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-a3)">
+          <path d="M55,100 Q42,82 68,68 Q55,42 100,38 Q125,22 165,32 Q200,15 235,30 Q265,18 290,40 Q320,32 330,58 Q350,65 340,85 Q352,100 315,108 Q270,118 200,112 Q130,118 85,108 Q60,110 55,100Z" fill="url(#cloud-grad-a3)"/>
+          <path d="M100,95 Q92,75 120,65 Q112,45 155,42 Q180,28 215,40 Q248,28 268,50 Q292,44 298,68 Q312,78 300,92 Q285,102 235,98 Q175,105 125,98 Q105,100 100,95Z" fill="rgba(255,255,255,0.25)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(190,62)">
+          <!-- Google Cloud hexagon -->
+          <polygon points="0,-20 17,-10 17,10 0,20 -17,10 -17,-10" fill="none" stroke="#4285F4" stroke-width="2.5"/>
+          <polygon points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7" fill="#4285F4" opacity="0.15"/>
+          <line x1="0" y1="-14" x2="0" y2="-20" stroke="#EA4335" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="12" y1="7" x2="17" y2="10" stroke="#FBBC04" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="-12" y1="7" x2="-17" y2="10" stroke="#34A853" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="0" cy="-14" r="3" fill="#EA4335"/>
+          <circle cx="12" cy="7" r="3" fill="#FBBC04"/>
+          <circle cx="-12" cy="7" r="3" fill="#34A853"/>
+          <text x="0" y="34" text-anchor="middle" font-family="'Inter', sans-serif" font-size="16" font-weight="700" letter-spacing="1">
+            <tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC04">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan>
+          </text>
+          <text x="0" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#5F6368" letter-spacing="0.5">Cloud Platform</text>
+        </g>
       </svg>
     </div>
 
@@ -62,35 +128,128 @@ import Footer from '../components/Footer.astro';
     <!-- Lower clouds - drift between About and Skills -->
     <div class="clouds-layer clouds-front" aria-hidden="true">
       <svg class="cloud-svg cloud-b1" viewBox="0 0 480 160" fill="none">
-        <ellipse cx="240" cy="110" rx="200" ry="48" fill="rgba(255,255,255,0.5)" />
-        <ellipse cx="165" cy="82" rx="115" ry="60" fill="rgba(255,255,255,0.55)" />
-        <ellipse cx="310" cy="75" rx="125" ry="62" fill="rgba(255,255,255,0.52)" />
-        <ellipse cx="235" cy="60" rx="95" ry="50" fill="rgba(255,255,255,0.6)" />
-        <ellipse cx="380" cy="92" rx="80" ry="42" fill="rgba(255,255,255,0.42)" />
-        <ellipse cx="100" cy="96" rx="75" ry="40" fill="rgba(255,255,255,0.4)" />
-        <ellipse cx="240" cy="48" rx="70" ry="38" fill="rgba(255,255,255,0.55)" />
+        <defs>
+          <filter id="cloud-blur-b1" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="1"/>
+          </filter>
+          <radialGradient id="cloud-grad-b1" cx="48%" cy="32%" r="62%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.75"/>
+            <stop offset="50%" stop-color="white" stop-opacity="0.5"/>
+            <stop offset="85%" stop-color="white" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-b1)">
+          <path d="M70,125 Q48,105 78,85 Q62,55 115,48 Q138,25 185,35 Q218,15 265,30 Q305,12 345,35 Q388,22 410,52 Q445,50 438,82 Q458,105 425,118 Q430,140 385,142 Q335,152 265,145 Q190,150 130,140 Q88,142 70,125Z" fill="url(#cloud-grad-b1)"/>
+          <path d="M120,118 Q108,95 145,80 Q135,52 188,48 Q218,30 265,42 Q305,24 338,48 Q372,38 385,68 Q405,78 392,102 Q402,120 362,125 Q305,135 235,128 Q165,132 120,118Z" fill="rgba(255,255,255,0.4)"/>
+          <path d="M165,110 Q158,88 195,75 Q188,52 235,48 Q262,35 295,50 Q325,40 342,62 Q358,70 348,92 Q356,108 328,112 Q285,122 225,115 Q180,118 165,110Z" fill="rgba(255,255,255,0.3)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(240,78)">
+          <!-- Cloudflare cloud/shield -->
+          <defs>
+            <linearGradient id="cf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F6821F"/>
+              <stop offset="100%" stop-color="#FEAD10"/>
+            </linearGradient>
+          </defs>
+          <path d="M-8,-28 Q-2,-38 8,-32 Q14,-40 24,-34 Q32,-38 36,-30 Q42,-30 40,-22 Q46,-18 40,-12 L-20,-12 Q-26,-16 -22,-22 Q-24,-28 -16,-28Z" fill="url(#cf-grad)"/>
+          <path d="M-4,-28 Q0,-34 8,-30 Q12,-36 20,-32 Q26,-34 30,-28 Q34,-28 32,-22 Q36,-18 32,-14 L-12,-14 Q-16,-18 -14,-22 Q-16,-26 -10,-28Z" fill="#F38020" opacity="0.6"/>
+          <text x="0" y="2" text-anchor="middle" font-family="'Inter', sans-serif" font-size="22" font-weight="800" fill="#F38020" letter-spacing="0.5">Cloudflare</text>
+          <text x="0" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#FAAE2B" opacity="0.9">the orange cloud people</text>
+        </g>
       </svg>
       <svg class="cloud-svg cloud-b2" viewBox="0 0 400 140" fill="none">
-        <ellipse cx="200" cy="95" rx="170" ry="42" fill="rgba(255,255,255,0.48)" />
-        <ellipse cx="140" cy="68" rx="100" ry="55" fill="rgba(255,255,255,0.54)" />
-        <ellipse cx="260" cy="62" rx="108" ry="56" fill="rgba(255,255,255,0.5)" />
-        <ellipse cx="195" cy="50" rx="82" ry="45" fill="rgba(255,255,255,0.58)" />
-        <ellipse cx="335" cy="82" rx="58" ry="35" fill="rgba(255,255,255,0.38)" />
-        <ellipse cx="65" cy="85" rx="55" ry="32" fill="rgba(255,255,255,0.36)" />
+        <defs>
+          <filter id="cloud-blur-b2" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="3" seed="9" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="0.8"/>
+          </filter>
+          <radialGradient id="cloud-grad-b2" cx="52%" cy="35%" r="58%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.7"/>
+            <stop offset="55%" stop-color="white" stop-opacity="0.42"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.03"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-b2)">
+          <path d="M55,105 Q38,85 65,70 Q50,42 100,38 Q128,20 168,30 Q205,12 245,28 Q278,10 315,32 Q352,22 365,52 Q388,55 378,80 Q395,100 360,108 Q340,125 275,120 Q200,128 125,118 Q80,122 55,105Z" fill="url(#cloud-grad-b2)"/>
+          <path d="M102,98 Q92,78 125,65 Q115,42 160,38 Q188,25 225,36 Q258,20 285,42 Q315,32 328,58 Q345,68 335,88 Q342,102 310,108 Q260,118 195,110 Q135,115 102,98Z" fill="rgba(255,255,255,0.35)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(200,68)">
+          <!-- Vercel triangle logo -->
+          <polygon points="0,-30 22,-2 -22,-2" fill="#171717"/>
+          <polygon points="0,-24 16,-6 -16,-6" fill="white" opacity="0.15"/>
+          <text x="0" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-size="20" font-weight="800" fill="#171717" letter-spacing="2">Vercel</text>
+          <text x="0" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#666" letter-spacing="0.5">develop. preview. ship.</text>
+        </g>
       </svg>
       <svg class="cloud-svg cloud-b3" viewBox="0 0 360 130" fill="none">
-        <ellipse cx="180" cy="88" rx="150" ry="40" fill="rgba(255,255,255,0.45)" />
-        <ellipse cx="125" cy="62" rx="88" ry="48" fill="rgba(255,255,255,0.52)" />
-        <ellipse cx="235" cy="58" rx="94" ry="50" fill="rgba(255,255,255,0.48)" />
-        <ellipse cx="180" cy="45" rx="68" ry="38" fill="rgba(255,255,255,0.56)" />
-        <ellipse cx="295" cy="72" rx="55" ry="32" fill="rgba(255,255,255,0.36)" />
+        <defs>
+          <filter id="cloud-blur-b3" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="3" seed="17" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="1"/>
+          </filter>
+          <radialGradient id="cloud-grad-b3" cx="50%" cy="38%" r="56%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.65"/>
+            <stop offset="50%" stop-color="white" stop-opacity="0.38"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.03"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-b3)">
+          <path d="M48,92 Q35,75 58,62 Q45,38 90,32 Q115,18 152,28 Q185,12 220,25 Q248,10 278,32 Q308,24 318,50 Q338,58 328,78 Q340,95 308,100 Q275,112 210,105 Q145,110 95,102 Q58,105 48,92Z" fill="url(#cloud-grad-b3)"/>
+          <path d="M88,85 Q80,68 108,58 Q98,38 140,35 Q165,22 198,34 Q228,20 252,40 Q278,32 285,55 Q300,62 292,80 Q280,92 235,88 Q175,95 118,88 Q92,90 88,85Z" fill="rgba(255,255,255,0.3)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(180,60)">
+          <!-- Netlify gem logo -->
+          <defs>
+            <linearGradient id="ntl-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#05BDBA"/>
+              <stop offset="50%" stop-color="#00C7B7"/>
+              <stop offset="100%" stop-color="#3CEFCE"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,-22 L14,-11 L14,8 L0,20 L-14,8 L-14,-11Z" fill="url(#ntl-grad)"/>
+          <path d="M0,-16 L10,-8 L10,5 L0,14 L-10,5 L-10,-8Z" fill="white" opacity="0.2"/>
+          <line x1="-14" y1="-2" x2="14" y2="-2" stroke="white" stroke-width="1" opacity="0.3"/>
+          <line x1="0" y1="-22" x2="0" y2="20" stroke="white" stroke-width="1" opacity="0.3"/>
+          <text x="0" y="34" text-anchor="middle" font-family="'Inter', sans-serif" font-size="18" font-weight="800" fill="#00C7B7" letter-spacing="1">Netlify</text>
+          <text x="0" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#05BDBA" opacity="0.85">jamstack in the sky</text>
+        </g>
       </svg>
       <svg class="cloud-svg cloud-b4" viewBox="0 0 300 120" fill="none">
-        <ellipse cx="150" cy="80" rx="125" ry="36" fill="rgba(255,255,255,0.46)" />
-        <ellipse cx="105" cy="58" rx="78" ry="44" fill="rgba(255,255,255,0.52)" />
-        <ellipse cx="200" cy="52" rx="82" ry="46" fill="rgba(255,255,255,0.48)" />
-        <ellipse cx="150" cy="42" rx="60" ry="35" fill="rgba(255,255,255,0.55)" />
-        <ellipse cx="245" cy="68" rx="48" ry="28" fill="rgba(255,255,255,0.38)" />
+        <defs>
+          <filter id="cloud-blur-b4" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="23" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+            <feGaussianBlur stdDeviation="0.8"/>
+          </filter>
+          <radialGradient id="cloud-grad-b4" cx="48%" cy="36%" r="55%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.6"/>
+            <stop offset="50%" stop-color="white" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#cloud-blur-b4)">
+          <path d="M40,82 Q28,65 52,55 Q42,32 82,28 Q105,15 138,24 Q168,10 198,22 Q225,12 248,30 Q272,22 280,48 Q298,55 288,72 Q298,88 268,92 Q238,102 180,96 Q120,102 78,92 Q48,95 40,82Z" fill="url(#cloud-grad-b4)"/>
+          <path d="M78,75 Q72,60 95,52 Q88,35 125,32 Q148,22 178,32 Q205,22 225,40 Q245,34 250,55 Q262,62 255,75 Q245,85 200,80 Q148,85 100,78 Q82,80 78,75Z" fill="rgba(255,255,255,0.28)"/>
+        </g>
+        <g class="cloud-provider-text" transform="translate(150,55)">
+          <!-- DigitalOcean droplet -->
+          <defs>
+            <linearGradient id="do-grad" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" stop-color="#0080FF"/>
+              <stop offset="100%" stop-color="#0069D9"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,-30 C0,-30 16,-10 16,2 C16,11 9,18 0,18 C-9,18 -16,11 -16,2 C-16,-10 0,-30 0,-30Z" fill="url(#do-grad)"/>
+          <ellipse cx="0" cy="4" rx="6" ry="5" fill="white" opacity="0.25"/>
+          <ellipse cx="-2" cy="0" rx="3" ry="2.5" fill="white" opacity="0.15"/>
+          <text x="0" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14" font-weight="800" fill="#0080FF" letter-spacing="0.5">DigitalOcean</text>
+          <text x="0" y="44" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#0069D9" opacity="0.8">swim in the cloud</text>
+        </g>
       </svg>
     </div>
 
@@ -321,16 +480,13 @@ import Footer from '../components/Footer.astro';
     background: linear-gradient(to bottom, #364d8c 0%, #6688cc 50%, #7096D1 100%);
   }
 
-  /* ===== SUN — persistent at top of sky ===== */
+  /* ===== SUN — positioned between transition & sky layers ===== */
   .sky-sun {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 600px;
+    position: relative;
+    z-index: 2;
+    height: 0;
+    overflow: visible;
     pointer-events: none;
-    z-index: 0;
-    contain: layout style;
   }
 
   .sun-core {
@@ -356,7 +512,7 @@ import Footer from '../components/Footer.astro';
 
   .sun-glow {
     position: absolute;
-    top: -60px;
+    top: -200px;
     left: 50%;
     transform: translateX(-50%);
     width: 600px;
@@ -378,7 +534,7 @@ import Footer from '../components/Footer.astro';
 
   .sun-halo {
     position: absolute;
-    top: -250px;
+    top: -450px;
     left: 50%;
     transform: translateX(-50%);
     width: 1100px;
@@ -399,7 +555,7 @@ import Footer from '../components/Footer.astro';
 
   .sun-rays {
     position: absolute;
-    top: -100px;
+    top: -300px;
     left: 50%;
     transform: translateX(-50%);
     width: 800px;
@@ -510,48 +666,74 @@ import Footer from '../components/Footer.astro';
   /* ===== CLOUD LAYERS ===== */
   .clouds-layer {
     position: relative;
-    pointer-events: none;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .clouds-back {
-    height: 120px;
+    height: 160px;
     z-index: 1;
   }
 
   .clouds-front {
-    height: 140px;
+    height: 180px;
     z-index: 3;
   }
 
   .cloud-svg {
     position: absolute;
-    filter: blur(1.5px);
-    animation: drift-cloud linear infinite;
+    pointer-events: auto;
+    cursor: pointer;
+    animation: drift-cloud linear infinite, cloud-bob ease-in-out infinite;
     will-change: transform;
     backface-visibility: hidden;
-    contain: layout style;
+    transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  .cloud-svg:hover {
+    filter: brightness(1.2) drop-shadow(0 8px 30px rgba(255,255,255,0.35));
+    animation-play-state: paused, paused;
+    transform: translateX(var(--_dx, 0)) scale(1.08);
+  }
+
+  .cloud-svg .cloud-provider-text {
+    opacity: 0;
+    transition: opacity 0.5s ease 0.1s;
+    pointer-events: none;
+  }
+
+  .cloud-svg:hover .cloud-provider-text {
+    opacity: 1;
+  }
+
+
   :global(.dark) .cloud-svg {
-    filter: blur(2.5px);
-    opacity: 0.2;
+    opacity: 0.15;
+  }
+
+  :global(.dark) .cloud-svg:hover {
+    opacity: 0.45;
+    filter: brightness(1.4) drop-shadow(0 8px 30px rgba(255,255,255,0.2));
   }
 
   /* Back clouds (behind About) — larger, slower, more translucent */
-  .cloud-a1 { top: 10%; left: -35%; width: 380px; height: auto; animation-duration: 80s; opacity: 0.7; }
-  .cloud-a2 { top: 40%; left: -30%; width: 320px; height: auto; animation-duration: 95s; animation-delay: -35s; opacity: 0.6; }
-  .cloud-a3 { top: 60%; left: -25%; width: 280px; height: auto; animation-duration: 70s; animation-delay: -55s; opacity: 0.65; }
+  .cloud-a1 { top: -10%; left: -35%; width: 400px; height: auto; animation-duration: 80s, 12s; opacity: 0.75; }
+  .cloud-a2 { top: 25%; left: -30%; width: 340px; height: auto; animation-duration: 95s, 15s; animation-delay: -35s, -4s; opacity: 0.65; }
+  .cloud-a3 { top: 55%; left: -25%; width: 290px; height: auto; animation-duration: 70s, 10s; animation-delay: -55s, -7s; opacity: 0.7; }
 
   /* Front clouds (between About & Skills) — sharper, closer, brighter */
-  .cloud-b1 { top: 5%; left: -32%; width: 350px; height: auto; animation-duration: 65s; }
-  .cloud-b2 { top: 35%; left: -28%; width: 300px; height: auto; animation-duration: 80s; animation-delay: -20s; }
-  .cloud-b3 { top: 55%; left: -24%; width: 260px; height: auto; animation-duration: 72s; animation-delay: -45s; }
-  .cloud-b4 { top: 75%; left: -20%; width: 220px; height: auto; animation-duration: 58s; animation-delay: -30s; }
+  .cloud-b1 { top: -10%; left: -32%; width: 370px; height: auto; animation-duration: 65s, 14s; }
+  .cloud-b2 { top: 20%; left: -28%; width: 320px; height: auto; animation-duration: 80s, 11s; animation-delay: -20s, -3s; }
+  .cloud-b3 { top: 45%; left: -24%; width: 270px; height: auto; animation-duration: 72s, 16s; animation-delay: -45s, -8s; }
+  .cloud-b4 { top: 70%; left: -20%; width: 230px; height: auto; animation-duration: 58s, 13s; animation-delay: -30s, -5s; }
 
   @keyframes drift-cloud {
     0% { transform: translateX(0); }
     100% { transform: translateX(calc(100vw + 450px)); }
+  }
+
+  @keyframes cloud-bob {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -6px; }
   }
 
   /* ===== TRANSITION: SKY → FOREST ===== */
