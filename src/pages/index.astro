@@ -1008,9 +1008,10 @@ import Footer from '../components/Footer.astro';
   @media (max-width: 768px) {
     /* Hide heavy elements on mobile for smooth 60fps scrolling */
     .clouds-layer { display: none; }
-    .sun-rays, .sun-halo, .moon-rays, .moon-halo { display: none; }
-    .sun-glow { width: 300px; height: 300px; top: -60px; opacity: 0.5; }
-    .moon-glow { width: 250px; height: 250px; top: -50px; opacity: 0.5; }
+    .sun-rays, .sun-halo, .sun-glow, .moon-rays, .moon-halo, .moon-glow { display: none; }
+    .celestial-wrap { overflow: clip; max-height: 160px; }
+    .sun-core { width: 100px; height: 100px; top: 10px; }
+    .moon-core { width: 80px; height: 80px; top: 10px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
