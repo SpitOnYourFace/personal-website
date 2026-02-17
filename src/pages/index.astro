@@ -469,6 +469,7 @@ import Footer from '../components/Footer.astro';
     position: relative;
     overflow: hidden;
     contain: layout style;
+    margin-top: -1px;
     transition: background 0.55s ease;
     --color-primary: 30 30 50;
     --color-primary-secondary: 50 50 75;
@@ -602,7 +603,7 @@ import Footer from '../components/Footer.astro';
   }
 
   /* ===== DARK MODE: STATIC POSITIONS ===== */
-  :global(.dark) .sky-sun { transform: translateX(110vw); }
+  :global(.dark) .sky-sun { transform: translateX(200vw); }
   :global(.dark) .sky-moon { transform: translateX(0); }
 
   /* ===== MOON ELEMENT ===== */
@@ -612,7 +613,7 @@ import Footer from '../components/Footer.astro';
     height: 0;
     overflow: visible;
     pointer-events: none;
-    transform: translateX(-110vw);
+    transform: translateX(-200vw);
   }
 
   /* Moon surface — silver-white with crater detail */
@@ -817,31 +818,37 @@ import Footer from '../components/Footer.astro';
   /* Exit right: constant horizontal sweep, accelerating dip (Y = 60 * t²) */
   @keyframes arc-exit-right {
     0%    { transform: translateX(0)     translateY(0); }
-    10%   { transform: translateX(11vw)  translateY(0.6px); }
-    20%   { transform: translateX(22vw)  translateY(2.4px); }
-    30%   { transform: translateX(33vw)  translateY(5.4px); }
-    40%   { transform: translateX(44vw)  translateY(9.6px); }
-    50%   { transform: translateX(55vw)  translateY(15px); }
-    60%   { transform: translateX(66vw)  translateY(21.6px); }
-    70%   { transform: translateX(77vw)  translateY(29.4px); }
-    80%   { transform: translateX(88vw)  translateY(38.4px); }
-    90%   { transform: translateX(99vw)  translateY(48.6px); }
-    100%  { transform: translateX(110vw) translateY(60px); }
+    10%   { transform: translateX(20vw)  translateY(0.6px); }
+    20%   { transform: translateX(40vw)  translateY(2.4px); }
+    30%   { transform: translateX(60vw)  translateY(5.4px); }
+    40%   { transform: translateX(80vw)  translateY(9.6px); }
+    50%   { transform: translateX(100vw) translateY(15px); }
+    60%   { transform: translateX(120vw) translateY(21.6px); }
+    70%   { transform: translateX(140vw) translateY(29.4px); }
+    80%   { transform: translateX(160vw) translateY(38.4px); }
+    90%   { transform: translateX(180vw) translateY(48.6px); }
+    100%  { transform: translateX(200vw) translateY(60px); }
   }
 
   /* Enter left: constant sweep, decelerating rise (reciprocal) */
   @keyframes arc-enter-left {
-    0%    { transform: translateX(-110vw) translateY(60px); }
-    10%   { transform: translateX(-99vw)  translateY(48.6px); }
-    20%   { transform: translateX(-88vw)  translateY(38.4px); }
-    30%   { transform: translateX(-77vw)  translateY(29.4px); }
-    40%   { transform: translateX(-66vw)  translateY(21.6px); }
-    50%   { transform: translateX(-55vw)  translateY(15px); }
-    60%   { transform: translateX(-44vw)  translateY(9.6px); }
-    70%   { transform: translateX(-33vw)  translateY(5.4px); }
-    80%   { transform: translateX(-22vw)  translateY(2.4px); }
-    90%   { transform: translateX(-11vw)  translateY(0.6px); }
+    0%    { transform: translateX(-200vw) translateY(60px); }
+    10%   { transform: translateX(-180vw) translateY(48.6px); }
+    20%   { transform: translateX(-160vw) translateY(38.4px); }
+    30%   { transform: translateX(-140vw) translateY(29.4px); }
+    40%   { transform: translateX(-120vw) translateY(21.6px); }
+    50%   { transform: translateX(-100vw) translateY(15px); }
+    60%   { transform: translateX(-80vw)  translateY(9.6px); }
+    70%   { transform: translateX(-60vw)  translateY(5.4px); }
+    80%   { transform: translateX(-40vw)  translateY(2.4px); }
+    90%   { transform: translateX(-20vw)  translateY(0.6px); }
     100%  { transform: translateX(0)      translateY(0); }
+  }
+
+  @media (max-width: 767px) {
+    .sun-glow { opacity: 0.55; }
+    .sun-halo { opacity: 0.45; }
+    .sun-rays { opacity: 0.5; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -933,6 +940,7 @@ import Footer from '../components/Footer.astro';
     height: 350px;
     overflow: hidden;
     pointer-events: none;
+    margin-top: -1px;
     transition: background 0.55s ease;
     background: linear-gradient(
       to bottom,
@@ -981,6 +989,7 @@ import Footer from '../components/Footer.astro';
 
   /* ===== FOREST LAYER ===== */
   .layer-forest {
+    margin-top: -1px;
     transition: background 0.55s ease;
     --color-primary: 230 240 230;
     --color-primary-secondary: 180 200 180;
@@ -1017,6 +1026,7 @@ import Footer from '../components/Footer.astro';
     position: relative;
     height: 300px;
     overflow: hidden;
+    margin-top: -1px;
     transition: background 0.55s ease;
     pointer-events: none;
     background: linear-gradient(
@@ -1067,6 +1077,7 @@ import Footer from '../components/Footer.astro';
   /* ===== UNDERGROUND LAYER ===== */
   .layer-underground {
     position: relative;
+    margin-top: -1px;
     transition: background 0.55s ease;
     --color-primary: 255 248 235;
     --color-primary-secondary: 225 205 175;

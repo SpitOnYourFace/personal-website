@@ -139,14 +139,18 @@ const siteUrl = "https://krasimirkralev.com";
           rgba(10, 12, 35, 0.18) var(--wipe-pos),
           transparent calc(var(--wipe-pos) + 15%)
         );
+        mask-image: linear-gradient(to bottom, transparent 0%, transparent 90vh, black 100vh);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 90vh, black 100vh);
         animation: wipe-sweep 0.55s ease-out forwards;
       }
       #theme-sweep.sweep-to-light {
         background: linear-gradient(
           105deg,
-          rgba(220, 235, 250, 0.18) var(--wipe-pos),
-          transparent calc(var(--wipe-pos) + 15%)
+          rgba(255, 245, 220, 0.08) var(--wipe-pos),
+          transparent calc(var(--wipe-pos) + 20%)
         );
+        mask-image: linear-gradient(to bottom, transparent 0%, transparent 90vh, black 100vh);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 90vh, black 100vh);
         animation: wipe-sweep 0.55s ease-out forwards;
       }
       @keyframes wipe-sweep {
@@ -162,7 +166,7 @@ const siteUrl = "https://krasimirkralev.com";
   </head>
   <body class="bg-surface text-primary font-sans text-base leading-relaxed overflow-x-hidden antialiased" style="transition:background-color 0.55s ease,color 0.55s ease">
     <!-- Skip navigation -->
-    <a href="#main-content" class="skip-nav">
+    <a href="#main-content" class="skip-nav" style="position:fixed;top:-100%">
       <span data-lang="en">Skip to content</span>
       <span data-lang="bg">Към съдържанието</span>
     </a>
