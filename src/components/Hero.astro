@@ -240,6 +240,7 @@ Protocol (ICP) ме зоват.
 <style>
   /* ===== STARFIELD ===== */
   .starfield {
+    contain: strict;
     mask-image: linear-gradient(to bottom, white 0%, white 60%, transparent 90%);
     -webkit-mask-image: linear-gradient(to bottom, white 0%, white 60%, transparent 90%);
   }
@@ -247,31 +248,34 @@ Protocol (ICP) ме зоват.
   .star {
     position: absolute;
     border-radius: 50%;
-    background: white;
+    background: rgba(200, 215, 255, 0.9);
+    will-change: opacity;
   }
 
+  /* Static glow via sized element + blur — painted once, never re-painted */
   .s-sm {
-    width: 1.5px;
-    height: 1.5px;
+    width: 3px;
+    height: 3px;
+    filter: blur(1px);
     opacity: 0.15;
     animation: twinkle-sm 3s ease-in-out infinite;
-    box-shadow: 0 0 4px rgba(200, 215, 255, 0.35), 0 0 8px rgba(200, 215, 255, 0.15);
   }
 
   .s-md {
-    width: 2.5px;
-    height: 2.5px;
+    width: 5px;
+    height: 5px;
+    filter: blur(1.5px);
     opacity: 0.2;
     animation: twinkle-md 2.5s ease-in-out infinite;
-    box-shadow: 0 0 5px rgba(200, 215, 255, 0.45), 0 0 12px rgba(200, 215, 255, 0.2);
   }
 
   .s-lg {
-    width: 3px;
-    height: 3px;
+    width: 7px;
+    height: 7px;
+    filter: blur(2px);
     opacity: 0.3;
+    will-change: opacity, transform;
     animation: twinkle-lg 4s ease-in-out infinite;
-    box-shadow: 0 0 6px rgba(200, 210, 255, 0.6), 0 0 14px rgba(200, 210, 255, 0.3), 0 0 24px rgba(200, 210, 255, 0.1);
   }
 
   /* Stagger animations so stars don't all blink together */
@@ -282,19 +286,20 @@ Protocol (ICP) ме зоват.
   .star:nth-child(11n)  { animation-delay: -1.1s; }
   .star:nth-child(13n)  { animation-delay: -3.0s; }
 
+  /* GPU-composited: only opacity (and transform for large) — no box-shadow repaints */
   @keyframes twinkle-sm {
-    0%, 100% { opacity: 0.1; box-shadow: 0 0 2px rgba(200, 215, 255, 0.1); }
-    50% { opacity: 0.9; box-shadow: 0 0 6px rgba(200, 215, 255, 0.6), 0 0 12px rgba(200, 215, 255, 0.3); }
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.9; }
   }
 
   @keyframes twinkle-md {
-    0%, 100% { opacity: 0.15; box-shadow: 0 0 3px rgba(200, 215, 255, 0.2); }
-    50% { opacity: 1; box-shadow: 0 0 8px rgba(200, 215, 255, 0.7), 0 0 16px rgba(200, 215, 255, 0.35); }
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 1; }
   }
 
   @keyframes twinkle-lg {
-    0%, 100% { opacity: 0.2; transform: scale(1); box-shadow: 0 0 4px rgba(200, 210, 255, 0.3); }
-    50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px rgba(200, 210, 255, 0.9), 0 0 20px rgba(200, 210, 255, 0.5), 0 0 35px rgba(200, 210, 255, 0.2); }
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
   }
 
   .code-layer { overflow: hidden; }
@@ -418,7 +423,7 @@ Protocol (ICP) ме зоват.
 </style>
 
 <script>
-  // ---- Spotlight: desktop mouse tracking ----
+  // ---- Spotlight: desktop mouse tracking (rAF-throttled) ----
   (function () {
     const hero = document.getElementById('hero');
     const overlay = document.getElementById('spotlight-overlay');
@@ -426,13 +431,23 @@ Protocol (ICP) ме зоват.
     if (!hero || !overlay) return;
 
     let hintHidden = false;
+    let spotX = '-200%';
+    let spotY = '-200%';
+    let spotRaf = false;
+
+    function flushSpot() {
+      overlay.style.setProperty('--mx', spotX);
+      overlay.style.setProperty('--my', spotY);
+      spotRaf = false;
+    }
 
     hero.addEventListener('mousemove', (e: MouseEvent) => {
       const rect = hero.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      overlay.style.setProperty('--mx', x + 'px');
-      overlay.style.setProperty('--my', y + 'px');
+      spotX = x + 'px';
+      spotY = y + 'px';
+      if (!spotRaf) { spotRaf = true; requestAnimationFrame(flushSpot); }
 
       if (!hintHidden && hint) {
         const pctX = x / rect.width;
@@ -444,15 +459,14 @@ Protocol (ICP) ме зоват.
       }
     });
 
-    // Hide spotlight when cursor leaves the hero or the window
     hero.addEventListener('mouseleave', () => {
-      overlay.style.setProperty('--mx', '-200%');
-      overlay.style.setProperty('--my', '-200%');
+      spotX = '-200%'; spotY = '-200%';
+      if (!spotRaf) { spotRaf = true; requestAnimationFrame(flushSpot); }
     });
 
     document.addEventListener('mouseleave', () => {
-      overlay.style.setProperty('--mx', '-200%');
-      overlay.style.setProperty('--my', '-200%');
+      spotX = '-200%'; spotY = '-200%';
+      if (!spotRaf) { spotRaf = true; requestAnimationFrame(flushSpot); }
     });
   })();
 
@@ -534,11 +548,23 @@ Protocol (ICP) ме зоват.
       }
     }
 
+    // Opacity buckets for batched line drawing (avoids per-line strokeStyle change)
+    const BUCKETS = 5;
+    const BUCKET_STEP = DIST_SQ / BUCKETS;
+    const bucketPaths: { ax: number; ay: number; bx: number; by: number }[][] = [];
+    const bucketColors: string[] = [];
+    for (let b = 0; b < BUCKETS; b++) {
+      bucketPaths.push([]);
+      // Closer = higher opacity; bucket 0 is closest
+      bucketColors.push(`rgba(200,151,62,${(0.06 * (BUCKETS - b) / BUCKETS).toFixed(4)})`);
+    }
+
     function draw() {
       if (!isVisible) return;
       ctx.clearRect(0, 0, width, height);
 
-      // Batch particle dots
+      // Update positions + batch particle dots
+      ctx.beginPath();
       ctx.fillStyle = 'rgba(200, 151, 62, 0.15)';
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -549,13 +575,15 @@ Protocol (ICP) ме зоват.
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
 
-        ctx.beginPath();
+        ctx.moveTo(p.x + p.r, p.y);
         ctx.arc(p.x, p.y, p.r, 0, TAU);
-        ctx.fill();
       }
+      ctx.fill();
 
-      // Batch inter-particle lines (squared distance, no sqrt)
-      ctx.lineWidth = 0.5;
+      // Clear buckets
+      for (let b = 0; b < BUCKETS; b++) bucketPaths[b].length = 0;
+
+      // Sort connections into opacity buckets (no sqrt needed)
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
@@ -564,30 +592,45 @@ Protocol (ICP) ме зоват.
           const dy = p.y - q.y;
           const dSq = dx * dx + dy * dy;
           if (dSq < DIST_SQ) {
-            const d = Math.sqrt(dSq);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(200,151,62,${0.06 * (1 - d / DIST)})`;
-            ctx.stroke();
+            const b = (dSq / BUCKET_STEP) | 0;
+            bucketPaths[b < BUCKETS ? b : BUCKETS - 1].push(
+              { ax: p.x, ay: p.y, bx: q.x, by: q.y }
+            );
           }
         }
-
-        // Mouse lines (squared distance check first)
-        const mdx = p.x - mouse.x;
-        const mdy = p.y - mouse.y;
-        const mdSq = mdx * mdx + mdy * mdy;
-        if (mdSq < MOUSE_DIST_SQ) {
-          const md = Math.sqrt(mdSq);
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(200,151,62,${0.2 * (1 - md / MOUSE_DIST)})`;
-          ctx.lineWidth = 0.6;
-          ctx.stroke();
-          ctx.lineWidth = 0.5;
-        }
       }
+
+      // Draw each bucket with a single stroke call
+      ctx.lineWidth = 0.5;
+      for (let b = 0; b < BUCKETS; b++) {
+        const segs = bucketPaths[b];
+        if (!segs.length) continue;
+        ctx.beginPath();
+        ctx.strokeStyle = bucketColors[b];
+        for (let s = 0; s < segs.length; s++) {
+          ctx.moveTo(segs[s].ax, segs[s].ay);
+          ctx.lineTo(segs[s].bx, segs[s].by);
+        }
+        ctx.stroke();
+      }
+
+      // Mouse lines — single batch
+      if (mouse.x > -900) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(200,151,62,0.12)';
+        ctx.lineWidth = 0.6;
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const mdx = p.x - mouse.x;
+          const mdy = p.y - mouse.y;
+          if (mdx * mdx + mdy * mdy < MOUSE_DIST_SQ) {
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+          }
+        }
+        ctx.stroke();
+      }
+
       animId = requestAnimationFrame(draw);
     }
 

@@ -78,20 +78,21 @@
 .sun-core,
 .sun-glow,
 .sun-halo,
-.sun-rays {
+.sun-rays,
+.moon-core,
+.moon-glow,
+.moon-halo,
+.moon-rays {
   will-change: transform;
   backface-visibility: hidden;
 }
 
 /* Content-visibility for offscreen sections */
-#about,
-#skills,
-#projects,
-#crypto,
-#contact {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
+#about { content-visibility: auto; contain-intrinsic-size: auto 800px; }
+#skills { content-visibility: auto; contain-intrinsic-size: auto 500px; }
+#projects { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+#crypto { content-visibility: auto; contain-intrinsic-size: auto 400px; }
+#contact { content-visibility: auto; contain-intrinsic-size: auto 600px; }
 
 /* Reduced motion: disable all non-essential animations */
 @media (prefers-reduced-motion: reduce) {
