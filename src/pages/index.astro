@@ -994,7 +994,17 @@ import Footer from '../components/Footer.astro';
   @media (max-width: 768px) {
     /* Hide heavy elements on mobile for smooth 60fps scrolling */
     .clouds-layer { display: none; }
-    .sun-rays, .sun-halo, .sun-glow, .moon-rays, .moon-halo, .moon-glow { display: none; }
+    .sun-rays, .sun-halo, .moon-rays, .moon-halo { display: none; }
+    .sun-glow {
+      width: 180px; height: 180px; top: -200px;
+      filter: blur(20px);
+      background: radial-gradient(circle, rgba(255, 235, 140, 0.5) 0%, rgba(255, 200, 65, 0.2) 40%, transparent 70%);
+    }
+    .moon-glow {
+      width: 160px; height: 160px; top: -175px;
+      filter: blur(18px);
+      background: radial-gradient(circle, rgba(180, 200, 255, 0.35) 0%, rgba(150, 175, 240, 0.15) 40%, transparent 70%);
+    }
     .sun-core { width: 90px; height: 90px; top: -160px; }
     .moon-core { width: 70px; height: 70px; top: -140px; }
   }
