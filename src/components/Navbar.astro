@@ -189,9 +189,60 @@ const links = [
 
     function toggleTheme() {
       const dark = isDark();
-      document.documentElement.classList.toggle('dark', !dark);
-      localStorage.setItem('theme', dark ? 'light' : 'dark');
+      const goingDark = !dark;
+
+      const sun = document.querySelector('.sky-sun') as HTMLElement | null;
+      const moon = document.querySelector('.sky-moon') as HTMLElement | null;
+      const sweep = document.getElementById('theme-sweep') as HTMLElement | null;
+
+      // Toggle theme immediately (backgrounds transition via CSS)
+      document.documentElement.classList.toggle('dark', goingDark);
+      localStorage.setItem('theme', goingDark ? 'dark' : 'light');
       updateIcons();
+
+      // Kill any running animations
+      if (sun && moon) {
+        sun.style.animation = 'none';
+        moon.style.animation = 'none';
+        sun.classList.remove('arc-exit-right', 'arc-enter-left');
+        moon.classList.remove('arc-exit-right', 'arc-enter-left');
+      }
+      if (sweep) {
+        sweep.style.animation = 'none';
+        sweep.classList.remove('sweep-to-dark', 'sweep-to-light');
+      }
+
+      // Next frame: apply all animations in sync
+      requestAnimationFrame(() => {
+        if (sun && moon) {
+          sun.style.animation = '';
+          moon.style.animation = '';
+
+          if (goingDark) {
+            sun.classList.add('arc-exit-right');
+            moon.classList.add('arc-enter-left');
+          } else {
+            moon.classList.add('arc-exit-right');
+            sun.classList.add('arc-enter-left');
+          }
+        }
+
+        if (sweep) {
+          sweep.style.animation = '';
+          sweep.classList.add(goingDark ? 'sweep-to-dark' : 'sweep-to-light');
+        }
+
+        // Clean up after animation completes
+        setTimeout(() => {
+          if (sun && moon) {
+            sun.classList.remove('arc-exit-right', 'arc-enter-left');
+            moon.classList.remove('arc-exit-right', 'arc-enter-left');
+          }
+          if (sweep) {
+            sweep.classList.remove('sweep-to-dark', 'sweep-to-light');
+          }
+        }, 650);
+      });
     }
 
     document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);

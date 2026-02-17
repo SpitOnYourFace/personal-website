@@ -109,11 +109,49 @@ const siteUrl = "https://krasimirkralev.com";
     <style is:global>
       html[data-lang="en"] [data-lang="bg"] { display: none !important; }
       html[data-lang="bg"] [data-lang="en"] { display: none !important; }
+
+      /* Animatable custom property for diagonal sweep position */
+      @property --wipe-pos {
+        syntax: '<percentage>';
+        initial-value: 0%;
+        inherits: false;
+      }
+
+      /* Theme sweep — angled diagonal wipe */
+      #theme-sweep {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        pointer-events: none;
+      }
+      #theme-sweep.sweep-to-dark {
+        background: linear-gradient(
+          105deg,
+          rgba(10, 12, 35, 0.55) var(--wipe-pos),
+          transparent calc(var(--wipe-pos) + 12%)
+        );
+        animation: wipe-sweep 0.55s ease-out forwards;
+      }
+      #theme-sweep.sweep-to-light {
+        background: linear-gradient(
+          105deg,
+          rgba(210, 230, 250, 0.55) var(--wipe-pos),
+          transparent calc(var(--wipe-pos) + 12%)
+        );
+        animation: wipe-sweep 0.55s ease-out forwards;
+      }
+      @keyframes wipe-sweep {
+        from { --wipe-pos: -15%; }
+        to { --wipe-pos: 115%; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #theme-sweep { display: none; }
+      }
     </style>
 
     <ViewTransitions />
   </head>
-  <body class="bg-surface text-primary font-sans text-base leading-relaxed overflow-x-hidden antialiased" style="transition:background-color 0.3s,color 0.3s">
+  <body class="bg-surface text-primary font-sans text-base leading-relaxed overflow-x-hidden antialiased" style="transition:background-color 0.55s ease,color 0.55s ease">
     <!-- Skip navigation -->
     <a href="#main-content" class="skip-nav">
       <span data-lang="en">Skip to content</span>
@@ -124,6 +162,9 @@ const siteUrl = "https://krasimirkralev.com";
     <div id="scroll-progress"></div>
 
     <slot />
+
+    <!-- Theme sweep overlay — directional wipe synced with celestial arc -->
+    <div id="theme-sweep" aria-hidden="true"></div>
 
     <!-- Console greeting -->
     <script is:inline>

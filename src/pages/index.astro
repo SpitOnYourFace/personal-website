@@ -19,12 +19,18 @@ import Footer from '../components/Footer.astro';
   <!-- Transition: Space → Sky -->
   <div class="layer-space-to-sky"></div>
 
-  <!-- Sun: positioned between layers to avoid overflow clipping -->
+  <!-- Sun & Moon: positioned between layers, arc-animated on theme toggle -->
   <div class="sky-sun" aria-hidden="true">
     <div class="sun-rays"></div>
     <div class="sun-halo"></div>
     <div class="sun-glow"></div>
     <div class="sun-core"></div>
+  </div>
+  <div class="sky-moon" aria-hidden="true">
+    <div class="moon-rays"></div>
+    <div class="moon-halo"></div>
+    <div class="moon-glow"></div>
+    <div class="moon-core"></div>
   </div>
 
   <!-- ====== LAYER 2: SKY ====== -->
@@ -416,6 +422,7 @@ import Footer from '../components/Footer.astro';
     height: 450px;
     margin-top: -180px;
     z-index: 1;
+    transition: background 0.55s ease;
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -458,6 +465,7 @@ import Footer from '../components/Footer.astro';
     position: relative;
     overflow: hidden;
     contain: layout style;
+    transition: background 0.55s ease;
     --color-primary: 30 30 50;
     --color-primary-secondary: 50 50 75;
     --color-primary-tertiary: 80 80 110;
@@ -583,71 +591,177 @@ import Footer from '../components/Footer.astro';
     z-index: 1;
   }
 
-  /* Dark mode sun */
-  :global(.dark) .sun-core {
-    width: 110px;
-    height: 110px;
-    top: 30px;
+  /* ===== DARK MODE: STATIC POSITIONS ===== */
+  :global(.dark) .sky-sun { transform: translateX(110vw); }
+  :global(.dark) .sky-moon { transform: translateX(0); }
+
+  /* ===== MOON ELEMENT ===== */
+  .sky-moon {
+    position: relative;
+    z-index: 2;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+    transform: translateX(-110vw);
+  }
+
+  /* Moon surface — silver-white with crater detail */
+  .moon-core {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     background: radial-gradient(
       circle,
-      rgba(210, 225, 255, 0.8) 0%,
-      rgba(185, 205, 250, 0.55) 25%,
-      rgba(155, 180, 240, 0.25) 50%,
+      rgba(232, 232, 242, 0.95) 0%,
+      rgba(218, 220, 235, 0.92) 18%,
+      rgba(200, 205, 222, 0.88) 36%,
+      rgba(182, 188, 210, 0.72) 55%,
+      rgba(160, 165, 192, 0.35) 75%,
       transparent 100%
     );
-    filter: blur(5px);
+    filter: blur(0.5px);
+    animation: moon-pulse 8s ease-in-out infinite;
+    z-index: 4;
   }
 
-  :global(.dark) .sun-glow {
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(
-      circle,
-      rgba(180, 210, 255, 0.45) 0%,
-      rgba(160, 195, 248, 0.28) 15%,
-      rgba(140, 175, 235, 0.14) 30%,
-      rgba(120, 155, 220, 0.05) 50%,
-      transparent 70%
+  /* Moon craters & maria (dark lunar seas) */
+  .moon-core::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      /* Mare Imbrium — large dark sea, upper-left */
+      radial-gradient(ellipse at 30% 32%, rgba(130, 135, 168, 0.32) 0%, transparent 22px),
+      /* Mare Serenitatis — upper-right */
+      radial-gradient(ellipse at 62% 28%, rgba(125, 130, 160, 0.26) 0%, transparent 18px),
+      /* Mare Tranquillitatis — center-right */
+      radial-gradient(ellipse at 56% 52%, rgba(130, 133, 165, 0.22) 0%, transparent 16px),
+      /* Mare Crisium — right edge */
+      radial-gradient(ellipse at 78% 38%, rgba(128, 132, 162, 0.2) 0%, transparent 12px),
+
+      /* Tycho — prominent crater, lower-center */
+      radial-gradient(circle at 44% 76%, rgba(105, 110, 145, 0.52) 0%, rgba(165, 170, 195, 0.2) 4px, transparent 7px),
+      /* Copernicus — upper-center-left */
+      radial-gradient(circle at 38% 42%, rgba(110, 115, 148, 0.46) 0%, rgba(165, 170, 195, 0.16) 3.5px, transparent 6px),
+      /* Kepler — left of center */
+      radial-gradient(circle at 24% 48%, rgba(108, 113, 142, 0.42) 0%, transparent 4.5px),
+      /* Aristarchus — bright spot, upper-left */
+      radial-gradient(circle at 18% 36%, rgba(112, 116, 148, 0.38) 0%, transparent 3.5px),
+
+      /* Medium craters */
+      radial-gradient(circle at 68% 65%, rgba(108, 112, 142, 0.36) 0%, transparent 3.5px),
+      radial-gradient(circle at 50% 35%, rgba(112, 116, 148, 0.3) 0%, transparent 3px),
+      radial-gradient(circle at 72% 48%, rgba(108, 112, 142, 0.28) 0%, transparent 3px),
+
+      /* Small craters */
+      radial-gradient(circle at 55% 20%, rgba(115, 118, 150, 0.3) 0%, transparent 2px),
+      radial-gradient(circle at 32% 62%, rgba(112, 115, 145, 0.26) 0%, transparent 2px),
+      radial-gradient(circle at 76% 72%, rgba(110, 114, 142, 0.22) 0%, transparent 1.5px),
+      radial-gradient(circle at 42% 58%, rgba(115, 118, 150, 0.2) 0%, transparent 1.5px);
+  }
+
+  /* Terminator shadow — 3D depth on one edge */
+  .moon-core::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(50, 55, 88, 0.08) 45%,
+      rgba(35, 40, 72, 0.15) 60%,
+      rgba(20, 25, 58, 0.22) 80%,
+      rgba(10, 12, 42, 0.28) 100%
     );
-    filter: blur(18px);
   }
 
-  :global(.dark) .sun-halo {
-    width: 800px;
-    height: 800px;
+  /* Moonlight inner glow */
+  .moon-glow {
+    position: absolute;
+    top: -170px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
     background: radial-gradient(
       circle,
-      rgba(150, 185, 245, 0.18) 0%,
-      rgba(135, 170, 230, 0.1) 18%,
-      rgba(115, 150, 215, 0.04) 35%,
-      transparent 55%
+      rgba(180, 200, 255, 0.52) 0%,
+      rgba(165, 190, 250, 0.32) 12%,
+      rgba(148, 175, 240, 0.18) 25%,
+      rgba(130, 160, 225, 0.08) 42%,
+      rgba(115, 145, 210, 0.03) 60%,
+      transparent 80%
+    );
+    filter: blur(15px);
+    animation: moon-glow-pulse 10s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  /* Moonlight outer halo */
+  .moon-halo {
+    position: absolute;
+    top: -395px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 950px;
+    height: 950px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(150, 180, 240, 0.22) 0%,
+      rgba(140, 170, 230, 0.13) 15%,
+      rgba(125, 155, 220, 0.06) 30%,
+      rgba(110, 140, 205, 0.02) 45%,
+      transparent 60%
     );
     filter: blur(30px);
+    animation: moon-halo-pulse 12s ease-in-out infinite;
+    z-index: 2;
   }
 
-  :global(.dark) .sun-rays {
-    width: 600px;
-    height: 600px;
+  /* Moonbeams — slow-spinning, subtle cool rays */
+  .moon-rays {
+    position: absolute;
+    top: -270px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
     background:
       conic-gradient(
         from 0deg,
-        transparent 0deg, rgba(160, 195, 245, 0.05) 8deg, transparent 16deg,
-        transparent 30deg, rgba(150, 185, 235, 0.04) 38deg, transparent 46deg,
-        transparent 60deg, rgba(160, 195, 245, 0.05) 68deg, transparent 76deg,
-        transparent 90deg, rgba(150, 185, 235, 0.04) 98deg, transparent 106deg,
-        transparent 120deg, rgba(160, 195, 245, 0.05) 128deg, transparent 136deg,
-        transparent 150deg, rgba(150, 185, 235, 0.04) 158deg, transparent 166deg,
-        transparent 180deg, rgba(160, 195, 245, 0.05) 188deg, transparent 196deg,
-        transparent 210deg, rgba(150, 185, 235, 0.04) 218deg, transparent 226deg,
-        transparent 240deg, rgba(160, 195, 245, 0.05) 248deg, transparent 256deg,
-        transparent 270deg, rgba(150, 185, 235, 0.04) 278deg, transparent 286deg,
-        transparent 300deg, rgba(160, 195, 245, 0.05) 308deg, transparent 316deg,
-        transparent 330deg, rgba(150, 185, 235, 0.04) 338deg, transparent 346deg,
+        transparent 0deg, rgba(170, 200, 250, 0.04) 6deg, transparent 12deg,
+        transparent 30deg, rgba(160, 190, 240, 0.03) 36deg, transparent 42deg,
+        transparent 60deg, rgba(170, 200, 250, 0.04) 66deg, transparent 72deg,
+        transparent 90deg, rgba(160, 190, 240, 0.03) 96deg, transparent 102deg,
+        transparent 120deg, rgba(170, 200, 250, 0.04) 126deg, transparent 132deg,
+        transparent 150deg, rgba(160, 190, 240, 0.03) 156deg, transparent 162deg,
+        transparent 180deg, rgba(170, 200, 250, 0.04) 186deg, transparent 192deg,
+        transparent 210deg, rgba(160, 190, 240, 0.03) 216deg, transparent 222deg,
+        transparent 240deg, rgba(170, 200, 250, 0.04) 246deg, transparent 252deg,
+        transparent 270deg, rgba(160, 190, 240, 0.03) 276deg, transparent 282deg,
+        transparent 300deg, rgba(170, 200, 250, 0.04) 306deg, transparent 312deg,
+        transparent 330deg, rgba(160, 190, 240, 0.03) 336deg, transparent 342deg,
         transparent 360deg
       );
-    filter: blur(22px);
+    filter: blur(20px);
+    animation: sun-rays-spin 200s linear infinite;
+    z-index: 1;
   }
 
+  /* ===== SUN & MOON KEYFRAMES ===== */
   @keyframes sun-pulse {
     0%, 100% { opacity: 0.88; transform: translateX(-50%) scale(1); }
     50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
@@ -661,6 +775,69 @@ import Footer from '../components/Footer.astro';
   @keyframes sun-rays-spin {
     from { transform: translateX(-50%) rotate(0deg); }
     to { transform: translateX(-50%) rotate(360deg); }
+  }
+
+  @keyframes moon-pulse {
+    0%, 100% { opacity: 0.92; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.02); }
+  }
+
+  @keyframes moon-glow-pulse {
+    0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.04); }
+  }
+
+  @keyframes moon-halo-pulse {
+    0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.02); }
+  }
+
+  /* ===== ELLIPTICAL ARC ANIMATIONS ===== */
+  /* ===== ELLIPTICAL ARC — bottom of the O ===== */
+  .sky-sun.arc-exit-right,
+  .sky-moon.arc-exit-right {
+    animation: arc-exit-right 0.55s linear forwards;
+  }
+
+  .sky-sun.arc-enter-left,
+  .sky-moon.arc-enter-left {
+    animation: arc-enter-left 0.55s linear forwards;
+  }
+
+  /* Exit right: constant horizontal sweep, accelerating dip (Y = 60 * t²) */
+  @keyframes arc-exit-right {
+    0%    { transform: translateX(0)     translateY(0); }
+    10%   { transform: translateX(11vw)  translateY(0.6px); }
+    20%   { transform: translateX(22vw)  translateY(2.4px); }
+    30%   { transform: translateX(33vw)  translateY(5.4px); }
+    40%   { transform: translateX(44vw)  translateY(9.6px); }
+    50%   { transform: translateX(55vw)  translateY(15px); }
+    60%   { transform: translateX(66vw)  translateY(21.6px); }
+    70%   { transform: translateX(77vw)  translateY(29.4px); }
+    80%   { transform: translateX(88vw)  translateY(38.4px); }
+    90%   { transform: translateX(99vw)  translateY(48.6px); }
+    100%  { transform: translateX(110vw) translateY(60px); }
+  }
+
+  /* Enter left: constant sweep, decelerating rise (reciprocal) */
+  @keyframes arc-enter-left {
+    0%    { transform: translateX(-110vw) translateY(60px); }
+    10%   { transform: translateX(-99vw)  translateY(48.6px); }
+    20%   { transform: translateX(-88vw)  translateY(38.4px); }
+    30%   { transform: translateX(-77vw)  translateY(29.4px); }
+    40%   { transform: translateX(-66vw)  translateY(21.6px); }
+    50%   { transform: translateX(-55vw)  translateY(15px); }
+    60%   { transform: translateX(-44vw)  translateY(9.6px); }
+    70%   { transform: translateX(-33vw)  translateY(5.4px); }
+    80%   { transform: translateX(-22vw)  translateY(2.4px); }
+    90%   { transform: translateX(-11vw)  translateY(0.6px); }
+    100%  { transform: translateX(0)      translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sky-sun, .sky-moon {
+      animation: none !important;
+    }
   }
 
   /* ===== CLOUD LAYERS ===== */
@@ -706,6 +883,10 @@ import Footer from '../components/Footer.astro';
   }
 
 
+  .cloud-svg {
+    transition: opacity 0.55s ease;
+  }
+
   :global(.dark) .cloud-svg {
     opacity: 0.15;
   }
@@ -742,6 +923,7 @@ import Footer from '../components/Footer.astro';
     height: 350px;
     overflow: hidden;
     pointer-events: none;
+    transition: background 0.55s ease;
     background: linear-gradient(
       to bottom,
       #c4e1f4 0%,
@@ -789,6 +971,7 @@ import Footer from '../components/Footer.astro';
 
   /* ===== FOREST LAYER ===== */
   .layer-forest {
+    transition: background 0.55s ease;
     --color-primary: 230 240 230;
     --color-primary-secondary: 180 200 180;
     --color-primary-tertiary: 140 165 140;
@@ -824,6 +1007,7 @@ import Footer from '../components/Footer.astro';
     position: relative;
     height: 300px;
     overflow: hidden;
+    transition: background 0.55s ease;
     pointer-events: none;
     background: linear-gradient(
       to bottom,
@@ -873,6 +1057,7 @@ import Footer from '../components/Footer.astro';
   /* ===== UNDERGROUND LAYER ===== */
   .layer-underground {
     position: relative;
+    transition: background 0.55s ease;
     --color-primary: 255 248 235;
     --color-primary-secondary: 225 205 175;
     --color-primary-tertiary: 195 175 145;
