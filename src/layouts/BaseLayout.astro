@@ -77,33 +77,35 @@ const siteUrl = "https://krasimirkralev.com";
 
     <!-- Theme + Language detection — runs before body to prevent flash -->
     <script is:inline>
-      (function() {
+      function __applyLang() {
         var lang = localStorage.getItem('lang');
-
-        // Auto-detect language from browser if not set by user
         if (!lang) {
           var browserLang = navigator.language || navigator.userLanguage;
-          // Check if browser language is Bulgarian
-          if (browserLang.toLowerCase().startsWith('bg')) {
-            lang = 'bg';
-          } else {
-            lang = 'en';
-          }
-          // Save the detected language
+          lang = (browserLang && browserLang.toLowerCase().startsWith('bg')) ? 'bg' : 'en';
           localStorage.setItem('lang', lang);
         }
-
         document.documentElement.lang = lang;
         document.documentElement.dataset.lang = lang;
+      }
 
+      function __applyTheme() {
         var theme = localStorage.getItem('theme');
         if (!theme) {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          // Default based on Bulgaria time (Europe/Sofia): dark 19:00-07:00
+          var h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Sofia' })).getHours();
+          theme = (h >= 19 || h < 7) ? 'dark' : 'light';
         }
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
-      })();
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      }
+
+      // Run immediately (before body paints)
+      __applyLang();
+      __applyTheme();
+
+      // Re-apply after ViewTransitions swaps the document
+      document.addEventListener('astro:after-swap', function() { __applyLang(); __applyTheme(); });
+      // Also re-apply on every page load (initial + navigations)
+      document.addEventListener('astro:page-load', function() { __applyTheme(); });
     </script>
 
     <style is:global>

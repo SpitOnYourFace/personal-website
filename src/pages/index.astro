@@ -20,17 +20,19 @@ import Footer from '../components/Footer.astro';
   <div class="layer-space-to-sky"></div>
 
   <!-- Sun & Moon: positioned between layers, arc-animated on theme toggle -->
-  <div class="sky-sun" aria-hidden="true">
-    <div class="sun-rays"></div>
-    <div class="sun-halo"></div>
-    <div class="sun-glow"></div>
-    <div class="sun-core"></div>
-  </div>
-  <div class="sky-moon" aria-hidden="true">
-    <div class="moon-rays"></div>
-    <div class="moon-halo"></div>
-    <div class="moon-glow"></div>
-    <div class="moon-core"></div>
+  <div class="celestial-wrap">
+    <div class="sky-sun" aria-hidden="true">
+      <div class="sun-rays"></div>
+      <div class="sun-halo"></div>
+      <div class="sun-glow"></div>
+      <div class="sun-core"></div>
+    </div>
+    <div class="sky-moon" aria-hidden="true">
+      <div class="moon-rays"></div>
+      <div class="moon-halo"></div>
+      <div class="moon-glow"></div>
+      <div class="moon-core"></div>
+    </div>
   </div>
 
   <!-- ====== LAYER 2: SKY ====== -->
@@ -488,6 +490,12 @@ import Footer from '../components/Footer.astro';
     --color-surface: 40 50 100;
     --color-surface-subtle: 17 17 132;
     background: linear-gradient(to bottom, #364d8c 0%, #6688cc 50%, #7096D1 100%);
+  }
+
+  .celestial-wrap {
+    position: relative;
+    overflow-x: clip;
+    pointer-events: none;
   }
 
   /* ===== SUN — positioned between transition & sky layers ===== */

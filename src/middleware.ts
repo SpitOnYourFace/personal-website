@@ -1,5 +1,4 @@
 import { defineMiddleware } from 'astro:middleware';
-import crypto from 'node:crypto';
 
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
 const WINDOW_MS = 60_000;
@@ -14,9 +13,9 @@ function getRateLimitKey(request: Request): string {
 export const onRequest = defineMiddleware(async (context, next) => {
   const { url, request } = context;
 
-  // Generate CSP nonce for this request
-  const nonce = crypto.randomBytes(16).toString('base64');
-  context.locals.nonce = nonce;
+  // Note: nonce-based CSP is incompatible with prerendered pages
+  // (build-time nonce ≠ runtime nonce), so we rely on 'unsafe-inline' instead
+  context.locals.nonce = '';
 
   if (url.pathname.startsWith('/api/')) {
     const key = getRateLimitKey(request);
@@ -55,7 +54,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      `script-src 'self' 'nonce-${nonce}' 'unsafe-inline' https://code.iconify.design`,
+      "script-src 'self' 'unsafe-inline' https://code.iconify.design",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data:",
