@@ -81,7 +81,7 @@ const siteUrl = "https://krasimirkralev.com";
       function __applyLang() {
         var lang = localStorage.getItem('lang');
         if (!lang) {
-          var browserLang = navigator.language || navigator.userLanguage;
+          var browserLang = navigator.language;
           lang = (browserLang && browserLang.toLowerCase().startsWith('bg')) ? 'bg' : 'en';
           localStorage.setItem('lang', lang);
         }

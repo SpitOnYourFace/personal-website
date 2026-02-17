@@ -483,10 +483,7 @@ Protocol (ICP) ме зоват.
   (function () {
     const hero = document.getElementById('hero');
     const overlay = document.getElementById('spotlight-overlay');
-    const mobileHint = document.getElementById('mobile-hint');
     if (!hero || !overlay) return;
-
-    let hintGone = false;
 
     hero.addEventListener('touchstart', (e: TouchEvent) => {
       if (__spotlightSuppressed) return;
@@ -495,10 +492,6 @@ Protocol (ICP) ме зоват.
       const y = e.touches[0].clientY - rect.top;
       overlay.style.setProperty('--mx', x + 'px');
       overlay.style.setProperty('--my', y + 'px');
-      if (!hintGone && mobileHint) {
-        mobileHint.style.opacity = '0';
-        hintGone = true;
-      }
     }, { passive: true });
 
     hero.addEventListener('touchmove', (e: TouchEvent) => {

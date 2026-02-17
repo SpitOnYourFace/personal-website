@@ -13,10 +13,6 @@ function getRateLimitKey(request: Request): string {
 export const onRequest = defineMiddleware(async (context, next) => {
   const { url, request } = context;
 
-  // Note: nonce-based CSP is incompatible with prerendered pages
-  // (build-time nonce ≠ runtime nonce), so we rely on 'unsafe-inline' instead
-  context.locals.nonce = '';
-
   if (url.pathname.startsWith('/api/')) {
     const key = getRateLimitKey(request);
     const now = Date.now();

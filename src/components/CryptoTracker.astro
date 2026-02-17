@@ -198,8 +198,9 @@
       for (let i = 0; i < retries; i++) {
         try {
           const res = await fetch('/api/crypto');
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'Failed to load data.');
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          let data;
+          try { data = await res.json(); } catch { throw new Error('Invalid response format'); }
           if (!Array.isArray(data)) throw new Error('Unexpected response format.');
           return data;
         } catch (err) {

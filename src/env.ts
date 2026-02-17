@@ -13,6 +13,5 @@ function optionalEnv(name: string): string | undefined {
 
 export const env = {
   get CMC_API_KEY() { return requireEnv('CMC_API_KEY'); },
-  get RESEND_API_KEY() { return requireEnv('RESEND_API_KEY'); },
   get SENTRY_DSN() { return optionalEnv('SENTRY_DSN'); },
 };
