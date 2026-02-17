@@ -89,7 +89,6 @@
 
 /* Content-visibility for offscreen sections */
 #about { content-visibility: auto; contain-intrinsic-size: auto 800px; }
-#skills { content-visibility: auto; contain-intrinsic-size: auto 500px; }
 #projects { content-visibility: auto; contain-intrinsic-size: auto 700px; }
 #crypto { content-visibility: auto; contain-intrinsic-size: auto 400px; }
 #contact { content-visibility: auto; contain-intrinsic-size: auto 600px; }

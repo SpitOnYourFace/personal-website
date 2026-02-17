@@ -30,7 +30,7 @@ const categories = [
     bg: 'Инструменти',
     skills: [
       { name: 'Git', icon: 'logos:git-icon' },
-      { name: 'VS Code', icon: 'logos:visual-studio-code' },
+      { name: 'Vite', icon: 'logos:vitejs' },
       { name: 'npm', icon: 'logos:npm-icon' },
       { name: 'SQL', icon: 'vscode-icons:file-type-sql' },
     ],
@@ -49,100 +49,39 @@ const categories = [
 
 <section id="skills" class="py-24">
   <div class="max-w-5xl mx-auto px-6">
-    <p data-reveal class="text-xs font-semibold uppercase tracking-[2px] text-accent mb-4">
+    <p data-reveal class="text-[11px] font-semibold uppercase tracking-[3px] text-accent mb-3">
       <span data-lang="en">Skills & Technologies</span>
       <span data-lang="bg">Умения и технологии</span>
     </p>
-    <p data-reveal class="text-primary-secondary mb-10 max-w-lg">
+    <p data-reveal class="text-primary-secondary text-[15px] leading-relaxed mb-12 max-w-md">
       <span data-lang="en">The tools and technologies I use to bring ideas to life.</span>
       <span data-lang="bg">Инструментите и технологиите, с които превръщам идеите в реалност.</span>
     </p>
 
-    <!-- Filter buttons -->
-    <div data-reveal class="flex flex-wrap gap-2 mb-8">
-      <button
-        data-filter="all"
-        class="skill-filter active text-xs font-semibold px-4 py-2 rounded-full border border-accent bg-accent text-white transition-all duration-300"
-      >
-        <span data-lang="en">All</span>
-        <span data-lang="bg">Всички</span>
-      </button>
+    <!-- Grouped rows -->
+    <div class="space-y-4">
       {categories.map((cat) => (
-        <button
-          data-filter={cat.id}
-          class="skill-filter text-xs font-semibold px-4 py-2 rounded-full border border-primary/10 text-primary-secondary hover:border-accent hover:text-accent transition-all duration-300"
-        >
-          <span data-lang="en">{cat.en}</span>
-          <span data-lang="bg">{cat.bg}</span>
-        </button>
-      ))}
-    </div>
-
-    <!-- Skills grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      {categories.map((cat) =>
-        cat.skills.map((skill) => (
-          <div
-            data-reveal
-            data-category={cat.id}
-            class="skill-card group relative bg-surface rounded-xl shadow-card p-5 text-center transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1 overflow-hidden"
-          >
-            <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-all duration-500 rounded-xl"></div>
-            <div class="relative z-10">
-              <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-accent/10 group-hover:bg-accent/20 flex items-center justify-center transition-colors duration-500">
-                <iconify-icon icon={skill.icon} class="text-3xl"></iconify-icon>
-              </div>
-              <p class="text-sm font-semibold text-primary group-hover:text-accent transition-colors duration-500">{skill.name}</p>
-              <p class="text-[10px] text-primary-tertiary uppercase tracking-wider mt-1">
-                <span data-lang="en">{cat.en}</span>
-                <span data-lang="bg">{cat.bg}</span>
-              </p>
-            </div>
+        <div data-reveal class="relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 px-6 py-5 rounded-2xl overflow-hidden border border-primary/[0.06] backdrop-blur-md bg-surface/50 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)]">
+          <!-- Glass shine -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.07] to-transparent pointer-events-none"></div>
+          <div class="relative z-10 sm:w-24 shrink-0">
+            <span class="text-[10px] font-bold uppercase tracking-[2.5px] text-accent/70">
+              <span data-lang="en">{cat.en}</span>
+              <span data-lang="bg">{cat.bg}</span>
+            </span>
           </div>
-        ))
-      )}
+          <div class="relative z-10 flex flex-wrap gap-2">
+            {cat.skills.map((skill) => (
+              <div class="group flex items-center gap-2 px-3.5 py-2 rounded-lg border border-primary/[0.06] hover:border-accent/25 backdrop-blur-sm bg-surface/40 hover:bg-surface/70 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 cursor-default">
+                <iconify-icon icon={skill.icon} class="text-lg"></iconify-icon>
+                <span class="text-[13px] font-medium text-primary group-hover:text-accent transition-colors duration-300">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
-
-<script>
-  (function () {
-    const buttons = document.querySelectorAll('.skill-filter');
-    const cards = document.querySelectorAll('.skill-card');
-
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filter = (btn as HTMLElement).dataset.filter;
-
-        buttons.forEach((b) => {
-          b.classList.remove('active', 'border-accent', 'bg-accent', 'text-white');
-          b.classList.add('border-primary/10', 'text-primary-secondary');
-        });
-        btn.classList.add('active', 'border-accent', 'bg-accent', 'text-white');
-        btn.classList.remove('border-primary/10', 'text-primary-secondary');
-
-        cards.forEach((card) => {
-          const cat = (card as HTMLElement).dataset.category;
-          const el = card as HTMLElement;
-          if (filter === 'all' || cat === filter) {
-            el.style.display = '';
-            requestAnimationFrame(() => {
-              el.style.opacity = '1';
-              el.style.transform = 'translateY(0)';
-            });
-          } else {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(8px)';
-            setTimeout(() => {
-              if ((btn as HTMLElement).dataset.filter === filter && btn.classList.contains('active')) {
-                el.style.display = 'none';
-              }
-            }, 300);
-          }
-        });
-      });
-    });
-  })();
-</script>
 
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" is:inline defer></script>

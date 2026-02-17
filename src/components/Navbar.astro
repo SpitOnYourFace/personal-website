@@ -187,7 +187,12 @@ const links = [
       document.querySelectorAll('#icon-moon, .icon-moon').forEach(el => el.classList.toggle('hidden', dark));
     }
 
+    let themeBusy = false;
+
     function toggleTheme() {
+      if (themeBusy) return;
+      themeBusy = true;
+
       const dark = isDark();
       const goingDark = !dark;
 
@@ -241,6 +246,7 @@ const links = [
           if (sweep) {
             sweep.classList.remove('sweep-to-dark', 'sweep-to-light');
           }
+          themeBusy = false;
         }, 650);
       });
     }
@@ -270,6 +276,25 @@ const links = [
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');
       toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ---- Smooth scroll for anchor links (bypasses ViewTransitions) ----
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = (link as HTMLAnchorElement).getAttribute('href');
+      if (!href) return;
+      e.preventDefault();
+      if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        history.pushState(null, '', ' ');
+      } else {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          history.pushState(null, '', href);
+        }
+      }
     });
   });
 

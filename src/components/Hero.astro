@@ -179,7 +179,7 @@ Protocol (ICP) ме зоват.
       <span id="hero-role"></span>
     </p>
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5 min-h-[1.3em] font-mono">
-      <span id="typed-text"></span><span class="text-[#c8973e] animate-blink">|</span>
+      <span id="typed-text"></span><span id="typed-cursor" class="text-[#c8973e] animate-blink">|</span>
     </h1>
     <p class="text-lg text-white/50 mb-10 max-w-md">
       <span data-lang="en">I write code that speaks for itself.</span>
@@ -696,26 +696,42 @@ Protocol (ICP) ме зоват.
       }, 400);
     }
 
-    function typeChar() {
-      if (i < text.length) {
-        el.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeChar, 65);
-      } else {
-        const lang = getLang() as keyof typeof roles;
-        const list = roles[lang] || roles.en;
-        if (roleEl) {
-          roleEl.textContent = list[0];
-          roleEl.style.transition = 'opacity 0.4s ease';
-        }
-        subtitle?.classList.remove('opacity-0', 'translate-y-2');
-        subtitle?.classList.add('opacity-100', 'translate-y-0');
-        cta?.classList.remove('opacity-0', 'translate-y-2');
-        cta?.classList.add('opacity-100', 'translate-y-0');
-        setInterval(cycleRole, 3000);
+    const cursor = document.getElementById('typed-cursor');
+
+    function finishTyping() {
+      const lang = getLang() as keyof typeof roles;
+      const list = roles[lang] || roles.en;
+      if (roleEl) {
+        roleEl.textContent = list[0];
+        roleEl.style.transition = 'opacity 0.4s ease';
       }
+      subtitle?.classList.remove('opacity-0', 'translate-y-2');
+      subtitle?.classList.add('opacity-100', 'translate-y-0');
+      cta?.classList.remove('opacity-0', 'translate-y-2');
+      cta?.classList.add('opacity-100', 'translate-y-0');
+      // Fade out cursor after typing
+      if (cursor) {
+        cursor.style.transition = 'opacity 0.5s ease';
+        cursor.style.opacity = '0';
+        setTimeout(() => { cursor.style.display = 'none'; }, 500);
+      }
+      setInterval(cycleRole, 3000);
     }
 
-    setTimeout(typeChar, 600);
+    // If name was already typed (e.g. navigated back), show it instantly
+    if (el.textContent && el.textContent.length > 0) {
+      finishTyping();
+    } else {
+      function typeChar() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 65);
+        } else {
+          finishTyping();
+        }
+      }
+      setTimeout(typeChar, 600);
+    }
   })();
 </script>
