@@ -1163,6 +1163,7 @@ import Footer from '../components/Footer.astro';
   .layer-forest {
     position: relative;
     overflow: hidden;
+    contain: layout style;
     margin-top: -1px;
     transition: background 0.55s ease;
     --color-primary: 230 240 230;
@@ -1226,7 +1227,7 @@ import Footer from '../components/Footer.astro';
   .ff-14 { top: 88%; right: 2%;  transform: rotate(-8deg); }
 
   @media (max-width: 768px) {
-    .ff { opacity: 0.5; }
+    .ff { opacity: 0.5; filter: none; }
     .ff-2, .ff-4, .ff-6, .ff-8, .ff-10, .ff-12 { display: none; }
     .ff-1 { left: 1%; }
     .ff-5 { right: 1%; }
@@ -1323,6 +1324,7 @@ import Footer from '../components/Footer.astro';
   .flower-12 { bottom: 44%; right: 11%; transform: rotate(5deg); }
 
   @media (max-width: 768px) {
+    .flower { filter: none; }
     .flower-1 { left: 2%; }
     .flower-2 { left: 8%; }
     .flower-3 { left: 5%; }
@@ -1337,6 +1339,7 @@ import Footer from '../components/Footer.astro';
   /* ===== POND LAYER ===== */
   .layer-pond {
     position: relative;
+    contain: layout style;
     margin-top: -1px;
     transition: background 0.55s ease;
     --color-primary: 230 245 250;
@@ -1441,6 +1444,8 @@ import Footer from '../components/Footer.astro';
 
   @media (max-width: 768px) {
     .lily, .water-lily, .ripple { opacity: 0.4; }
+    .water-lily { filter: none; }
+    .frog { filter: none; }
     .frog-1 { opacity: 0.5; left: 3%; }
     .frog-2 { display: none; }
     .ripple-2, .ripple-3 { display: none; }

@@ -574,6 +574,7 @@ const links = [
   });
 
   // ---- Auto-hide on scroll + theme swap + active section ----
+  // Optimized: uses cached offsets instead of getBoundingClientRect per frame
   (function () {
     const nav = document.getElementById('main-nav');
     const hero = document.getElementById('hero');
@@ -592,48 +593,74 @@ const links = [
     const navLinks = nav.querySelectorAll('.nav-link[data-section]');
     const mobileLinks = document.querySelectorAll('.nav-link-mobile[data-section]');
 
-    // Layer boundaries for theme detection
+    // Layer elements for theme detection
     const forest = document.querySelector('.layer-forest') as HTMLElement | null;
     const forestTransition = document.querySelector('.layer-sky-to-forest') as HTMLElement | null;
     const underground = document.querySelector('.layer-pond') as HTMLElement | null;
     const underTransition = document.querySelector('.layer-forest-to-pond') as HTMLElement | null;
 
-    function getNavTheme(): string {
-      const heroBottom = hero!.getBoundingClientRect().bottom;
-      if (heroBottom > 60) return 'hero';
+    // Cached offsets — no getBoundingClientRect during scroll
+    let heroEnd = 0;
+    let forestStart = 0;
+    let forestEnd = 0;
+    let pondStart = 0;
+    let sectionOffsets: { id: string; top: number }[] = [];
+    let prevTheme = '';
+    let prevActiveId = '';
 
-      // Check if we're in forest zone (including transition into it)
-      const forestStart = forestTransition || forest;
-      const forestEnd = underTransition || underground;
-      if (forestStart && forestEnd) {
-        const fTop = forestStart.getBoundingClientRect().top;
-        const fBottom = forestEnd.getBoundingClientRect().top;
-        if (fTop <= 40 && fBottom > 40) return 'forest';
-      }
-
-      // Check if we're in underground zone
-      if (underground) {
-        const uTop = (underTransition || underground).getBoundingClientRect().top;
-        if (uTop <= 40) return 'underground';
-      }
-
-      return 'page';
+    function cacheOffsets() {
+      heroEnd = hero!.offsetTop + hero!.offsetHeight;
+      const fEl = forestTransition || forest;
+      const fEndEl = underTransition || underground;
+      const pEl = underTransition || underground;
+      forestStart = fEl ? fEl.offsetTop : Infinity;
+      forestEnd = fEndEl ? fEndEl.offsetTop : Infinity;
+      pondStart = pEl ? pEl.offsetTop : Infinity;
+      sectionOffsets = sections.map(s => ({ id: s.id, top: s.offsetTop }));
     }
+
+    cacheOffsets();
+    window.addEventListener('resize', cacheOffsets, { passive: true });
 
     function update() {
       const scrollY = window.scrollY;
-      const heroBottom = hero!.getBoundingClientRect().bottom;
+      const navOffset = 60;
 
-      // Theme swap
-      nav!.dataset.navTheme = getNavTheme();
+      // Theme detection — pure math, zero layout queries
+      let theme: string;
+      const scrollCheck = scrollY + navOffset;
+      if (scrollY + navOffset < heroEnd) {
+        theme = 'hero';
+      } else if (scrollCheck >= forestStart && scrollCheck < forestEnd) {
+        theme = 'forest';
+      } else if (scrollCheck >= pondStart) {
+        theme = 'underground';
+      } else {
+        theme = 'page';
+      }
+
+      // Active section — pure math
+      let activeId = '';
+      for (let i = sectionOffsets.length - 1; i >= 0; i--) {
+        if (scrollY + 120 >= sectionOffsets[i].top) {
+          activeId = sectionOffsets[i].id;
+          break;
+        }
+      }
+
+      // === ALL WRITES BELOW — no layout thrashing ===
+
+      // Theme swap (only on change)
+      if (theme !== prevTheme) {
+        nav!.dataset.navTheme = theme;
+        prevTheme = theme;
+      }
 
       // Auto-hide (only after scrolling past hero)
-      if (heroBottom <= 60) {
+      if (theme !== 'hero') {
         const diff = scrollY - lastScrollY;
         delta += diff;
-
         if (delta > THRESHOLD) {
-          // Scrolling down — hide nav + close mobile menu
           nav!.classList.add('nav-hidden');
           if (menu && !menu.classList.contains('hidden')) {
             menu.classList.add('hidden');
@@ -643,40 +670,28 @@ const links = [
           }
           delta = 0;
         } else if (delta < -THRESHOLD) {
-          // Scrolling up — show
           nav!.classList.remove('nav-hidden');
           delta = 0;
         }
       } else {
-        // In hero — always show
         nav!.classList.remove('nav-hidden');
         delta = 0;
       }
 
       lastScrollY = scrollY;
 
-      // Active section detection
-      let activeId = '';
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const rect = sections[i].getBoundingClientRect();
-        if (rect.top <= 120) {
-          activeId = sections[i].id;
-          break;
-        }
+      // Active link highlights (only on change)
+      if (activeId !== prevActiveId) {
+        const brand = nav!.querySelector('.nav-brand');
+        if (brand) brand.classList.toggle('active', activeId === '');
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', (link as HTMLElement).dataset.section === activeId);
+        });
+        mobileLinks.forEach((link) => {
+          link.classList.toggle('active', (link as HTMLElement).dataset.section === activeId);
+        });
+        prevActiveId = activeId;
       }
-
-      // Highlight brand when at the top (no section active)
-      const brand = nav!.querySelector('.nav-brand');
-      if (brand) brand.classList.toggle('active', activeId === '');
-
-      navLinks.forEach((link) => {
-        const section = (link as HTMLElement).dataset.section;
-        link.classList.toggle('active', section === activeId);
-      });
-      mobileLinks.forEach((link) => {
-        const section = (link as HTMLElement).dataset.section;
-        link.classList.toggle('active', section === activeId);
-      });
 
       ticking = false;
     }
