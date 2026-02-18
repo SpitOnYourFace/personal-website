@@ -1036,13 +1036,15 @@ import Footer from '../components/Footer.astro';
     position: absolute;
     pointer-events: auto;
     cursor: pointer;
-    animation: drift-cloud linear infinite, cloud-bob ease-in-out infinite;
+    animation: drift-cloud linear infinite;
     will-change: transform;
     backface-visibility: hidden;
+    transition: filter 0.5s ease, opacity 0.55s ease, scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .cloud-svg:hover {
     filter: brightness(1.2) drop-shadow(0 8px 30px rgba(255,255,255,0.35));
+    animation-play-state: paused;
     scale: 1.08;
   }
 
@@ -1056,11 +1058,6 @@ import Footer from '../components/Footer.astro';
     opacity: 1;
   }
 
-
-  .cloud-svg {
-    transition: filter 0.5s ease, opacity 0.55s ease, scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   :global(.dark) .cloud-svg {
     opacity: 0.15;
   }
@@ -1071,24 +1068,19 @@ import Footer from '../components/Footer.astro';
   }
 
   /* Back clouds (behind About) — larger, slower, more translucent */
-  .cloud-a1 { top: -10%; left: -35%; width: 400px; height: auto; animation-duration: 80s, 12s; opacity: 0.75; }
-  .cloud-a2 { top: 25%; left: -30%; width: 340px; height: auto; animation-duration: 95s, 15s; animation-delay: -35s, -4s; opacity: 0.65; }
-  .cloud-a3 { top: 55%; left: -25%; width: 290px; height: auto; animation-duration: 70s, 10s; animation-delay: -55s, -7s; opacity: 0.7; }
+  .cloud-a1 { top: -10%; left: -35%; width: 400px; height: auto; animation-duration: 80s; opacity: 0.75; }
+  .cloud-a2 { top: 25%; left: -30%; width: 340px; height: auto; animation-duration: 95s; animation-delay: -35s; opacity: 0.65; }
+  .cloud-a3 { top: 55%; left: -25%; width: 290px; height: auto; animation-duration: 70s; animation-delay: -55s; opacity: 0.7; }
 
   /* Front clouds (between About & Skills) — sharper, closer, brighter */
-  .cloud-b1 { top: -10%; left: -32%; width: 370px; height: auto; animation-duration: 65s, 14s; }
-  .cloud-b2 { top: 20%; left: -28%; width: 320px; height: auto; animation-duration: 80s, 11s; animation-delay: -20s, -3s; }
-  .cloud-b3 { top: 45%; left: -24%; width: 270px; height: auto; animation-duration: 72s, 16s; animation-delay: -45s, -8s; }
-  .cloud-b4 { top: 70%; left: -20%; width: 230px; height: auto; animation-duration: 58s, 13s; animation-delay: -30s, -5s; }
+  .cloud-b1 { top: -10%; left: -32%; width: 370px; height: auto; animation-duration: 65s; }
+  .cloud-b2 { top: 20%; left: -28%; width: 320px; height: auto; animation-duration: 80s; animation-delay: -20s; }
+  .cloud-b3 { top: 45%; left: -24%; width: 270px; height: auto; animation-duration: 72s; animation-delay: -45s; }
+  .cloud-b4 { top: 70%; left: -20%; width: 230px; height: auto; animation-duration: 58s; animation-delay: -30s; }
 
   @keyframes drift-cloud {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(100vw + 450px)); }
-  }
-
-  @keyframes cloud-bob {
-    0%, 100% { translate: 0 0; }
-    50% { translate: 0 -6px; }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(calc(100vw + 450px), 0, 0); }
   }
 
   /* ===== TRANSITION: SKY → FOREST ===== */

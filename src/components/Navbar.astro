@@ -608,15 +608,19 @@ const links = [
     let prevTheme = '';
     let prevActiveId = '';
 
+    function getAbsoluteTop(el: HTMLElement): number {
+      return el.getBoundingClientRect().top + window.scrollY;
+    }
+
     function cacheOffsets() {
-      heroEnd = hero!.offsetTop + hero!.offsetHeight;
+      heroEnd = getAbsoluteTop(hero!) + hero!.offsetHeight;
       const fEl = forestTransition || forest;
       const fEndEl = underTransition || underground;
       const pEl = underTransition || underground;
-      forestStart = fEl ? fEl.offsetTop : Infinity;
-      forestEnd = fEndEl ? fEndEl.offsetTop : Infinity;
-      pondStart = pEl ? pEl.offsetTop : Infinity;
-      sectionOffsets = sections.map(s => ({ id: s.id, top: s.offsetTop }));
+      forestStart = fEl ? getAbsoluteTop(fEl) : Infinity;
+      forestEnd = fEndEl ? getAbsoluteTop(fEndEl) : Infinity;
+      pondStart = pEl ? getAbsoluteTop(pEl) : Infinity;
+      sectionOffsets = sections.map(s => ({ id: s.id, top: getAbsoluteTop(s) }));
     }
 
     cacheOffsets();
