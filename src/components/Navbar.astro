@@ -111,7 +111,7 @@ const links = [
 <!-- Mobile dropdown panel (separate from pill so it can be wider) -->
 <div
   id="mobile-menu"
-  class="mobile-panel fixed left-4 right-4 z-40 hidden md:hidden rounded-2xl border backdrop-blur-xl transition-all duration-300 overflow-hidden"
+  class="mobile-panel fixed left-4 right-4 z-40 md:hidden rounded-2xl border backdrop-blur-xl overflow-hidden"
   style="top: 64px"
 >
   <ul class="px-4 py-3 space-y-0.5">
@@ -409,6 +409,23 @@ const links = [
   [data-nav-theme="underground"] ~ .mobile-panel .border-t { border-color: rgba(100, 180, 220, 0.08); }
   [data-nav-theme="underground"] ~ .mobile-panel .lang-btn[aria-pressed="true"] { color: rgba(210, 235, 250, 0.9); font-weight: 600; }
   [data-nav-theme="underground"] ~ .mobile-panel .lang-btn[aria-pressed="false"] { color: rgba(160, 200, 225, 0.35); }
+
+  /* ===== Mobile menu animation ===== */
+  .mobile-panel {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.25s;
+  }
+  .mobile-panel.menu-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
 </style>
 
 <script>
@@ -528,8 +545,8 @@ const links = [
   const iconClose = document.getElementById('menu-close');
 
   toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden');
+    const isOpen = menu?.classList.contains('menu-open');
+    menu?.classList.toggle('menu-open');
     iconOpen?.classList.toggle('hidden');
     iconClose?.classList.toggle('hidden');
     toggle.setAttribute('aria-expanded', String(!isOpen));
@@ -537,7 +554,7 @@ const links = [
 
   document.querySelectorAll('.mobile-link').forEach((link) => {
     link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
+      menu?.classList.remove('menu-open');
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');
       toggle?.setAttribute('aria-expanded', 'false');
@@ -565,8 +582,8 @@ const links = [
 
   // Close mobile menu on resize to desktop
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768 && menu && !menu.classList.contains('hidden')) {
-      menu.classList.add('hidden');
+    if (window.innerWidth >= 768 && menu && menu.classList.contains('menu-open')) {
+      menu.classList.remove('menu-open');
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');
       toggle?.setAttribute('aria-expanded', 'false');
@@ -666,8 +683,8 @@ const links = [
         delta += diff;
         if (delta > THRESHOLD) {
           nav!.classList.add('nav-hidden');
-          if (menu && !menu.classList.contains('hidden')) {
-            menu.classList.add('hidden');
+          if (menu && menu.classList.contains('menu-open')) {
+            menu.classList.remove('menu-open');
             iconOpen?.classList.remove('hidden');
             iconClose?.classList.add('hidden');
             toggle?.setAttribute('aria-expanded', 'false');
