@@ -456,14 +456,23 @@ Protocol (ICP) изглеждат обещаващо.
     const hint = document.getElementById('hero-hint');
     if (!hero || !overlay) return;
 
-    // Cache hero rect — recalc on resize and interaction start (not per-frame)
+    // Cache hero rect — recalc on resize, scroll, focus, and interaction start
     let heroLeft = 0, heroTop = 0, heroW = 0, heroH = 0;
     function cacheHeroRect() {
       const r = hero.getBoundingClientRect();
       heroLeft = r.left; heroTop = r.top; heroW = r.width; heroH = r.height;
     }
     cacheHeroRect();
+    let scrollCacheRaf = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollCacheRaf) {
+        scrollCacheRaf = true;
+        requestAnimationFrame(() => { cacheHeroRect(); scrollCacheRaf = false; });
+      }
+    }, { passive: true });
     window.addEventListener('resize', cacheHeroRect, { passive: true });
+    window.addEventListener('focus', cacheHeroRect);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) cacheHeroRect(); });
     hero.addEventListener('mouseenter', cacheHeroRect, { passive: true });
     hero.addEventListener('touchstart', cacheHeroRect, { passive: true });
 

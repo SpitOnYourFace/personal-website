@@ -1019,6 +1019,7 @@ import Footer from '../components/Footer.astro';
   .clouds-layer {
     position: relative;
     overflow: visible;
+    contain: layout style;
   }
 
   .clouds-back {
@@ -1038,13 +1039,11 @@ import Footer from '../components/Footer.astro';
     animation: drift-cloud linear infinite, cloud-bob ease-in-out infinite;
     will-change: transform;
     backface-visibility: hidden;
-    transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .cloud-svg:hover {
     filter: brightness(1.2) drop-shadow(0 8px 30px rgba(255,255,255,0.35));
-    animation-play-state: paused, paused;
-    transform: translateX(var(--_dx, 0)) scale(1.08);
+    scale: 1.08;
   }
 
   .cloud-svg .cloud-provider-text {
@@ -1059,7 +1058,7 @@ import Footer from '../components/Footer.astro';
 
 
   .cloud-svg {
-    transition: opacity 0.55s ease;
+    transition: filter 0.5s ease, opacity 0.55s ease, scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   :global(.dark) .cloud-svg {
