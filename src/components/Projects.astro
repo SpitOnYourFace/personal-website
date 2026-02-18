@@ -81,7 +81,17 @@ const projects = [
                   </div>
                 </div>
                 <div class="browser-content">
-                  <img src={project.preview} alt={project.previewAlt} width="800" height="450" decoding="async" loading="lazy" class="w-full h-auto block" />
+                  <img
+                    src={project.preview}
+                    srcset={`${project.preview.replace('.webp', '-400w.webp')} 400w, ${project.preview} 800w`}
+                    sizes="(max-width: 768px) 90vw, 440px"
+                    alt={project.previewAlt}
+                    width="800"
+                    height="450"
+                    decoding="async"
+                    loading="lazy"
+                    class="w-full h-auto block"
+                  />
                 </div>
               </div>
             </a>

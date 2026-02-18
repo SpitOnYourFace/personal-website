@@ -241,8 +241,29 @@
       }
     }
 
+    let timerId: ReturnType<typeof setTimeout> | null = null;
+
+    function scheduleRefresh() {
+      timerId = setTimeout(async () => {
+        await loadCoins();
+        if (!document.hidden) scheduleRefresh();
+      }, 60_000);
+    }
+
+    function handleVisibility() {
+      if (document.hidden) {
+        if (timerId) {
+          clearTimeout(timerId);
+          timerId = null;
+        }
+      } else {
+        loadCoins();
+        scheduleRefresh();
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibility);
     loadCoins();
-    // Auto-refresh every 60 seconds
-    setInterval(loadCoins, 60_000);
+    scheduleRefresh();
   })();
 </script>
