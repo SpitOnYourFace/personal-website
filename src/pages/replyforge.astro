@@ -2,65 +2,262 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="ReplyForge | Personalized outbound that books meetings in 48h" description="ReplyForge helps B2B agencies launch personalized outbound campaigns in 48h.">
-  <main id="main-content" class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
-    <section class="max-w-4xl mx-auto px-6 py-16 md:py-24">
-      <p class="text-sm uppercase tracking-[0.2em] text-amber-300 mb-4">ReplyForge</p>
-      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">Personalized outbound that books meetings in 48h.</h1>
-      <p class="text-lg md:text-xl text-slate-300 mb-8">I help B2B agencies launch high-quality outbound campaigns fast — with targeted leads, personalized first lines, and ready-to-send sequences.</p>
-      <a href="#form" class="inline-block bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-xl hover:bg-amber-300 transition">Get 5 Free Sample Lines</a>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-6 py-10 space-y-8">
-      <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
-        <h2 class="text-2xl font-bold mb-4">What you get</h2>
-        <ul class="list-disc pl-6 space-y-2 text-slate-200">
-          <li>100 targeted leads</li>
-          <li>100 personalized first lines</li>
-          <li>3-step email sequence</li>
-          <li>CSV ready for Instantly / Smartlead / Lemlist</li>
-          <li>Delivery in 48 hours</li>
-        </ul>
-      </div>
-
-      <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
-        <h2 class="text-2xl font-bold mb-4">Best fit</h2>
-        <ul class="list-disc pl-6 space-y-2 text-slate-200">
-          <li>Web development agencies</li>
-          <li>Marketing agencies</li>
-          <li>Automation agencies</li>
-          <li>Design studios</li>
-        </ul>
-      </div>
-
-      <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
-        <h2 class="text-2xl font-bold mb-4">Pricing</h2>
-        <div class="space-y-3 text-slate-200">
-          <p><strong>Pilot — €149</strong><br/>One campaign batch: 100 leads + personalization + 3-email sequence</p>
-          <p><strong>Standard — €349</strong><br/>Better targeting depth, tone tuning + QA pass</p>
-          <p><strong>Growth — €699/mo</strong><br/>2 campaign batches/month + ongoing optimization</p>
+<BaseLayout
+  title="ReplyForge | Personalized outbound that books meetings in 48h"
+  description="ReplyForge helps B2B agencies launch personalized outbound campaigns in 48h."
+>
+  <main id="main-content" class="rf-page">
+    <section class="rf-hero">
+      <div class="rf-container">
+        <p class="rf-badge">REPLYFORGE</p>
+        <h1>Personalized outbound that books meetings in 48h.</h1>
+        <p class="rf-subtitle">
+          I help B2B agencies launch high-quality outbound campaigns fast — with targeted leads,
+          personalized first lines, and ready-to-send sequences.
+        </p>
+        <div class="rf-hero-cta">
+          <a href="#form" class="rf-btn rf-btn-primary">Get 5 Free Sample Lines</a>
+          <a href="#pricing" class="rf-btn rf-btn-ghost">See Pricing</a>
         </div>
       </div>
+    </section>
 
-      <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
-        <h2 class="text-2xl font-bold mb-4">Guarantee</h2>
-        <p class="text-slate-200">If the delivered batch is not usable, I revise within 24h or refund the pilot.</p>
+    <section class="rf-trust">
+      <div class="rf-container rf-grid-3">
+        <div class="rf-stat"><strong>48h</strong><span>delivery time</span></div>
+        <div class="rf-stat"><strong>100</strong><span>targeted leads / batch</span></div>
+        <div class="rf-stat"><strong>3-step</strong><span>outbound sequence</span></div>
       </div>
+    </section>
 
-      <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
-        <h2 class="text-2xl font-bold mb-4">Process</h2>
-        <ol class="list-decimal pl-6 space-y-2 text-slate-200">
-          <li>You submit niche + offer + geography</li>
-          <li>I prepare lead list + personalization + sequence</li>
-          <li>You receive launch-ready files in 48h</li>
-        </ol>
+    <section class="rf-section">
+      <div class="rf-container">
+        <h2>What you get</h2>
+        <div class="rf-grid-2">
+          <div class="rf-card">
+            <ul>
+              <li>100 targeted leads</li>
+              <li>100 personalized first lines</li>
+              <li>3-step email sequence</li>
+              <li>CSV ready for Instantly / Smartlead / Lemlist</li>
+              <li>Delivery in 48 hours</li>
+            </ul>
+          </div>
+          <div class="rf-card rf-card-highlight">
+            <h3>Best fit</h3>
+            <ul>
+              <li>Web development agencies</li>
+              <li>Marketing agencies</li>
+              <li>Automation agencies</li>
+              <li>Design studios</li>
+            </ul>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div id="form" class="bg-amber-100 text-slate-900 rounded-2xl p-6 border border-amber-200">
-        <h2 class="text-2xl font-bold mb-2">Get 5 free sample lines now</h2>
-        <p class="mb-4">Send your niche, target geography, and offer. I’ll return 5 personalized lines within 24h.</p>
-        <p class="font-semibold">Contact: <a class="underline" href="mailto:hello@krasikralev.com">hello@krasikralev.com</a></p>
+    <section id="pricing" class="rf-section">
+      <div class="rf-container">
+        <h2>Pricing</h2>
+        <div class="rf-pricing-grid">
+          <article class="rf-price-card">
+            <p class="rf-plan">Pilot</p>
+            <p class="rf-price">€149</p>
+            <p class="rf-price-note">Perfect for first test run</p>
+            <ul>
+              <li>100 leads</li>
+              <li>100 personalized first lines</li>
+              <li>3-email sequence</li>
+            </ul>
+          </article>
+          <article class="rf-price-card rf-price-card-popular">
+            <p class="rf-plan">Standard</p>
+            <p class="rf-price">€349</p>
+            <p class="rf-price-note">Most popular</p>
+            <ul>
+              <li>Deeper targeting</li>
+              <li>Tone tuning</li>
+              <li>QA pass included</li>
+            </ul>
+          </article>
+          <article class="rf-price-card">
+            <p class="rf-plan">Growth</p>
+            <p class="rf-price">€699/mo</p>
+            <p class="rf-price-note">For scaling teams</p>
+            <ul>
+              <li>2 campaign batches monthly</li>
+              <li>Continuous optimization</li>
+              <li>Priority turnaround</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="rf-section">
+      <div class="rf-container">
+        <h2>How it works</h2>
+        <div class="rf-steps">
+          <div><span>1</span><p>You send niche + offer + geography</p></div>
+          <div><span>2</span><p>I build list + personalization + sequence</p></div>
+          <div><span>3</span><p>You receive launch-ready files in 48h</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rf-section">
+      <div class="rf-container">
+        <div class="rf-guarantee">
+          <h3>Guarantee</h3>
+          <p>If the delivered batch is not usable, I revise within 24h or refund the pilot.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="form" class="rf-section rf-section-last">
+      <div class="rf-container">
+        <div class="rf-form-card">
+          <h2>Get 5 free sample lines now</h2>
+          <p>Send your niche, target geography, and offer. I’ll return 5 personalized lines within 24h.</p>
+          <p class="rf-contact">
+            Contact: <a href="mailto:krasikralevv@gmail.com">krasikralevv@gmail.com</a>
+          </p>
+        </div>
       </div>
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .rf-page {
+    --bg: #060b16;
+    --bg2: #0b1224;
+    --card: rgba(255, 255, 255, 0.06);
+    --stroke: rgba(255, 255, 255, 0.14);
+    --text: #eef3ff;
+    --muted: #b5c2df;
+    --accent: #6ee7ff;
+    --accent2: #8b5cf6;
+    background: radial-gradient(1200px 700px at 10% -20%, #1e2a53 0%, transparent 60%),
+      radial-gradient(900px 500px at 100% -10%, #2a1d55 0%, transparent 55%),
+      linear-gradient(180deg, var(--bg), var(--bg2));
+    color: var(--text);
+  }
+
+  .rf-container { width: min(1100px, 92%); margin: 0 auto; }
+  .rf-hero { padding: 88px 0 52px; }
+  .rf-badge {
+    display: inline-block;
+    letter-spacing: 0.2em;
+    font-size: 0.76rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .rf-hero h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.05;
+    margin: 0 0 16px;
+    max-width: 900px;
+  }
+  .rf-subtitle {
+    max-width: 780px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2.2vw, 1.22rem);
+    margin: 0 0 28px;
+  }
+  .rf-hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .rf-btn {
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: 1px solid transparent;
+  }
+  .rf-btn-primary { background: linear-gradient(120deg, var(--accent), #8be9ff); color: #051120; }
+  .rf-btn-ghost { border-color: var(--stroke); color: var(--text); }
+
+  .rf-trust { padding: 8px 0 26px; }
+  .rf-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .rf-stat {
+    background: var(--card);
+    border: 1px solid var(--stroke);
+    border-radius: 14px;
+    padding: 16px;
+    display: grid;
+    gap: 2px;
+  }
+  .rf-stat strong { font-size: 1.3rem; }
+  .rf-stat span { color: var(--muted); font-size: 0.92rem; }
+
+  .rf-section { padding: 20px 0; }
+  .rf-section h2 { margin: 0 0 14px; font-size: 1.65rem; }
+  .rf-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rf-card {
+    background: var(--card);
+    border: 1px solid var(--stroke);
+    border-radius: 16px;
+    padding: 18px;
+  }
+  .rf-card-highlight {
+    background: linear-gradient(140deg, rgba(110, 231, 255, 0.1), rgba(139, 92, 246, 0.12));
+  }
+  .rf-card ul, .rf-price-card ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+
+  .rf-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .rf-price-card {
+    background: var(--card);
+    border: 1px solid var(--stroke);
+    border-radius: 16px;
+    padding: 18px;
+  }
+  .rf-price-card-popular { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(110, 231, 255, 0.35) inset; }
+  .rf-plan { margin: 0; color: var(--muted); font-weight: 700; }
+  .rf-price { margin: 6px 0; font-size: 1.8rem; font-weight: 800; }
+  .rf-price-note { margin: 0 0 12px; color: var(--muted); font-size: 0.92rem; }
+
+  .rf-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .rf-steps div {
+    background: var(--card);
+    border: 1px solid var(--stroke);
+    border-radius: 14px;
+    padding: 14px;
+  }
+  .rf-steps span {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background: linear-gradient(120deg, var(--accent), var(--accent2));
+    color: #031022;
+    margin-bottom: 8px;
+  }
+
+  .rf-guarantee {
+    border: 1px solid rgba(110, 231, 255, 0.38);
+    background: linear-gradient(145deg, rgba(110, 231, 255, 0.12), rgba(139, 92, 246, 0.1));
+    border-radius: 16px;
+    padding: 18px;
+  }
+  .rf-guarantee h3 { margin: 0 0 6px; }
+  .rf-guarantee p { margin: 0; color: #d7e4ff; }
+
+  .rf-form-card {
+    background: #fff7d9;
+    color: #1a1533;
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid #ffe08a;
+  }
+  .rf-form-card h2 { margin-top: 0; }
+  .rf-contact a { color: #23143d; font-weight: 700; }
+  .rf-section-last { padding-bottom: 70px; }
+
+  @media (max-width: 900px) {
+    .rf-grid-3, .rf-grid-2, .rf-pricing-grid, .rf-steps { grid-template-columns: 1fr; }
+    .rf-hero { padding-top: 72px; }
+  }
+</style>
